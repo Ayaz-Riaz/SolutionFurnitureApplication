@@ -1,0 +1,19 @@
+﻿@model FurnitureApplication.Entities.Category
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Category</h2>
+<h1>Are you sure You want to delete this category?</h1>
+<form method="post">
+    <div class="form">
+        <div class="box">
+            <input type="hidden" name="ID" placeholder="Name" value="@Model.ID" />
+        </div>
+        <div class="box">
+            <button type="submit">Yes Delete</button>
+        </div>
+    </div>
+</form>
+<a href="/Inde" class="btn btn-primary">Cancel</a>
+

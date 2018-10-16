@@ -8,7 +8,7 @@ using FurnitureApplication.Entities;
 
 namespace FurnitureApplication.Database
 {
-    public class FAContext : DbContext
+    public class FAContext : DbContext, IDisposable
     {
         public FAContext(): base("FurnitureApplicationConnetion")
         {

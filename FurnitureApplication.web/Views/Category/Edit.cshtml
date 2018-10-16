@@ -1,0 +1,25 @@
+﻿@model FurnitureApplication.Entities.Category
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Category</h2>
+<form method="post">
+    <div class="form">
+        <div class="box">
+            <input type="hidden" name="ID" placeholder="Name" value="@Model.ID" />
+        </div>
+        <div class="box">
+            <label>Name</label>
+            <input type="text" name="Name" placeholder="Name" value="@Model.Name" />
+        </div>
+        <div class="box">
+            <label>Description</label>
+            <input type="text" name="Description" placeholder="Description" value="@Model.Description" />
+        </div>
+        <div class="box">
+            <button type="submit">Save</button>
+        </div>
+    </div>
+</form>
+

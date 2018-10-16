@@ -1,0 +1,11 @@
+﻿@model List<FurnitureApplication.Entities.Category>
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>index</h2>
+
+@foreach (var category in Model)
+{
+    <h1>@category.Name</h1>
+}

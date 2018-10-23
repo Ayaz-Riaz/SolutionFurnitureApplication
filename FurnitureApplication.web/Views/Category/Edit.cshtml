@@ -3,6 +3,8 @@
     ViewBag.Title = "Edit";
     //var trueChecked = Model.isFeatured ? "checked" : string.Empty;
     //var falseChecked = !Model.isFeatured ? "checked" : string.Empty;
+
+    var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/images/empty-member.png";
 }
 
 <div id="main">
@@ -13,7 +15,8 @@
             </div>
             <hr />
             <div class="col-lg-6">
-                <form class="editCategory" method="post">
+                <form class="editCategory" method="post" id="editCategory">
+                    <input type="hidden" name="ID" value="@Model.ID" />
                     <div class="form">
                         <div class="form-group">
                             <input class="form-control" type="hidden" name="ID" placeholder="Name" value="@Model.ID" />
@@ -27,9 +30,9 @@
                             <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
                         </div>
                         <div class="form-group">
-                            <label>Upload Image</label>
-                            <input type="hidden" name="ImageUrl" value="" id="ImageUrl" />
-                            <input id="imageUpload" type="file" name="Image" accept=".jpg, .png" />
+                            <label>Image</label>
+                            <input type="hidden" id="ImageUrl" name="ImageURL" value="@Model.ImageUrl" />
+                            <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
                         </div>
                         <div class="form-group">
                             <label>Is Feature?</label>
@@ -44,12 +47,15 @@
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary" id="updateBtn" type="submit">Upload</button>
+                            <button id="cancelBtn" type="button" class="btn btn-primary">Cancel</button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-lg-6">
-                <img id="categoryImage" src="" />
+                <div class="Placeholder-img">
+                    <img id="categoryImage" src="@imageUrl" />
+                </div>
             </div>
         </div>
     </div>
@@ -87,16 +93,20 @@
             contentType: false,
             processData: false
         })
-            .done(function (response) {
-                console.log(response);
+        .done(function (response) {
+            console.log(response);
 
-                if (response.Success) {
-                    $("#categoryImage").attr("src", response.ImageUrl)
-                    $("#ImageUrl").val(response.ImageUrl)
-                }
-            })
-            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("Fail")
-            });
+            if (response.Success) {
+                $("#categoryImage").attr("src", response.ImageUrl)
+                $("#ImageUrl").val(response.ImageUrl)
+            }
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail")
+        });
+    });
+    $("#cancelBtn").click(function () {
+        $("#actionContainer").html("");
+        focusAction("tableContiner");
     });
 </script>

@@ -779,6 +779,16 @@ input,
     background: #6bbb3b;
     text-decoration: none;
 }
+.Placeholder-img {
+    overflow: hidden;
+    border: 1px dashed #ccc;
+    padding: 20px;
+}
+.Placeholder-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 @media screen and (max-width: 1400px){
     .carousel-caption .heilight-text{
          padding: 25px 35px;

@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201810230703001_newRevort-change.Designer.cs">
       <DependentUpon>201810230703001_newRevort-change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810231056519_ImagesUpdate-change.cs" />
+    <Compile Include="Migrations\201810231056519_ImagesUpdate-change.Designer.cs">
+      <DependentUpon>201810231056519_ImagesUpdate-change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810230703001_newRevort-change.resx">
       <DependentUpon>201810230703001_newRevort-change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810231056519_ImagesUpdate-change.resx">
+      <DependentUpon>201810231056519_ImagesUpdate-change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

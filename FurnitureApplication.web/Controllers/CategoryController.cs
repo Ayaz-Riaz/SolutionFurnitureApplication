@@ -19,6 +19,15 @@ namespace FurnitureApplication.web.Controllers
 
             return View(categries);
         }
+        public ActionResult CategoryTable(string search)
+        {
+            var categories = categoryService.GetCategories();
+            if (string.IsNullOrEmpty(search) == false)
+            {
+                categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+            return PartialView(categories);
+        }
 
         //*****************Create option
 

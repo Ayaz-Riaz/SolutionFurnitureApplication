@@ -2,17 +2,23 @@
 @{
     ViewBag.Title = "Index";
 }
-<div id="tableContainer">
-    @{
-        Html.RenderAction("ProductTable");
+<div id="main">
+    <div class="main-holder">
+        <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
+            <div class="heading-area">
+                <h2>Create Category</h2>
+            </div>
+            <div id="tableContainer">
+                @{
+                    Html.RenderAction("ProductTable");
 
-    }
-</div>
-<div id="actionContainer">
-    @*@{
-        Html.RenderAction("Create");
+                }
+            </div>
+            <div id="actionContainer">
 
-    }*@
+            </div>
+        </div>
+    </div>
 </div>
 
 

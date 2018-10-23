@@ -3,25 +3,30 @@
     ViewBag.Title = "ProductTable";
 }
 
-<h2>ProductTable</h2>
-
 <form method="post">
-    <div>
-        <input id="searchTxt" type="search" placeholder="Search" />
-        <button type="button" onclick="action" id="searchBtn">Search</button>
-    </div>
-    <div>
-        <button type="button" id="newBtn">New Product</button>
+    <div style="margin-bottom: 30px; overflow: hidden;">
+        <div class="col-lg-6 float-right">
+            <button class="btn btn-primary float-right" type="button" id="newBtn">New Product</button>
+        </div>
+        <div class="col-lg-6 float-left">
+            <div class="search-box create-page">
+                <div class="search-row">
+                    <input class="form-control" id="searchTxt" type="text" placeholder="Search" />
+                    <span onclick="action" id="searchBtn" class="ico-search10"></span>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 <div>
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Action</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +34,22 @@
             {
                 <tr>
                     <td>@product.Name</td>
-                    <td>Category</td>
-                    <td>@product.Price</td>
                     <td>
-                        <button class="editBtn" data-id="@product.ID">Edit</button>
-                        <button class="deleteBtn" data-id="@product.ID">Delete</button>
+                        @if (product.Category != null)
+                        {
+                            <text>@product.Category.Name</text>
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                    <td>
+                        <button class="btn btn-primary editBtn" data-id="@product.ID">Edit</button>
+                        <button class="btn btn-primary deleteBtn" data-id="@product.ID">Delete</button>
+                        <button class="btn btn-primary addToCart" data-id="@product.ID">Add to Cart</button>
                     </td>
                 </tr>
             }
@@ -53,6 +69,7 @@
         })
         .done(function (response) {
             $("#tableContainer").html(response);
+            focussAction();
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
@@ -64,6 +81,8 @@
         })
         .done(function (response) {
             $("#actionContainer").html(response);
+
+            focussAction();
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
@@ -78,11 +97,14 @@
         })
         .done(function (response) {
             $("#actionContainer").html(response);
+            focussAction();
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
         });
     });
+
+
 
 
     $(".deleteBtn").click(function () {
@@ -105,5 +127,24 @@
             });
         }
     });
+    var products = [];
+
+    $(".addToCart").click(function () {
+
+        var productID = $(this).attr("data-id");
+
+        products.push(productID)
+
+        $.cookie("CartProducts", products.join("-"), { path: "/"});
+
+        alert("add to cart added");
+    });
+
+
+    function focussAction() {
+        $("html, body").animate({
+            scrollTop: $("#actionContainer").offset().top - 100
+        }, 1000);
+    }
 </script>
 

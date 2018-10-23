@@ -174,8 +174,23 @@ body {
 	z-index: 20;
 	height: 104px;
 }
+.table-img  {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border:1px solid #ccc;
+    border-radius: 100%;
+}
+label {
+    display: block;
+}
+.table-img  img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 #header:after {
-	overflow: hidden;
+    overflow: hidden;
 }
 a.nav-link {
 	color: #fff;
@@ -527,13 +542,14 @@ a.nav-link:hover {
 	line-height: 20px;
 	width: 85%;
 	outline: none;
+    display: inline-block;
+    vertical-align: middle;
 }
 .search-box .ico-search10 {
 	padding: 8px 10px;
     display: inline-block;
     vertical-align: middle;
     width: 10%;
-    float: right;
 }
 .header-icon-links {
 	position: relative;
@@ -715,7 +731,8 @@ input,
     min-height: 375px;
 }
 .btn.btn-primary {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     background: #f57c00;
     border:1px solid #f57c00;
     transition:all 0.5s linear;
@@ -723,6 +740,10 @@ input,
 .btn.btn-primary:hover {
     background: #6bbb3b;
     border-color: #6bbb3b;
+}
+.search-box.create-page {
+    width: 50%;
+    border: 1px solid #ccc;
 }
 .ico-cart3 {
     padding-top: 3px;

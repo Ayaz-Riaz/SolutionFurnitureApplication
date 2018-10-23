@@ -3,24 +3,27 @@
     ViewBag.Title = "Edit";
 }
 
+<hr />
 <h2>Edit Product</h2>
 <form id="editProduct">
-    <div class="form">
-        <div class="box">
-            <input type="hidden" name="ID" value="@Model.ID"/>
-            <label>Name</label>
-            <input type="text" name="Name" placeholder="Name"  value="@Model.Name"/>
-        </div>
-        <div class="box">
-            <label>Price</label>
-            <input type="text" name="Price" placeholder="Price" value="@Model.Price" />
-        </div>
-        <div class="box">
-            <label>Description</label>
-            <input type="text" name="Description" placeholder="Description" value="@Model.Description"/>
-        </div>
-        <div class="box">
-            <button id="updateBtn" type="submit">Update</button>
+    <div class="col-lg-6">
+        <div class="form">
+            <div class="form-group">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <label>Name</label>
+                <input class="form-control" type="text" name="Name" placeholder="Name" value="@Model.Name" />
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input class="form-control" type="text" name="Price" placeholder="Price" value="@Model.Price" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" id="updateBtn" type="submit">Update</button>
+            </div>
         </div>
     </div>
 </form>
@@ -34,10 +37,15 @@
         .done(function (response) {
             $("#tableContainer").html(response);
             $("#actionContainer").html("");
+            focussAction();
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
         });
     });
+    function focussAction() {
+        $("html, body").animate({
+            scrollTop: $("#actionContainer").offset().top - 100
+        }, 1000);
+    }
 </script>
-

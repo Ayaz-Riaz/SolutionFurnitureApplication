@@ -1,14 +1,16 @@
-﻿@model FurnitureApplication.web.ViewModels.CategorySearchViewModel
+﻿@model CategorySearchViewModel
 
 <form method="post">
-    <div class="col-lg-6 float-right">
-        <button class="btn btn-primary float-right" type="button" id="newBtn">New Category</button>
-    </div>
-    <div class="col-lg-6 float-left">
-        <div class="search-box create-page">
-            <div class="search-row">
-                <input class="form-control" id="searchTxt" type="text" name="Search" value="@Model.SearchTerm" placeholder="Search" />
-                <span onclick="action" id="searchBtn" class="ico-search10"></span>
+    <div style="margin-bottom: 30px; overflow: hidden;">
+        <div class="col-lg-6 float-right">
+            <button class="btn btn-primary float-right" type="button" id="newBtn">New Category</button>
+        </div>
+        <div class="col-lg-6 float-left">
+            <div class="search-box create-page">
+                <div class="search-row">
+                    <input class="form-control" id="searchTxt" type="text" name="Search" value="@Model.SearchTerm" placeholder="Search" />
+                    <span onclick="action" id="searchBtn" class="ico-search10"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -19,6 +21,7 @@
             <tr>
                 <th scope="col">Category Name</th>
                 <th scope="col">Product</th>
+                <th scope="col">Images</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -30,11 +33,23 @@
                     <tr>
                         <td>@category.Name</td>
                         <td>
-                            @category.Products.Count
+                            @if(@category.Products!= null && @category.Products.Count > 0)
+                            {
+                                @category.Products.Count
+                            }
+                            else
+                            {
+                                <span>NA</span>
+                            }
                         </td>
-                        <td class="wrap-td">
-                            <button class="editBtn" data-id="@category.ID">Edit</button>
-                            <button class="deleteBtn" data-id="@category.ID">Delete</button>
+                        <td>
+                            <div class="table-img">
+                                <img src="@category.ImageUrl" />
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary editBtn" data-id="@category.ID">Edit</button>
+                            <button class="btn btn-primary deleteBtn" data-id="@category.ID">Delete</button>
                         </td>
                     </tr>}
             }

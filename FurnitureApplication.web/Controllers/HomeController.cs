@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FurnitureApplication.Services;
+using FurnitureApplication.web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,15 @@ namespace FurnitureApplication.web.Controllers
 {
     public class HomeController : Controller
     {
+        CategoriesServices categoryService = new CategoriesServices();
+
         public ActionResult Index()
         {
-            return View();
+            HomeViewModels model = new HomeViewModels();
+
+            model.FeaturedCategories = categoryService.GetCategories();
+
+            return View(model);
         }
 
         public ActionResult About()

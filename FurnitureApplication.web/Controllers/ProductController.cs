@@ -1,5 +1,6 @@
 ﻿using FurnitureApplication.Entities;
 using FurnitureApplication.Services;
+using FurnitureApplication.web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace FurnitureApplication.web.Controllers
     public class ProductController : Controller
     {
         ProductsServices productsServices = new ProductsServices();
+        CategoriesServices categoryServices = new CategoriesServices();
         // GET: Product
         public ActionResult Index()
         {
@@ -31,13 +33,25 @@ namespace FurnitureApplication.web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return PartialView();
+            CategoriesServices categoryService = new CategoriesServices();
+
+            var categories = categoryServices.GetCategories();
+
+            return PartialView(categories);
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(NewCategoryViewModel model)
         {
-            productsServices.SaveProduct(product);
+            CategoriesServices categoryService = new CategoriesServices(); 
+
+            var newProduct = new Product();
+            newProduct.Name = model.Name;
+            newProduct.Description = model.Description;
+            newProduct.Price = model.Price;
+            newProduct.Category = categoryService.GetCategory(model.CategoryID);
+
+            productsServices.SaveProduct(newProduct);
 
             return RedirectToAction("ProductTable");
         }

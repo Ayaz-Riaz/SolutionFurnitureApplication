@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model EditProductViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,7 +7,17 @@
 <h2>Edit Product</h2>
 <form id="editProduct">
     <div class="col-lg-6">
+
         <div class="form">
+            <select class="form-control" name="CategoryID">
+                @foreach (var category in Model.AvailableCategories)
+                {
+                    var selected = category.ID == Model.CategoryID ? "selected" : string.Empty;
+                    <option value="@category.ID" @selected>@category.Name</option>
+                }
+            </select>
+
+
             <div class="form-group">
                 <input type="hidden" name="ID" value="@Model.ID" />
                 <label>Name</label>

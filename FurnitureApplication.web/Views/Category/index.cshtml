@@ -4,35 +4,30 @@
 }
 
 
-<section class="flat-row flat-iconbox">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title-section">
-                    <h2 class="title">
-                        Categories
-                    </h2>
-                </div>
+<div id="main">
+    <div class="main-holder">
+        <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
+            <div class="heading-area">
+                <h2>Create Category</h2>
+            </div>
+            <div id="tableContiner">
+                @{
+                    Html.RenderAction("CategoryTable", "Category");
+                }
+            </div>
+
+            <hr />
+            <div id="actionContainer">
+
             </div>
         </div>
-        <div id="tableContiner">
-            @{
-                Html.RenderAction("CategoryTable");
-            }
-        </div>
-
-        <hr />
-        <div id="actionContainer">
-
-        </div>
     </div>
-</section>
-
+</div>
 
 <script>
-	function focusAction(controlToFocus) {
-		$('html, body').animate({
-			scrollTop: $("#" + controlToFocus).offset().top - 100
-		}, 1000);
-	}
+    function focusAction(controlToFocus) {
+        $('html, body').animate({
+            scrollTop: $("#" + controlToFocus).offset().top - 100
+        }, 1000);
+    }
 </script>

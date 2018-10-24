@@ -1,10 +1,12 @@
 ﻿using FurnitureApplication.Entities;
 using FurnitureApplication.Services;
+using FurnitureApplication.web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace FurnitureApplication.web.Controllers
 {
@@ -19,14 +21,21 @@ namespace FurnitureApplication.web.Controllers
 
             return View(categries);
         }
-        public ActionResult CategoryTable(string search)
+        public ActionResult CategoryTable(string search, int? pageNoh)
         {
             var categories = categoryService.GetCategories();
             if (string.IsNullOrEmpty(search) == false)
             {
                 categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
             }
-            return PartialView(categories);
+            var categorySearchVM = new ViewModels.CategorySearchViewModel
+            {
+                Categories = categories,
+                SearchTerm = search,
+                Pager = new Pager(categories.Count, pageNoh, 10)
+
+            };
+            return PartialView(categorySearchVM);
         }
 
         //*****************Create option
@@ -34,7 +43,7 @@ namespace FurnitureApplication.web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]

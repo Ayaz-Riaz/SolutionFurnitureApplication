@@ -1,5 +1,8 @@
-﻿@{
+﻿@model FurnitureApplication.web.ViewModels.HomeViewModels
+@{
     ViewBag.Title = "Home Page";
+
+    var firstCategory = Model.FeaturedCategories.First();
 }
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -124,9 +127,9 @@
                     <div class="department-img-holder">
                         <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
                             <div class="image-holder">
-                                <img src="../images/sofa-rast-9.png" alt="image holder" />
+                                <img src="@firstCategory.ImageUrl" alt="image holder" />
                             </div>
-                            <span class="dep-name">Sofa Sets</span>
+                            <span class="dep-name">@firstCategory.Name</span>
                         </a>
                     </div>
                 </div>

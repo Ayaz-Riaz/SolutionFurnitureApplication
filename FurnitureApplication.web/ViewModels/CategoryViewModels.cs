@@ -10,6 +10,7 @@ namespace FurnitureApplication.web.ViewModels
     public class CategorySearchViewModel
     {
         public List<Category> Categories { get; set; }
+
         public string SearchTerm { get; set; }
 
         public Pager Pager { get; set; }
@@ -24,7 +25,11 @@ namespace FurnitureApplication.web.ViewModels
         [MaxLength(500)]
         public string Description { get; set; }
 
+        public decimal Price { get; set; }
+
         public string ImageUrl { get; set; }
+
+        public string CategoryID { get; set; }
 
         public bool isFeatured { get; set; }
     }

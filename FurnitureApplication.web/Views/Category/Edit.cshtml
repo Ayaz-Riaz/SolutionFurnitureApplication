@@ -1,4 +1,4 @@
-﻿@model FurnitureApplication.Entities.Category
+﻿@model Category
 @{
     ViewBag.Title = "Edit";
     //var trueChecked = Model.isFeatured ? "checked" : string.Empty;
@@ -6,60 +6,50 @@
 
     var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/images/empty-member.png";
 }
-
-<div id="main">
-    <div class="main-holder">
-        <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
-            <div class="heading-area">
-                <h2>Edit Category</h2>
+<h2>Edit Category</h2>
+<form id="editCategory">
+    <div class="col-lg-6">
+        <input type="hidden" name="ID" value="@Model.ID" />
+        <div class="form">
+            <div class="form-group">
+                <input class="form-control" type="hidden" name="ID" placeholder="Name" value="@Model.ID" />
             </div>
-            <hr />
-            <div class="col-lg-6">
-                <form class="editCategory" method="post" id="editCategory">
-                    <input type="hidden" name="ID" value="@Model.ID" />
-                    <div class="form">
-                        <div class="form-group">
-                            <input class="form-control" type="hidden" name="ID" placeholder="Name" value="@Model.ID" />
-                        </div>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input class="form-control" type="text" name="Name" placeholder="Name" value="@Model.Name" />
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
-                        </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="hidden" id="ImageUrl" name="ImageURL" value="@Model.ImageUrl" />
-                            <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
-                        </div>
-                        <div class="form-group">
-                            <label>Is Feature?</label>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="isFeatured" class="custom-control-input" value="True" />@*@trueChecked*@ 
-                                <label class="custom-control-label" for="customRadioInline1">True</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="isFeatured" class="custom-control-input" value="False"  />@*@falseChecked*@
-                                <label class="custom-control-label" for="customRadioInline2">False</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" id="updateBtn" type="submit">Upload</button>
-                            <button id="cancelBtn" type="button" class="btn btn-primary">Cancel</button>
-                        </div>
-                    </div>
-                </form>
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" type="text" name="Name" placeholder="Name" value="@Model.Name" />
             </div>
-            <div class="col-lg-6">
-                <div class="Placeholder-img">
-                    <img id="categoryImage" src="@imageUrl" />
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input type="hidden" id="ImageUrl" name="ImageURL" value="@Model.ImageUrl" />
+                <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+            </div>
+            <div class="form-group">
+                <label>Is Feature?</label>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="isFeatured" class="custom-control-input" value="True" />@*@trueChecked*@
+                    <label class="custom-control-label" for="customRadioInline1">True</label>
                 </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline2" name="isFeatured" class="custom-control-input" value="False" />@*@falseChecked*@
+                    <label class="custom-control-label" for="customRadioInline2">False</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" id="updateBtn" type="submit">Upload</button>
+                <button id="cancelBtn" type="button" class="btn btn-primary">Cancel</button>
             </div>
         </div>
     </div>
-</div>
+    <div class="col-lg-6">
+        <div class="Placeholder-img">
+            <img id="categoryImage" src="@imageUrl" />
+        </div>
+    </div>
+</form>
 <script>
     $("#updateBtn").click(function () {
         $.ajax({
@@ -68,7 +58,8 @@
             data: $("#editCategory").serialize()
         })
             .done(function (response) {
-                $("#categoryContent").html(response);
+                $("#tableContainer").html(response);
+                focussAction();
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Fail")

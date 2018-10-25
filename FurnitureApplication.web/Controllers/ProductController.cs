@@ -49,6 +49,8 @@ namespace FurnitureApplication.web.Controllers
             newProduct.Name = model.Name;
             newProduct.Description = model.Description;
             newProduct.Price = model.Price;
+            //newProduct.CategoryID = model.CategoryID;
+
             newProduct.Category = categoryService.GetCategory(model.CategoryID);
 
             productsServices.SaveProduct(newProduct);

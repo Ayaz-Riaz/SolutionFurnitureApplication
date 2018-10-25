@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace FurnitureApplication.Services
 {
@@ -19,9 +20,10 @@ namespace FurnitureApplication.Services
         }
         public List<Product> GetProducts()
         {
+
             using (var context = new FAContext())
             {
-                return context.Products.ToList();
+                return context.Products.Include(x=>x.Category).ToList();
             }
         }
 
@@ -31,6 +33,8 @@ namespace FurnitureApplication.Services
         {
             using (var context = new FAContext())
             {
+                context.Entry(Product.Category).State = System.Data.Entity.EntityState.Unchanged;
+
                 context.Products.Add(Product);
                 context.SaveChanges();
             }

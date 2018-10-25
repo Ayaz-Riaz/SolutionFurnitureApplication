@@ -25,6 +25,13 @@ namespace FurnitureApplication.Services
             }
         }
 
+        public List<Category> GetFeaturedCategories()
+        {
+            using (var context = new FAContext())
+            {
+                return context.Categories.Where(x=>x.IsFeatured).ToList();
+            }
+        }
         //********************Save category
 
         public void SaveCategory(Category category)

@@ -29,7 +29,7 @@ namespace FurnitureApplication.web.ViewModels
 
         public string ImageUrl { get; set; }
 
-        public string CategoryID { get; set; }
+        public int CategoryID { get; set; }
 
         public bool isFeatured { get; set; }
     }

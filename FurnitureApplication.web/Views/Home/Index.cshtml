@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
 
-    var firstCategory = Model.FeaturedCategories.First();
+    var firstCategory = Model.FeaturedCategories.Where(category=>category.ImageUrl != null).First();
 }
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">

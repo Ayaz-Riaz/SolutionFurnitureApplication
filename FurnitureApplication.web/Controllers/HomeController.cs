@@ -16,7 +16,7 @@ namespace FurnitureApplication.web.Controllers
         {
             HomeViewModels model = new HomeViewModels();
 
-            model.FeaturedCategories = categoryService.GetCategories();
+            model.FeaturedCategories = categoryService.GetFeaturedCategories();
 
             return View(model);
         }

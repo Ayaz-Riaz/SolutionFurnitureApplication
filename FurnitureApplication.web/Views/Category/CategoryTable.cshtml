@@ -3,7 +3,7 @@
 <form method="post">
     <div style="margin-bottom: 30px; overflow: hidden;">
         <div class="col-lg-6 float-right">
-            <button class="btn btn-primary float-right" type="button" id="newBtn">New Category</button>
+            <button class="btn btn-primary float-right" onclick="location.href='@Url.Action("Create")'" type="button" id="">New Category</button>
         </div>
         <div class="col-lg-6 float-left">
             <div class="search-box create-page">
@@ -32,23 +32,14 @@
                 {
                     <tr>
                         <td>@category.Name</td>
-                        <td>
-                            @if(@category.Products!= null && @category.Products.Count > 0)
-                            {
-                                @category.Products.Count
-                            }
-                            else
-                            {
-                                <span>NA</span>
-                            }
-                        </td>
+                        <td>NA @*@category.Products.Count*@ </td>
                         <td>
                             <div class="table-img">
                                 <img src="@category.ImageUrl" />
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-primary editBtn" data-id="@category.ID">Edit</button>
+                            <button class="btn btn-primary editBtn" onclick="location.href='@Url.Action("Edit", "Category" , new RouteValueDictionary(new { id = category.ID }))'" data-id="@category.ID">Edit</button>
                             <button class="btn btn-primary deleteBtn" data-id="@category.ID">Delete</button>
                         </td>
                     </tr>}
@@ -131,37 +122,6 @@
         });
 	});
 
-	$("#newBtn").click(function () {
-		$.ajax({
-			url: '@Url.Action("Create", "Category")',//'/Category/Create',
-		})
-        .done(function (response) {
-        	$("#actionContainer").html(response);
-
-        	focusAction("actionContainer");
-        })
-        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-        	alert("FAIL");
-        });
-	});
-
-	$(".editBtn").click(function () {
-		$.ajax({
-			url: '@Url.Action("Edit", "Category")',
-			data: {
-				ID: $(this).attr('data-id')
-			}
-		})
-        .done(function (response) {
-        	$("#actionContainer").html(response);
-
-        	focusAction("actionContainer");
-        })
-        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-        	alert("FAIL");
-        });
-	});
-
 	$(".deleteBtn").click(function () {
 
 		var confirmDelete = confirm("Are you sure you want to delete this category?");
@@ -176,12 +136,13 @@
 				}
 			})
 			.done(function (response) {
-				$("#tableContiner").html(response);
+			    $("#tableContiner").html(response);
+			    $("#actionContainer").html("");
+			    focusAction("tableContiner");
 			})
 			.fail(function (XMLHttpRequest, textStatus, errorThrown) {
 				alert("FAIL");
 			});
 		}
 	});
-
 </script>

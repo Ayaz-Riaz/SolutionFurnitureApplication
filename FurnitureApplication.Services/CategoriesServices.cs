@@ -29,7 +29,7 @@ namespace FurnitureApplication.Services
         {
             using (var context = new FAContext())
             {
-                return context.Categories.Where(x=>x.IsFeatured).ToList();
+                return context.Categories.Where(x=>x.IsFeatured && x.ImageUrl != null).ToList();
             }
         }
         //********************Save category

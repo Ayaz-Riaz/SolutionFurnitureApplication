@@ -1,4 +1,4 @@
-﻿@model FurnitureApplication.Entities.Category
+﻿
 @{
     ViewBag.Title = "Create";
     var imageUrl = "/images/empty-member.png";
@@ -15,7 +15,7 @@
             <hr />
             <div class="row">
                 <div class="col-lg-6">
-                    <form method="post" id="createProduct">
+                    <form method="post" id="createCategory">
                         <div class="form">
                             <div class="form-group">
                                 <label>Name</label>
@@ -50,6 +50,7 @@
                     </form>
                 </div>
                 <div class="col-lg-6">
+                    <label>Image View</label>
                     <div class="Placeholder-img">
                         <img id="categoryImage" src="@imageUrl" />
                     </div>
@@ -91,42 +92,42 @@
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
         });
+    })
 
        // Create categoryImage
 
-        $('#createCategory').validate({
-            rules: {
-                Name: {
-                    required: true,
-                    minlength: 5,
-                    maxlength: 50,
-                },
-                Description: {
-                    maxlength: 500
-                }
-            },
-            messages: {
-                Name: {
-                    required: 'Name is required',
-                    minlength: 'Minimum Length is 5',
-                    maxlength: 'Maximum Length is 50'
-                },
-                Description: {
-                    maxlength: 'Maximum Length is 500'
-                }
-            }
-        });
+        //$('#createCategory').validate({
+        //    rules: {
+        //        Name: {
+        //            required: true,
+        //            minlength: 5,
+        //            maxlength: 50,
+        //        },
+        //        Description: {
+        //            maxlength: 500
+        //        }
+        //    },
+        //    messages: {
+        //        Name: {
+        //            required: 'Name is required',
+        //            minlength: 'Minimum Length is 5',
+        //            maxlength: 'Maximum Length is 50'
+        //        },
+        //        Description: {
+        //            maxlength: 'Maximum Length is 500'
+        //        }
+        //    }
+        //});
 
         $("#saveBtn").click(function () {
-            debugger;
             if ($("#createCategory").valid()) {
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("Create", "Category")',
+                    url: "/Category/Create",
                     data: $("#createCategory").serialize()
                 })
                 .done(function (response) {
-                    $("#tableContiner").html(response);
+                    $("#tableContainer").html(response);
                     $("#actionContainer").html("");
                     focusAction("tableContiner");
                 })
@@ -156,5 +157,4 @@
 
             focusAction("tableContiner");
         });
-    })
 </script>

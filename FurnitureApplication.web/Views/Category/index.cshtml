@@ -1,4 +1,4 @@
-﻿@model List<FurnitureApplication.Entities.Category>
+﻿
 @{
     ViewBag.Title = "Categories";
 }
@@ -12,7 +12,7 @@
             </div>
             <div id="tableContiner">
                 @{
-                    Html.RenderAction("CategoryTable", "Category");
+                    Html.RenderAction("CategoryTable");
                 }
             </div>
 

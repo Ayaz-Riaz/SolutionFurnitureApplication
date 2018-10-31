@@ -12,6 +12,7 @@ namespace FurnitureApplication.Entities
         [Key]
         public string Key { get; set; }
 
-        public string Value { get; set; }
+        public string value { get; set; }
+
     }
 }

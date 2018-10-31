@@ -789,6 +789,24 @@ input,
     width: 100%;
     height: auto;
 }
+.social-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.social-links li{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
+.social-links li a {
+    color: #fff;
+    font-size: 20px;
+}
+.social-links li a:hover {
+    text-decoration: none;
+    color: #fff !important;
+}
 @media screen and (max-width: 1400px){
     .carousel-caption .heilight-text{
          padding: 25px 35px;

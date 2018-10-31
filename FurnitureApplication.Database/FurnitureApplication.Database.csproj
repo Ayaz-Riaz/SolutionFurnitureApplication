@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201810250734472_newmigrationforIsfeatured.Designer.cs">
       <DependentUpon>201810250734472_newmigrationforIsfeatured.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810310949082_configurations.cs" />
+    <Compile Include="Migrations\201810310949082_configurations.Designer.cs">
+      <DependentUpon>201810310949082_configurations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810250734472_newmigrationforIsfeatured.resx">
       <DependentUpon>201810250734472_newmigrationforIsfeatured.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810310949082_configurations.resx">
+      <DependentUpon>201810310949082_configurations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

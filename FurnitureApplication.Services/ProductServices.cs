@@ -15,8 +15,17 @@ namespace FurnitureApplication.Services
         {
             using (var context = new FAContext())
             {
-                return context.Products.Find(ID);
+                return context.Products.Where(x=>x.ID == ID).Include(x=>x.Category).FirstOrDefault();
             }
+        }
+        public List<Product> GetProducts(List<int> IDs)
+        {
+            using (var context = new FAContext())
+            {
+                return context.Products.Where(product => IDs.Contains(product.ID)).ToList();
+
+            }
+
         }
         public List<Product> GetProducts()
         {

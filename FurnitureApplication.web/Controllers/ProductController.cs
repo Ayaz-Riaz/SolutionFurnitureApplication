@@ -11,7 +11,7 @@ namespace FurnitureApplication.web.Controllers
 {
     public class ProductController : Controller
     {
-        ProductsServices productsServices = new ProductsServices();
+        //ProductsServices productsServices = new ProductsServices();
         CategoriesServices categoryServices = new CategoriesServices();
         // GET: Product
         public ActionResult Index()
@@ -21,7 +21,12 @@ namespace FurnitureApplication.web.Controllers
         public ActionResult ProductTable(string search)
         {
 
-            var products = productsServices.GetProducts();
+            ProductSearchViewModel model = new ProductSearchViewModel();
+
+            model.Products = ProductsServices.Instance.GetProducts();
+
+            var products = ProductsServices.Instance.GetProducts();
+
             if (string.IsNullOrEmpty(search) == false) { 
                 products = products.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
             }
@@ -53,7 +58,7 @@ namespace FurnitureApplication.web.Controllers
 
             newProduct.Category = categoryService.GetCategory(model.CategoryID);
 
-            productsServices.SaveProduct(newProduct);
+            ProductsServices.Instance.SaveProduct(newProduct);
 
             return RedirectToAction("ProductTable");
         }
@@ -64,14 +69,14 @@ namespace FurnitureApplication.web.Controllers
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            var product = productsServices.GetProduct(ID);
+            var product = ProductsServices.Instance.GetProduct(ID);
             return PartialView(product);
         }
 
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            productsServices.UpdateProduct(product);
+            ProductsServices.Instance.UpdateProduct(product);
 
             return RedirectToAction("ProductTable");
         }
@@ -81,7 +86,7 @@ namespace FurnitureApplication.web.Controllers
         [HttpPost]
         public ActionResult Delete(int ID)
         {
-            productsServices.DeleteProduct(ID);
+            ProductsServices.Instance.DeleteProduct(ID);
 
             return RedirectToAction("ProductTable");
         }

@@ -11,6 +11,22 @@ namespace FurnitureApplication.Services
 {
     public class ProductsServices
     {
+        #region singleton
+        public static ProductsServices Instance
+        {
+            get
+            {
+                if (instance == null) instance = new ProductsServices();
+                return instance;
+            }
+        }
+        private static ProductsServices instance { get; set; }
+        private ProductsServices()
+        {
+        }
+        #endregion
+
+
         public Product GetProduct(int ID)
         {
             using (var context = new FAContext())
@@ -25,7 +41,6 @@ namespace FurnitureApplication.Services
                 return context.Products.Where(product => IDs.Contains(product.ID)).ToList();
 
             }
-
         }
         public List<Product> GetProducts()
         {

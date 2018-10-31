@@ -10,6 +10,7 @@ using System.Web.UI;
 
 namespace FurnitureApplication.web.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         CategoriesServices categoryService = new CategoriesServices();

@@ -10,7 +10,7 @@ namespace FurnitureApplication.web.Controllers
 {
     public class Shop1Controller : Controller
     {
-        ProductsServices productsService = new ProductsServices();
+        //ProductsServices productsService = new ProductsServices();
         // GET: Shop1
         public ActionResult Checkout()
         {
@@ -26,7 +26,7 @@ namespace FurnitureApplication.web.Controllers
 
                 model.CartProductIDs = CartProductsCookie.Value.Split('-').Select(x => int.Parse(x)).ToList();
 
-                model.CartProducts = productsService.GetProducts(model.CartProductIDs);
+                model.CartProducts = ProductsServices.Instance.GetProducts(model.CartProductIDs);
             }
 
             return View(model);

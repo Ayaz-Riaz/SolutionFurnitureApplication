@@ -6,12 +6,12 @@ using System.Web;
 
 namespace FurnitureApplication.web.ViewModels
 {
-    public class ProductSearchViewModel
+    public class ProductSearchViewModel : BaseEntity
     {
         public List<Product> Products { get; set; }
         public string SearchTerm { get; set; }
-
         public Pager Pager { get; set; }
+        public int PageNo { get; set; }
     }
 
     public class NewProductViewModel
@@ -20,7 +20,7 @@ namespace FurnitureApplication.web.ViewModels
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int CategoryID { get; set; }
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         public List<Category> AvailableCategories { get; set; }
     }
@@ -33,7 +33,7 @@ namespace FurnitureApplication.web.ViewModels
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int CategoryID { get; set; }
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
 
         public List<Category> AvailableCategories { get; set; }
     }

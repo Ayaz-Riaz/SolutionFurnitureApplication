@@ -1,7 +1,11 @@
-﻿@model List<Product>
+﻿@model ProductSearchViewModel
 @{
     ViewBag.Title = "ProductTable";
 }
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
 
 <form method="post">
     <div style="margin-bottom: 30px; overflow: hidden;">
@@ -19,7 +23,7 @@
     </div>
 </form>
 <div>
-    <table class="table table-hover">
+    <table class="table table-hover" id="ProductsTable">
         <thead>
             <tr>
                 <th scope="col">Product Name</th>
@@ -30,33 +34,81 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in Model)
+            @if (Model.Products != null && Model.Products.Count > 0)
+            {
+                foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>
+                            @if (product.Category != null)
+                            {
+                                <text>@product.Category.Name</text>
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td>@product.Price</td>
+                        <td>@product.Description</td>
+                        <td>
+                            <button class="btn btn-primary editBtn" data-id="@product.ID">Edit</button>
+                            <button class="btn btn-primary deleteBtn" data-id="@product.ID">Delete</button>
+                            <button class="btn btn-primary addToCart" data-id="@product.ID">Add to Cart</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@product.Name</td>
-                    <td>
-                        @if (product.Category != null)
-                        {
-                            <text>@product.Category.Name</text>
-                        }
-                        else
-                        {
-                            <text>-</text>
-                        }
-                    </td>
-                    <td>@product.Price</td>
-                    <td>@product.Description</td>
-                    <td>
-                        <button class="btn btn-primary editBtn" data-id="@product.ID">Edit</button>
-                        <button class="btn btn-primary deleteBtn" data-id="@product.ID">Delete</button>
-                        <button class="btn btn-primary addToCart" data-id="@product.ID">Add to Cart</button>
-                    </td>
+                    <td class="text-center text-danger" colspan="5">No Product found</td>
                 </tr>
             }
         </tbody>
     </table>
+    @*<nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @if (Model.PageNo != 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" id="PreviousRecord" data-pageNo="@(Model.PageNo - 1)" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            }
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" id="NextRecord" data-pageNo="@(Model.PageNo + 1)" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>*@
 </div>
 <script>
+    $('#ProductsTable').DataTable();
+
+    $(".page-link").click(function () {
+        $.ajax({
+            url: "/Product/ProductTable",
+            data: {
+                pageNo : $(this).attr("data-pageNo")
+            }
+        })
+        .done(function (response) {
+            $("#tableContainer").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail")
+        });
+    });
+
     $("#searchBtn").click(function () {
         var searchValue = $("#searchTxt").val();
 
@@ -75,6 +127,7 @@
             alert("Fail")
         });
     });
+
     $("#newBtn").click(function () {
         $.ajax({
             url: "/Product/Create",
@@ -88,6 +141,7 @@
             alert("Fail")
         });
     });
+
     $(".editBtn").click(function () {
         $.ajax({
             url: "/Product/Edit",
@@ -151,6 +205,9 @@
         alert("add to cart added");
     });
 
+    $("#cancelBtn").click(function () {
+        $("#actionContainer").html("");
+    })
 
     function focussAction() {
         $("html, body").animate({

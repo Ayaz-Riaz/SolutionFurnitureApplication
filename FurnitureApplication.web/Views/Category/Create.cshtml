@@ -1,9 +1,10 @@
-﻿
+﻿@model NewProductViewModel
 @{
     ViewBag.Title = "Create";
     var imageUrl = "/images/empty-member.png";
-    //var trueChecked = !Model.IsFeatured ? "checked" : string.Empty;
-    //var falseChecked = Model.IsFeatured ? "checked" : string.Empty;
+
+    var trueChecked = !Model.IsFeatured ? "checked" : string.Empty;
+    var falseChecked = Model.IsFeatured ? "checked" : string.Empty;
 }
 
 <div id="main">

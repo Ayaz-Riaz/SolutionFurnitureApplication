@@ -1,6 +1,8 @@
 ﻿@model List<Category>
 @{
     ViewBag.Title = "Create Products";
+
+    var imageUrl = "/images/empty-member.png";
 }
 
 
@@ -30,8 +32,19 @@
                 <input class="form-control" type="text" name="Description" placeholder="Description" />
             </div>
             <div class="form-group">
+                <label>Upload Image</label>
+                <input type="hidden" name="ImageUrl" value="" id="ImageUrl" />
+                <input id="imageUpload" type="file" name="Image" accept=".jpg, .png" />
+            </div>
+            <div class="form-group">
                 <button class="btn btn-primary" id="saveBtn" type="submit">Save</button>
             </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <label>Image View</label>
+        <div class="Placeholder-img">
+            <img id="productImage" src="@imageUrl" />
         </div>
     </div>
 </form>
@@ -50,5 +63,37 @@
             alert("Fail")
         });
     });
+    $("#imageUpload").change(function (e) {
+        var element = this;
+
+        var formData = new FormData();
+
+        var totalFiles = element.files;
+
+        for (var i = 0; i < totalFiles.length; i++) {
+            var file = element.files[i];
+            formData.append("File", file);
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/shared/UploadImages',
+            dataType: 'json',
+            data: formData,
+            contentType: false,
+            processData: false
+        })
+
+        .done(function (response) {
+            console.log(response);
+
+            if (response.Success) {
+                $("#productImage").attr("src", response.ImageUrl)
+                $("#ImageUrl").val(response.ImageUrl)
+            }
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Fail")
+        });
+    })
 </script>
 

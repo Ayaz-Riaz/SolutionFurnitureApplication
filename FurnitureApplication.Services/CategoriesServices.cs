@@ -10,6 +10,20 @@ namespace FurnitureApplication.Services
 {
     public class CategoriesServices
     {
+        #region singleton
+        public static CategoriesServices Instance
+        {
+            get
+            {
+                if (instance == null) instance = new CategoriesServices();
+                return instance;
+            }
+        }
+        private static CategoriesServices instance { get; set; }
+        private CategoriesServices()
+        {
+        }
+        #endregion
         public Category GetCategory(int ID)
         {
             using (var context = new FAContext())
@@ -17,6 +31,7 @@ namespace FurnitureApplication.Services
                 return context.Categories.Find(ID);
             }
         }
+
         public List<Category> GetCategories()
         {
             using (var context = new FAContext())
@@ -24,6 +39,32 @@ namespace FurnitureApplication.Services
                 return context.Categories.ToList();
             }
         }
+
+        public int GetCategoriesCount(string search)
+        {
+            using (var context = new FAContext())
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    return context.Categories.Where(category => category.Name != null &&
+                         category.Name.ToLower().Contains(search.ToLower())).Count();
+                }
+                else
+                {
+                    return context.Categories.Count();
+                }
+            }
+        }
+
+        public List<Category> GetAllCategories()
+        {
+            using (var context = new FAContext())
+            {
+                return context.Categories
+                        .ToList();
+            }
+        }
+
 
         public List<Category> GetFeaturedCategories()
         {

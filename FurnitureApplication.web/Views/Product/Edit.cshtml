@@ -1,6 +1,8 @@
 ﻿@model EditProductViewModel
 @{
     ViewBag.Title = "Edit";
+
+    var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/images/empty-member.png";
 }
 
 <hr />
@@ -32,12 +34,55 @@
                 <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
             </div>
             <div class="form-group">
+                <label>Image</label>
+                <input type="hidden" id="ImageUrl" name="ImageUrl" value="@Model.ImageUrl" />
+                <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+            </div>
+            <div class="form-group">
                 <button class="btn btn-primary" id="updateBtn" type="submit">Update</button>
             </div>
         </div>
     </div>
+    <div class="col-lg-6">
+        <label>Image View</label>
+        <div class="Placeholder-img">
+            <img id="productImage" src="@imageUrl" />
+        </div>
+    </div>
 </form>
 <script>
+    $("#imageUpload").change(function () {
+        var element = this;
+
+        var formData = new FormData();
+
+        var totalFiles = element.files.length;
+
+        for (var i = 0; i < totalFiles; i++) {
+            var file = element.files[i];
+            formData.append("Photo", file);
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UploadImage", "Shared")',
+            dataType: 'json',
+            data: formData,
+            contentType: false,
+            processData: false
+        })
+        .done(function (response) {
+            console.log(response);
+
+            if (response.Success) {
+                $("#ImageUrl").val(response.ImageUrl);
+                $("#productImage").attr("src", response.ImageUrl);
+            }
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("FAIL");
+        });
+    });
     $("#updateBtn").click(function () {
         $.ajax({
             type: 'POST',

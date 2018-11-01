@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201810310949082_configurations.Designer.cs">
       <DependentUpon>201810310949082_configurations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811011341221_imageurlinproduct.cs" />
+    <Compile Include="Migrations\201811011341221_imageurlinproduct.Designer.cs">
+      <DependentUpon>201811011341221_imageurlinproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811011445425_imageurlinproduct1.cs" />
+    <Compile Include="Migrations\201811011445425_imageurlinproduct1.Designer.cs">
+      <DependentUpon>201811011445425_imageurlinproduct1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810310949082_configurations.resx">
       <DependentUpon>201810310949082_configurations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811011341221_imageurlinproduct.resx">
+      <DependentUpon>201811011341221_imageurlinproduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811011445425_imageurlinproduct1.resx">
+      <DependentUpon>201811011445425_imageurlinproduct1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,8 @@
 ﻿@model CategorySearchViewModel
 
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <form method="post">
     <div style="margin-bottom: 30px; overflow: hidden;">
         <div class="col-lg-6 float-right">
@@ -16,7 +19,7 @@
     </div>
 </form>
 <div>
-    <table class="table table-hover">
+    <table class="table table-hover" id="categoryTable">
         <thead>
             <tr>
                 <th scope="col">Category Name</th>
@@ -35,10 +38,9 @@
                         <td>
                             NA
                             @*@category.Products.Count
-
                             @foreach (var product in category.Products)
                             {
-                                <span>@product.Name, </span>
+                                <span>@product.Name</span>
 
                             }*@
                         </td>
@@ -58,7 +60,7 @@
                 <tr><td colspan="3" class="text-danger">No Categories found.</td></tr>}
         </tbody>
     </table>
-    <div>
+    @*<div>
         @if (Model.Pager != null && Model.Pager.TotalPages > 1)
         {
 
@@ -78,9 +80,10 @@
                 <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
                 <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>}
         }
-    </div>
+    </div>*@
 </div>
 <script>
+    $('#categoryTable').DataTable();
 	$(".pageButtons").click(function () {
 		$.ajax({
 			url: '@Url.Action("CategoryTable", "Category")',
@@ -114,9 +117,8 @@
         });
 	});
 
-	$("#resetBtn").click(function () {
+    $("#resetBtn").click(function () {
 		var searchValue = '';
-
 		$.ajax({
 			url: '@Url.Action("CategoryTable", "Category")',//'/Category/CategoryTable',
 			data: {
@@ -129,7 +131,11 @@
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
         	alert("FAIL");
         });
-	});
+	})
+
+    $("#cancelBtn").click(function () {
+        $("#actionContainer").html("");
+    })
 
 	$(".deleteBtn").click(function () {
         swal({

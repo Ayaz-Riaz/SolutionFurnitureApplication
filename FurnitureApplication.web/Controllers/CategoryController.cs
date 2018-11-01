@@ -13,18 +13,17 @@ namespace FurnitureApplication.web.Controllers
     //[Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        CategoriesServices categoryService = new CategoriesServices();
         // GET: Category
         [HttpGet]
         public ActionResult index()
         {
-            var categries = categoryService.GetCategories();
+            var categries = CategoriesServices.Instance.GetCategories();
 
             return View(categries);
         }
         public ActionResult CategoryTable(string search, int? pageNoh)
         {
-            var categories = categoryService.GetCategories();
+            var categories = CategoriesServices.Instance.GetCategories();
             if (string.IsNullOrEmpty(search) == false)
             {
                 categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
@@ -50,7 +49,7 @@ namespace FurnitureApplication.web.Controllers
         [HttpPost]
         public ActionResult Create(Category category)
         {
-            categoryService.SaveCategory(category);
+            CategoriesServices.Instance.SaveCategory(category);
 
             return RedirectToAction("index");
         }
@@ -60,14 +59,14 @@ namespace FurnitureApplication.web.Controllers
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            var category = categoryService.GetCategory(ID);
+            var category = CategoriesServices.Instance.GetCategory(ID);
             return View(category);
         }
 
         [HttpPost]
         public ActionResult Edit(Category category)
         {
-            categoryService.UpdateCategory(category);
+            CategoriesServices.Instance.UpdateCategory(category);
             return RedirectToAction("index");
         }
 
@@ -77,16 +76,16 @@ namespace FurnitureApplication.web.Controllers
         [HttpGet]
         public ActionResult Delete(int ID)
         {
-            var category = categoryService.GetCategory(ID);
+            var category = CategoriesServices.Instance.GetCategory(ID);
             return View(category);
         }
 
         [HttpPost]
         public ActionResult Delete(Category category)
         {
-            category = categoryService.GetCategory(category.ID);
+            category = CategoriesServices.Instance.GetCategory(category.ID);
 
-            categoryService.DeleteCategory(category.ID);
+            CategoriesServices.Instance.DeleteCategory(category.ID);
             return RedirectToAction("index");
         }
     }

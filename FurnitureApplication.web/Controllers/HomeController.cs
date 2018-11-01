@@ -10,13 +10,11 @@ namespace FurnitureApplication.web.Controllers
 {
     public class HomeController : Controller
     {
-        CategoriesServices categoryService = new CategoriesServices();
-
         public ActionResult Index()
         {
             HomeViewModels model = new HomeViewModels();
 
-            model.FeaturedCategories = categoryService.GetFeaturedCategories();
+            model.FeaturedCategories = CategoriesServices.Instance.GetFeaturedCategories();
 
             return View(model);
         }

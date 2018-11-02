@@ -47,11 +47,24 @@ namespace FurnitureApplication.web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult Create(NewCategoryViewModel model)
         {
-            CategoriesServices.Instance.SaveCategory(category);
+            if (ModelState.IsValid)
+            {
+                var newCategory = new Category();
+                newCategory.Name = model.Name;
+                newCategory.Description = model.Description;
+                newCategory.ImageUrl = model.ImageUrl;
+                newCategory.IsFeatured = model.isFeatured;
+                CategoriesServices.Instance.SaveCategory(newCategory);
 
-            return RedirectToAction("index");
+                return RedirectToAction("CategoryTable");
+            }
+            else
+            {
+                return new HttpStatusCodeResult(500);
+            }
+            
         }
 
         //*****************Edit option

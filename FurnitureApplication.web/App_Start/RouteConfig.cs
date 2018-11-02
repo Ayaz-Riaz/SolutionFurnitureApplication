@@ -13,11 +13,11 @@ namespace FurnitureApplication.web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "AllCategories",
-                url: "categories/all",
-                defaults: new { controller = "Category", action = "CategoryTable" }
-            );
+            //routes.MapRoute(
+            //    name: "AllCategories",
+            //    url: "categories/all",
+            //    defaults: new { controller = "Category", action = "CategoryTable" }
+            //);
 
             routes.MapRoute(
                 name: "Default",

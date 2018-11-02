@@ -46,8 +46,7 @@ namespace FurnitureApplication.Services
             {
                 if (!string.IsNullOrEmpty(search))
                 {
-                    return context.Categories.Where(category => category.Name != null &&
-                         category.Name.ToLower().Contains(search.ToLower())).Count();
+                    return context.Categories.Where(category => category.Name != null && category.Name.ToLower().Contains(search.ToLower())).Count();
                 }
                 else
                 {

@@ -1,10 +1,10 @@
 ﻿@model NewProductViewModel
 @{
     ViewBag.Title = "Create";
-    var imageUrl = "/images/empty-member.png";
 
-    var trueChecked = !Model.IsFeatured ? "checked" : string.Empty;
-    var falseChecked = Model.IsFeatured ? "checked" : string.Empty;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var imageUrl = "/images/empty-member.png";
 }
 
 <div id="main">
@@ -19,20 +19,20 @@
                     <form method="post" id="createCategory">
                         <div class="form">
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Name <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="Name" placeholder="Name" />
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Description <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="Description" placeholder="Description" />
                             </div>
                             <div class="form-group">
-                                <label>Upload Image</label>
+                                <label>Upload Image <span class="text-danger">*</span></label>
                                 <input type="hidden" name="ImageUrl" value="" id="ImageUrl" />
                                 <input id="imageUpload" type="file" name="Image" accept=".jpg, .png" />
                             </div>
                             <div class="form-group">
-                                <label>Is Feature?</label>
+                                <label>Is Feature? <span class="text-danger">*</span></label>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="customRadioInline1" name="IsFeatured" class="custom-control-input" value="true">
                                     <label class="custom-control-label" for="customRadioInline1">True</label>
@@ -95,30 +95,32 @@
         });
     })
 
-       // Create categoryImage
+        //Create categoryImage
 
-        //$('#createCategory').validate({
-        //    rules: {
-        //        Name: {
-        //            required: true,
-        //            minlength: 5,
-        //            maxlength: 50,
-        //        },
-        //        Description: {
-        //            maxlength: 500
-        //        }
-        //    },
-        //    messages: {
-        //        Name: {
-        //            required: 'Name is required',
-        //            minlength: 'Minimum Length is 5',
-        //            maxlength: 'Maximum Length is 50'
-        //        },
-        //        Description: {
-        //            maxlength: 'Maximum Length is 500'
-        //        }
-        //    }
-        //});
+        $('#createCategory').validate({
+            rules: {
+                Name: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50,
+                },
+                Description: {
+                    required: true,
+                    maxlength: 500
+                }
+            },
+            messages: {
+                Name: {
+                    required: 'Name is required',
+                    minlength: 'Minimum Length is 5',
+                    maxlength: 'Maximum Length is 50'
+                },
+                Description: {
+                    required: 'Name is required',
+                    maxlength: 'Maximum Length is 500'
+                }
+            }
+        });
 
         $("#saveBtn").click(function () {
             if ($("#createCategory").valid()) {
@@ -155,7 +157,6 @@
 
         $("#cancelBtn").click(function () {
             $("#actionContainer").html("");
-
             focusAction("tableContiner");
         });
 </script>

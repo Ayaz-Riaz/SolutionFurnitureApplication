@@ -42,6 +42,52 @@ namespace FurnitureApplication.Services
 
             }
         }
+
+        public List<Product> GetProducts(string search, int pageNo, int pageSize)
+        {
+            using (var context = new FAContext())
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    return context.Products.Where(product => product.Name != null &&
+                         product.Name.ToLower().Contains(search.ToLower()))
+                         .OrderBy(x => x.ID)
+                         .Skip((pageNo - 1) * pageSize)
+                         .Take(pageSize)
+                         .Include(x => x.Category)
+                         .ToList();
+                }
+                else
+                {
+                    return context.Products
+                        .OrderBy(x => x.ID)
+                        .Skip((pageNo - 1) * pageSize)
+                        .Take(pageSize)
+                        .Include(x => x.Category)
+                        .ToList();
+                }
+            }
+        }
+
+
+        public int GetProductsCount(string search)
+        {
+            using (var context = new FAContext())
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    return context.Products.Where(product => product.Name != null &&
+                         product.Name.ToLower().Contains(search.ToLower()))
+                         .Count();
+                }
+                else
+                {
+                    return context.Products.Count();
+                }
+            }
+        }
+
+
         public List<Product> GetProducts(int pageNo)
         {
             //int pageSize = 5;

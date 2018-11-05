@@ -94,9 +94,25 @@ namespace FurnitureApplication.Services
             using (var context = new FAContext())
             {
                 //return context.Products.OrderBy(x=>x.ID).Skip((pageNo-1) * pageSize).Take(pageSize).Include(x=>x.Category).ToList();
-
-
                 return context.Products.Include(x => x.Category).ToList();
+            }
+        }
+
+        //*********
+        public List<Product> GetProducts(int pageNo, int pageSize)
+        {
+            using (var context = new FAContext())
+            {
+                return context.Products.OrderByDescending(x=>x.ID).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x=>x.Category).ToList();
+            }
+        }
+
+        //**********
+        public List<Product> GetLatestProducts(int numberOfProducts)
+        {
+            using (var context = new FAContext())
+            {
+                return context.Products.OrderByDescending(x=>x.ID).Take(numberOfProducts).Include(x=>x.Category).ToList();
             }
         }
 

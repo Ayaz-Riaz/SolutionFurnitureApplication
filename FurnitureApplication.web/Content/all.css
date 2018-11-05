@@ -807,6 +807,22 @@ input,
     text-decoration: none;
     color: #fff !important;
 }
+#pills-tab {
+    text-align: center;
+}
+#pills-tab .nav-item a.active {
+    color: #fff;
+}
+#pills-tab .nav-item a {
+    line-height: 15px;
+    padding: 10px;
+    color: #000;
+    width: 130px;
+    border-radius:0;
+}
+#pills-tab .nav-item a:hover {
+    color: #fff;
+}
 @media screen and (max-width: 1400px){
     .carousel-caption .heilight-text{
          padding: 25px 35px;

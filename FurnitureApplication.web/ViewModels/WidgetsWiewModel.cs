@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FurnitureApplication.web.ViewModels
 {
-    public class ProductsWidgetViewModel
+    public class ProductsWidgetsViewModel
     {
         public List<Product> Products { get; set; }
 

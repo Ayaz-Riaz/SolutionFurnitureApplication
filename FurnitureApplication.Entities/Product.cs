@@ -9,7 +9,6 @@ namespace FurnitureApplication.Entities
 {
     public class Product : BaseEntity
     {
-        [Range(1, 100000)]
         public decimal Price { get; set; }
 
         //public int CategoryID { get; set; }

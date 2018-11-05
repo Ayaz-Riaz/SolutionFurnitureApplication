@@ -49,22 +49,13 @@ namespace FurnitureApplication.web.Controllers
         [HttpPost]
         public ActionResult Create(NewCategoryViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var newCategory = new Category();
-                newCategory.Name = model.Name;
-                newCategory.Description = model.Description;
-                newCategory.ImageUrl = model.ImageUrl;
-                newCategory.IsFeatured = model.isFeatured;
-                CategoriesServices.Instance.SaveCategory(newCategory);
-
-                return RedirectToAction("CategoryTable");
-            }
-            else
-            {
-                return new HttpStatusCodeResult(500);
-            }
-            
+            var newCategory = new Category();
+            newCategory.Name = model.Name;
+            newCategory.Description = model.Description;
+            newCategory.ImageUrl = model.ImageUrl;
+            newCategory.IsFeatured = model.isFeatured;
+            CategoriesServices.Instance.SaveCategory(newCategory);
+            return RedirectToAction("index");
         }
 
         //*****************Edit option

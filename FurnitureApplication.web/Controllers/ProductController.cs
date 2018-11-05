@@ -72,7 +72,7 @@ namespace FurnitureApplication.web.Controllers
 
             ProductsServices.Instance.SaveProduct(newProduct);
 
-            return RedirectToAction("ProductTable");
+            return RedirectToAction("index");
         }
 
         //****************Edit Product
@@ -115,7 +115,7 @@ namespace FurnitureApplication.web.Controllers
 
             ProductsServices.Instance.UpdateProduct(existingProduct);
 
-            return RedirectToAction("ProductTable");
+            return RedirectToAction("index");
         }
 
         //****************delete Product
@@ -125,7 +125,7 @@ namespace FurnitureApplication.web.Controllers
         {
             ProductsServices.Instance.DeleteProduct(ID);
 
-            return RedirectToAction("ProductTable");
+            return RedirectToAction("index");
         }
 
         //...........detail project

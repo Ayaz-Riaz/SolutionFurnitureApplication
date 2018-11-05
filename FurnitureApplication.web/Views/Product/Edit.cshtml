@@ -1,57 +1,65 @@
 ﻿@model EditProductViewModel
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
     var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/images/empty-member.png";
 }
 
 <hr />
-<h2>Edit Product</h2>
-<form id="editProduct">
-    <div class="row">
-        <div class="col-lg-6">
-
-            <div class="form">
-                <select class="form-control" name="CategoryID">
-                    @foreach (var category in Model.AvailableCategories)
-                {
-                    var selected = category.ID == Model.CategoryID ? "selected" : string.Empty;
-                        <option value="@category.ID" @selected>@category.Name</option>
-                }
-                </select>
-
-
-                <div class="form-group">
-                    <input type="hidden" name="ID" value="@Model.ID" />
-                    <label>Name</label>
-                    <input class="form-control" type="text" name="Name" placeholder="Name" value="@Model.Name" />
-                </div>
-                <div class="form-group">
-                    <label>Price</label>
-                    <input class="form-control" type="text" name="Price" placeholder="Price" value="@Model.Price" />
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
-                </div>
-                <div class="form-group">
-                    <label>Image</label>
-                    <input type="hidden" id="ImageUrl" name="ImageUrl" value="@Model.ImageUrl" />
-                    <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" id="updateBtn" type="submit">Update</button>
-                </div>
+<div id="main">
+    <div class="main-holder">
+        <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
+            <div class="heading-area">
+                <h2>Edit Product</h2>
             </div>
-        </div>
-        <div class="col-lg-6">
-            <label>Image View</label>
-            <div class="Placeholder-img">
-                <img id="productImage" src="@imageUrl" />
-            </div>
+            <form id="editProduct">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form">
+                            <select class="form-control" name="CategoryID">
+                                @foreach (var category in Model.AvailableCategories)
+                                {
+                                    var selected = category.ID == Model.CategoryID ? "selected" : string.Empty;
+                                    <option value="@category.ID" @selected>@category.Name</option>
+                                }
+                            </select>
+
+
+                            <div class="form-group">
+                                <input type="hidden" name="ID" value="@Model.ID" />
+                                <label>Name</label>
+                                <input class="form-control" type="text" name="Name" placeholder="Name" value="@Model.Name" />
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input class="form-control" type="text" name="Price" placeholder="Price" value="@Model.Price" />
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input class="form-control" type="text" name="Description" placeholder="Description" value="@Model.Description" />
+                            </div>
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="hidden" id="ImageUrl" name="ImageUrl" value="@Model.ImageUrl" />
+                                <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" id="updateBtn" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>Image View</label>
+                        <div class="Placeholder-img">
+                            <img id="productImage" src="@imageUrl" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</form>
+</div>
 <script>
     $("#imageUpload").change(function () {
         var element = this;

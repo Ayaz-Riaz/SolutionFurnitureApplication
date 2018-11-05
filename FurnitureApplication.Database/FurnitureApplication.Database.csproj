@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201811021114320_validation.Designer.cs">
       <DependentUpon>201811021114320_validation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811050711463_removeServerSideValidation.cs" />
+    <Compile Include="Migrations\201811050711463_removeServerSideValidation.Designer.cs">
+      <DependentUpon>201811050711463_removeServerSideValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811021114320_validation.resx">
       <DependentUpon>201811021114320_validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811050711463_removeServerSideValidation.resx">
+      <DependentUpon>201811050711463_removeServerSideValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,17 @@ namespace FurnitureApplication.web.Controllers
 {
     public class Shop1Controller : Controller
     {
-        //ProductsServices productsService = new ProductsServices();
+        public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID)
+        {
+            ShopViewModel model = new ShopViewModel();
+
+            model.FeaturedCategories = CategoriesServices.Instance.GetFeaturedCategories();
+            model.MaximumPrice = ProductsServices.Instance.GetMaximumPrice();
+
+            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID);
+
+            return View(model);
+        }
         // GET: Shop1
         public ActionResult Checkout()
         {

@@ -21,6 +21,44 @@ namespace FurnitureApplication.Services
             }
         }
         private static ProductsServices instance { get; set; }
+
+
+        public List<Product> SearchProducts(string scerchTerm, int? minimumPrice, int? maximumPrice, int? categoryID)
+        {
+            using (var context = new FAContext())
+            {
+                var products = context.Products.ToList();
+
+                if (categoryID.HasValue)
+                {
+                    products = products.Where(x => x.Category.ID == categoryID.Value).ToList();
+                }
+
+                if (string.IsNullOrEmpty(scerchTerm))
+                {
+                    products = context.Products.Where(x => x.Name.ToLower().Contains(scerchTerm.ToLower())).ToList();
+                }
+
+                if (minimumPrice.HasValue)
+                {
+                    products = products.Where(x => x.Price == minimumPrice.Value).ToList();
+                }
+
+                if (maximumPrice.HasValue)
+                {
+                    products = products.Where(x => x.Price <= maximumPrice.Value).ToList();
+                }
+                return products;
+            }
+        }
+        public int GetMaximumPrice()
+        {
+            using (var context = new FAContext())
+            {
+                return (int)(context.Products.Max(x => x.Price));
+            }
+        }
+
         private ProductsServices()
         {
         }
@@ -104,6 +142,14 @@ namespace FurnitureApplication.Services
             using (var context = new FAContext())
             {
                 return context.Products.OrderByDescending(x=>x.ID).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x=>x.Category).ToList();
+            }
+        }
+
+        public List<Product> GetProductsByCategory(int categoryID, int pageSize)
+        {
+            using (var context = new FAContext())
+            {
+                return context.Products.Where(x=>x.Category.ID == categoryID).OrderByDescending(x => x.ID).Take(pageSize).Include(x => x.Category).ToList();
             }
         }
 

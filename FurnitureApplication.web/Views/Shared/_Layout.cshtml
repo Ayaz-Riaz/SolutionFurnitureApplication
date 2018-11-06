@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Rast Furniture</title>
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/bootstrap-reboot.min.css")
     @Styles.Render("~/Content/bootstrap-grid.min.css")
@@ -54,7 +54,7 @@
                 </div>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="logo">
-                        <a class="navbar-brand" href="~/Views/Home/Index.cshtml"><img src="../../images/rast-furniture-logo.png"></a>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="../../images/rast-furniture-logo.png"></a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -62,13 +62,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
-                                @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                                @*@Html.ActionLink("Index", "Home", new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Index", "Shop1")">Shop</a>
+                                @*@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
-                                @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })
+                                <a class="nav-link" href="@Url.Action("Checkout", "Shop1")">Checkout</a>
+                                @*@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item sign-in">
                                 @Html.ActionLink("Logout", "Login", "Home", new { @class = "nav-link" })

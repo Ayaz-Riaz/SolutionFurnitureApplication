@@ -118,6 +118,19 @@ namespace FurnitureApplication.web.Controllers
             return RedirectToAction("index");
         }
 
+
+        //**********Detail
+        [HttpGet]
+        public ActionResult Details(int ID)
+        {
+            ProductViewModel model = new ProductViewModel();
+
+            model.Product = ProductsServices.Instance.GetProduct(ID);
+
+            return View(model);
+        }
+
+
         //****************delete Product
 
         [HttpPost]
@@ -126,20 +139,6 @@ namespace FurnitureApplication.web.Controllers
             ProductsServices.Instance.DeleteProduct(ID);
 
             return RedirectToAction("index");
-        }
-
-        //...........detail project
-
-        [HttpGet]
-        public ActionResult Details(int ID)
-        {
-            ProductViewModel model = new ProductViewModel();
-
-            model.Product = ProductsServices.Instance.GetProduct(ID);
-
-            if (model.Product == null) return HttpNotFound();
-
-            return View(model);
         }
 
     }

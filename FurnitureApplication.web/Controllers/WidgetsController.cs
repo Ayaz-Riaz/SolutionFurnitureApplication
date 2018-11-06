@@ -11,7 +11,7 @@ namespace FurnitureApplication.web.Controllers
     public class WidgetsController : Controller
     {
         // GET: Widgets
-        public ActionResult Products(bool isLatestProducts)
+        public ActionResult Products(bool isLatestProducts, int? CategoryID = 0)
         {
             ProductsWidgetsViewModel model = new ProductsWidgetsViewModel();
             model.IsLatestProducts = isLatestProducts;
@@ -19,6 +19,10 @@ namespace FurnitureApplication.web.Controllers
             if (isLatestProducts)
             {
                 model.Products = ProductsServices.Instance.GetLatestProducts(4);
+            }
+            else if (CategoryID.HasValue && CategoryID.Value > 0)
+            {
+                model.Products = ProductsServices.Instance.GetProductsByCategory(CategoryID.Value, 4);
             }
             else
             {

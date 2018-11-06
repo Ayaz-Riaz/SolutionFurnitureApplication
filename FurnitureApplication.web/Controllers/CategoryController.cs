@@ -28,7 +28,7 @@ namespace FurnitureApplication.web.Controllers
             {
                 categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
             }
-            var categorySearchVM = new ViewModels.CategorySearchViewModel
+            var categorySearchVM = new CategorySearchViewModel
             {
                 Categories = categories,
                 SearchTerm = search,

@@ -2,6 +2,7 @@
 using FurnitureApplication.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace FurnitureApplication.Services
         {
         }
         #endregion
+
         public Category GetCategory(int ID)
         {
             using (var context = new FAContext())
@@ -32,13 +34,7 @@ namespace FurnitureApplication.Services
             }
         }
 
-        public List<Category> GetCategories()
-        {
-            using (var context = new FAContext())
-            {
-                return context.Categories.ToList();
-            }
-        }
+        //********************Get category Count
 
         public int GetCategoriesCount(string search)
         {
@@ -55,23 +51,56 @@ namespace FurnitureApplication.Services
             }
         }
 
+        //********************Get All category
+
         public List<Category> GetAllCategories()
         {
             using (var context = new FAContext())
             {
-                return context.Categories
-                        .ToList();
+                return context.Categories.ToList();
             }
         }
 
+        //********************Get category
+
+        public List<Category> GetCategories(string search, int pageNo)
+        {
+            int pageSize = 3;
+
+            using (var context = new FAContext())
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    return context.Categories.Where(category => category.Name != null &&
+                         category.Name.ToLower().Contains(search.ToLower()))
+                         .OrderBy(x => x.ID)
+                         .Skip((pageNo - 1) * pageSize)
+                         .Take(pageSize)
+                         .Include(x => x.Products)
+                         .ToList();
+                }
+                else
+                {
+                    return context.Categories
+                        .OrderBy(x => x.ID)
+                        .Skip((pageNo - 1) * pageSize)
+                        .Take(pageSize)
+                        .Include(x => x.Products)
+                        .ToList();
+                }
+            }
+        }
+
+        //********************Feature category
 
         public List<Category> GetFeaturedCategories()
         {
             using (var context = new FAContext())
             {
-                return context.Categories.Where(x=>x.IsFeatured && x.ImageUrl != null).ToList();
+                return context.Categories.Where(x => x.IsFeatured && x.ImageUrl != null).ToList();
             }
         }
+
         //********************Save category
 
         public void SaveCategory(Category category)
@@ -96,7 +125,7 @@ namespace FurnitureApplication.Services
         }
 
         //********************Delete category*****
-         
+
         public void DeleteCategory(int ID)
         {
             using (var context = new FAContext())
@@ -108,5 +137,14 @@ namespace FurnitureApplication.Services
                 context.SaveChanges();
             }
         }
+
+        public List<Category> GetCategories()
+        {
+            using (var context = new FAContext())
+            {
+                return context.Categories.Include(r=>r.Products).ToList();
+            }
+        }
+        
     }
 }

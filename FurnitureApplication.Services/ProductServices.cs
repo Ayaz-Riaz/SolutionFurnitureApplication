@@ -21,9 +21,9 @@ namespace FurnitureApplication.Services
             }
         }
         private static ProductsServices instance { get; set; }
+        #endregion
 
-
-        public List<Product> SearchProducts(string scerchTerm, int? minimumPrice, int? maximumPrice, int? categoryID)
+        public List<Product> SearchProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
         {
             using (var context = new FAContext())
             {
@@ -34,23 +34,88 @@ namespace FurnitureApplication.Services
                     products = products.Where(x => x.Category.ID == categoryID.Value).ToList();
                 }
 
-                if (string.IsNullOrEmpty(scerchTerm))
+                if (!string.IsNullOrEmpty(searchTerm))
                 {
-                    products = context.Products.Where(x => x.Name.ToLower().Contains(scerchTerm.ToLower())).ToList();
+                    products = products.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
                 }
 
                 if (minimumPrice.HasValue)
                 {
-                    products = products.Where(x => x.Price == minimumPrice.Value).ToList();
+                    products = products.Where(x => x.Price >= minimumPrice.Value).ToList();
                 }
 
                 if (maximumPrice.HasValue)
                 {
                     products = products.Where(x => x.Price <= maximumPrice.Value).ToList();
                 }
-                return products;
+
+                if (sortBy.HasValue)
+                {
+                    switch (sortBy.Value)
+                    {
+                        case 2:
+                            products = products.OrderByDescending(x => x.ID).ToList();
+                            break;
+                        case 3:
+                            products = products.OrderBy(x => x.Price).ToList();
+                            break;
+                        default:
+                            products = products.OrderByDescending(x => x.Price).ToList();
+                            break;
+                    }
+                }
+
+                //return products.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
+                return products.ToList();
             }
         }
+
+        public int SearchProductsCount(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
+        {
+            using (var context = new FAContext())
+            {
+                var products = context.Products.ToList();
+
+                if (categoryID.HasValue)
+                {
+                    products = products.Where(x => x.Category.ID == categoryID.Value).ToList();
+                }
+
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    products = products.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+                }
+
+                if (minimumPrice.HasValue)
+                {
+                    products = products.Where(x => x.Price >= minimumPrice.Value).ToList();
+                }
+
+                if (maximumPrice.HasValue)
+                {
+                    products = products.Where(x => x.Price <= maximumPrice.Value).ToList();
+                }
+
+                if (sortBy.HasValue)
+                {
+                    switch (sortBy.Value)
+                    {
+                        case 2:
+                            products = products.OrderByDescending(x => x.ID).ToList();
+                            break;
+                        case 3:
+                            products = products.OrderBy(x => x.Price).ToList();
+                            break;
+                        default:
+                            products = products.OrderByDescending(x => x.Price).ToList();
+                            break;
+                    }
+                }
+
+                return products.Count;
+            }
+        }
+
         public int GetMaximumPrice()
         {
             using (var context = new FAContext())
@@ -59,25 +124,38 @@ namespace FurnitureApplication.Services
             }
         }
 
-        private ProductsServices()
-        {
-        }
-        #endregion
-
-
         public Product GetProduct(int ID)
         {
             using (var context = new FAContext())
             {
-                return context.Products.Where(x=>x.ID == ID).Include(x=>x.Category).FirstOrDefault();
+                return context.Products.Where(x => x.ID == ID).Include(x => x.Category).FirstOrDefault();
             }
         }
+
         public List<Product> GetProducts(List<int> IDs)
         {
             using (var context = new FAContext())
             {
                 return context.Products.Where(product => IDs.Contains(product.ID)).ToList();
 
+            }
+        }
+
+        public List<Product> GetProducts(int pageNo)
+        {
+            //int pageSize = 5;
+            using (var context = new FAContext())
+            {
+                //return context.Products.OrderBy(x=>x.ID).Skip((pageNo-1) * pageSize).Take(pageSize).Include(x=>x.Category).ToList();
+                return context.Products.Include(x => x.Category).ToList();
+            }
+        }
+
+        public List<Product> GetProducts(int pageNo, int pageSize)
+        {
+            using (var context = new FAContext())
+            {
+                return context.Products.OrderByDescending(x => x.ID).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x => x.Category).ToList();
             }
         }
 
@@ -107,7 +185,6 @@ namespace FurnitureApplication.Services
             }
         }
 
-
         public int GetProductsCount(string search)
         {
             using (var context = new FAContext())
@@ -125,40 +202,19 @@ namespace FurnitureApplication.Services
             }
         }
 
-
-        public List<Product> GetProducts(int pageNo)
-        {
-            //int pageSize = 5;
-            using (var context = new FAContext())
-            {
-                //return context.Products.OrderBy(x=>x.ID).Skip((pageNo-1) * pageSize).Take(pageSize).Include(x=>x.Category).ToList();
-                return context.Products.Include(x => x.Category).ToList();
-            }
-        }
-
-        //*********
-        public List<Product> GetProducts(int pageNo, int pageSize)
-        {
-            using (var context = new FAContext())
-            {
-                return context.Products.OrderByDescending(x=>x.ID).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x=>x.Category).ToList();
-            }
-        }
-
         public List<Product> GetProductsByCategory(int categoryID, int pageSize)
         {
             using (var context = new FAContext())
             {
-                return context.Products.Where(x=>x.Category.ID == categoryID).OrderByDescending(x => x.ID).Take(pageSize).Include(x => x.Category).ToList();
+                return context.Products.Where(x => x.Category.ID == categoryID).OrderByDescending(x => x.ID).Take(pageSize).Include(x => x.Category).ToList();
             }
         }
 
-        //**********
         public List<Product> GetLatestProducts(int numberOfProducts)
         {
             using (var context = new FAContext())
             {
-                return context.Products.OrderByDescending(x=>x.ID).Take(numberOfProducts).Include(x=>x.Category).ToList();
+                return context.Products.OrderByDescending(x => x.ID).Take(numberOfProducts).Include(x => x.Category).ToList();
             }
         }
 
@@ -176,7 +232,6 @@ namespace FurnitureApplication.Services
         }
 
         //********************Update Products
-
 
         public void UpdateProduct(Product Product)
         {

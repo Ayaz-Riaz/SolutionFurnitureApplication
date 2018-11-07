@@ -21,21 +21,27 @@ namespace FurnitureApplication.web.Controllers
 
             return View(categries);
         }
-        public ActionResult CategoryTable(string search, int? pageNoh)
+        public ActionResult CategoryTable(string search, int? pageNo, bool asShared = false)
         {
-            var categories = CategoriesServices.Instance.GetCategories();
-            if (string.IsNullOrEmpty(search) == false)
-            {
-                categories = categories.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
-            }
-            var categorySearchVM = new CategorySearchViewModel
-            {
-                Categories = categories,
-                SearchTerm = search,
-                Pager = new Pager(categories.Count, pageNoh, 10)
+            ViewBag.UseAsShared = asShared;
+            CategorySearchViewModel model = new CategorySearchViewModel();
+            model.SearchTerm = search;
 
-            };
-            return PartialView(categorySearchVM);
+            pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+
+            var totalRecords = CategoriesServices.Instance.GetCategoriesCount(search);
+            model.Categories = CategoriesServices.Instance.GetCategories(search, pageNo.Value);
+
+            if (model.Categories != null)
+            {
+                model.Pager = new Pager(totalRecords, pageNo, 3);
+
+                return View(model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
         }
 
         //*****************Create option
@@ -63,14 +69,30 @@ namespace FurnitureApplication.web.Controllers
         [HttpGet]
         public ActionResult Edit(int ID)
         {
+            EditCategoryViewModel model = new EditCategoryViewModel();
+
             var category = CategoriesServices.Instance.GetCategory(ID);
-            return View(category);
+
+            model.ID = category.ID;
+            model.Name = category.Name;
+            model.Description = category.Description;
+            model.ImageUrl = category.ImageUrl;
+            model.isFeatured = category.IsFeatured;
+
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(Category category)
+        public ActionResult Edit(EditCategoryViewModel model)
         {
-            CategoriesServices.Instance.UpdateCategory(category);
+            var existingCategory = CategoriesServices.Instance.GetCategory(model.ID);
+            existingCategory.Name = model.Name;
+            existingCategory.Description = model.Description;
+            existingCategory.ImageUrl = model.ImageUrl;
+            existingCategory.IsFeatured = model.isFeatured;
+
+            CategoriesServices.Instance.UpdateCategory(existingCategory);
+
             return RedirectToAction("index");
         }
 

@@ -1,0 +1,74 @@
+﻿@model FilterProductsViewModel
+@{
+    var DefaultimageUrl = "/images/empty-member.png";
+ }
+<div class="room-ideas">
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            var imageUrl = string.IsNullOrEmpty(product.ImageUrl) ? DefaultimageUrl : product.ImageUrl;
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Popular</div></div>
+                    <img class="card-img-top" src="@imageUrl" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <span class="price-holder">$ @product.Price</span>
+                        <ul class="card-action-icons">
+                            <li><a href="#" class="ico-cart3"></a></li>
+                            <li><a href="#" class="ico-heart11"></a></li>
+                            <li><a href="#" class="ico-eye9"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+
+@*<div>
+    @if (Model.Pager != null && Model.Pager.TotalPages > 1)
+    {
+
+        if (Model.Pager.CurrentPage > 1)
+        {
+            <button class="pageButtons" data-pageno="1">First</button>
+            <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage - 1)">Previous</button>}
+
+        for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+        {
+            string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
+
+            <button class="@activeClass pageButtons" data-pageno="@page">@page</button>}
+
+        if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+        {
+            <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
+            <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>}
+    }
+</div>*@
+

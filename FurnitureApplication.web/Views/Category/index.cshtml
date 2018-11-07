@@ -13,7 +13,7 @@
             </div>
             <div id="tableContiner">
                 @{
-                    Html.RenderAction("CategoryTable");
+                    Html.RenderAction("CategoryTable", new { asShared = true });
                 }
             </div>
 

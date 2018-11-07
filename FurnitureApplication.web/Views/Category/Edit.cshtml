@@ -1,9 +1,9 @@
-﻿@model Category
+﻿@model FurnitureApplication.web.ViewModels.EditCategoryViewModel
 @{
     ViewBag.Title = "Edit";
 
-    var trueChecked = Model.IsFeatured ? "checked" : string.Empty;
-    var falseChecked = !Model.IsFeatured ? "checked" : string.Empty;
+    var trueChecked = Model.isFeatured ? "checked" : string.Empty;
+    var falseChecked = !Model.isFeatured ? "checked" : string.Empty;
 
     var imageUrl = !string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/images/empty-member.png";
 }
@@ -93,13 +93,13 @@
         });
     });
     $("#updateBtn").click(function () {
-        debugger
         $.ajax({
             type: 'POST',
             url: '@Url.Action("Edit", "Category")',
             data: $("#editCategory").serialize()
         })
         .done(function (response) {
+            window.location.href = "/category/index";
             $("#tableContiner").html(response);
             $("#actionContainer").html("");
             focusAction("tableContiner");

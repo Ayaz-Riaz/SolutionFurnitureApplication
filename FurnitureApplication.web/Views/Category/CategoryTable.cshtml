@@ -1,5 +1,10 @@
 ﻿@model CategorySearchViewModel
-
+@{ 
+    if (ViewBag.UseAsShared)
+    {
+        Layout = null;
+    }
+}
 <form method="post">
     <div style="margin-bottom: 30px; overflow: hidden;">
         <div class="col-lg-6 float-right">
@@ -26,38 +31,33 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Categories != null && Model.Categories.Count > 0)
-            {
-                foreach (var category in Model.Categories)
-                {
-                    <tr>
-                        <td>@category.Name</td>
-                        <td>
-                            NA
-                            @*@category.Products.Count
-                            @foreach (var product in category.Products)
-                            {
-                                <span>@product.Name</span>
-
-                            }*@
-                        </td>
-                        <td>
-                            <div class="table-img">
-                                <img src="@category.ImageUrl" />
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-primary editBtn" onclick="location.href='@Url.Action("Edit", "Category" , new RouteValueDictionary(new { id = category.ID }))'" data-id="@category.ID">Edit</button>
-                            <button class="btn btn-primary deleteBtn" data-id="@category.ID">Delete</button>
-                        </td>
-                    </tr>}
-            }
-            else
-            {
-                <tr><td colspan="3" class="text-danger">No Categories found.</td></tr>}
+           @if (Model.Categories != null && Model.Categories.Count > 0)
+           {
+               foreach (var category in Model.Categories)
+               {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>
+                        @category.Products.Count
+                    </td>
+            <td>
+                <div class="table-img">
+                    <img src="@category.ImageUrl" />
+                </div>
+            </td>
+                    <td class="wrap-td">
+                        <button class="editBtn" data-id="@category.ID" onclick="location.href='@Url.Action("Edit", "Category" , new { ID = category.ID } )'">Edit</button>
+                        <button class="deleteBtn" data-id="@category.ID">Delete</button>
+                    </td>
+                </tr>}
+           }
+           else
+           {
+            <tr><td colspan="3" class="text-danger">No Categories found.</td></tr>
+           }
         </tbody>
     </table>
-    @*<div>
+    <div>
         @if (Model.Pager != null && Model.Pager.TotalPages > 1)
         {
 
@@ -77,7 +77,7 @@
                 <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
                 <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>}
         }
-    </div>*@
+    </div>
 </div>
 <script>
     $('#categoryTable').DataTable();

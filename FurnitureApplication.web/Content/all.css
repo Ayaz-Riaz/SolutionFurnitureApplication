@@ -836,6 +836,21 @@ img {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column; }
+.tag-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.tag-list li{
+    margin-right: 8px;
+    margin-bottom: 8px;
+    float: left;
+}
+.tag-list li a {
+    border-radius: 0;
+
+}
+
   @media screen and (max-width: 996px) {
     .preview {
       margin-bottom: 20px; } }
@@ -1007,6 +1022,122 @@ img {
     -webkit-transform: scale(1);
             transform: scale(1); } 
 
+}
+/* Widget price */
+.widget.widget-price {
+	padding-bottom: 31px;
+}
+
+.widget.widget-price .widget-title {
+	margin-bottom: 29px;
+}
+
+.widget.widget-price #slide-range {
+	margin-bottom: 10px;
+}
+
+.widget.widget-price .ui-slider-horizontal .ui-slider-handle {
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	margin-top: -3px;
+}
+
+.widget.widget-price .ui-slider-horizontal {
+	height: 3px;
+}
+
+.widget.widget-price .ui-state-default,
+.widget.widget-price .ui-widget-content .ui-state-default,
+.widget.widget-price .ui-widget-header .ui-state-default, 
+.widget.widget-price .ui-button, html .ui-button.ui-state-disabled:hover, 
+.widget.widget-price html .ui-button.ui-state-disabled:active {
+	border: 1px solid #f63440;
+	background-color: #f63440;
+}
+
+.widget.widget-price .ui-widget-content {
+	background: #d6d6d6;
+}
+
+.widget.widget-price .ui-widget-header {
+	background: #333333;
+}
+
+.widget.widget-price .amount {
+	line-height: 21px;
+	color: #333333;
+}
+
+.widget.widget-price .amount input[type="text"] {
+	width: 75%;
+	border: none;
+	font-size: 14px; 
+	line-height: 21px;
+	color: #333333;
+	font-weight: 300;
+	letter-spacing: 0px;
+	padding-left: 0px;
+}
+.box-filter.slidebar-shop {
+	border-top: 1px solid #e5e5e5;
+	padding-top: 31px;
+	position: relative;
+	z-index: 2;
+}
+
+.box-filter.slidebar-shop .btn-close {
+	position: absolute;
+	top: 2px;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	background-color: #f63440;
+}
+
+.box-filter.slidebar-shop .btn-close a {
+	line-height: 30px;
+	color: #ffffff;
+}
+
+.box-filter.slidebar-shop .widget {
+	float: left;
+	margin-bottom: 25px;
+}
+
+.box-filter.slidebar-shop .widget-sort-by {
+	width: 23%;
+}
+
+.box-filter.slidebar-shop .widget-price {
+	width: 19.6%;
+}
+
+.box-filter.slidebar-shop .widget-color {
+	width: 19.8%;
+}
+
+.box-filter.slidebar-shop .widget-size {
+	width: 14.5%;
+}
+
+.box-filter.slidebar-shop .widget_tag {
+	width: 23.1%;
+}
+
+.box-filter.slidebar-shop .widget .widget-title {
+	font-size: 14px;
+	line-height: 30px;
+	margin-bottom: 30px;
+}
+
+.box-filter.slidebar-shop .widget.widget_tag .widget-title {
+	margin-bottom: 41px;
+}
+
+.box-filter.slidebar-shop .widget ul li a {
+	line-height: 30px;
 }
 @media screen and (max-width: 1400px){
     .carousel-caption .heilight-text{

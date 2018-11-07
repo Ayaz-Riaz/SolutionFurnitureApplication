@@ -10,18 +10,23 @@ namespace FurnitureApplication.web.Controllers
 {
     public class Shop1Controller : Controller
     {
-        public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
+        public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
             ShopViewModel model = new ShopViewModel();
 
             model.FeaturedCategories = CategoriesServices.Instance.GetFeaturedCategories();
             model.MaximumPrice = ProductsServices.Instance.GetMaximumPrice();
 
-            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy);
+            pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+
+            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy, pageNo);
 
             model.SortBy = sortBy;
-
+            model.CategoryID = categoryID;
+            int totalCount = ProductsServices.Instance.SearchProductsCount(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy)
+            model.Pager = new Pager(totalCount, pageNo);
             return View(model);
+
         }
         public ActionResult FilterProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
         {

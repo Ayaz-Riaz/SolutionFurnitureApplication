@@ -845,12 +845,36 @@ img {
     margin-right: 8px;
     margin-bottom: 8px;
     float: left;
+    font-size: 14px;
 }
 .tag-list li a {
     border-radius: 0;
-
 }
-
+.tag-list li a.active {
+    background: #6bbb3b;
+}
+.sortBy {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sortBy li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+.sortBy li a {
+    color:#464646;
+}
+.sortBy li a.active {
+    color: #6bbb3b;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    background-color: #6bbb3b;
+    border-color: #6bbb3b;
+}
+#amount {
+    background: transparent;
+}
   @media screen and (max-width: 996px) {
     .preview {
       margin-bottom: 20px; } }
@@ -1052,8 +1076,8 @@ img {
 .widget.widget-price .ui-widget-header .ui-state-default, 
 .widget.widget-price .ui-button, html .ui-button.ui-state-disabled:hover, 
 .widget.widget-price html .ui-button.ui-state-disabled:active {
-	border: 1px solid #f63440;
-	background-color: #f63440;
+	border: 1px solid #f57c00;
+	background-color: #f57c00;
 }
 
 .widget.widget-price .ui-widget-content {

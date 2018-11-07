@@ -23,7 +23,7 @@ namespace FurnitureApplication.Services
         private static ProductsServices instance { get; set; }
         #endregion
 
-        public List<Product> SearchProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
+        public List<Product> SearchProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int pageNo, int pageSize)
         {
             using (var context = new FAContext())
             {
@@ -64,9 +64,7 @@ namespace FurnitureApplication.Services
                             break;
                     }
                 }
-
-                //return products.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
-                return products.ToList();
+                return products.Skip((pageNo - 1) * pageSize).Take(pageSize).ToList();
             }
         }
 
@@ -111,7 +109,6 @@ namespace FurnitureApplication.Services
                             break;
                     }
                 }
-
                 return products.Count;
             }
         }

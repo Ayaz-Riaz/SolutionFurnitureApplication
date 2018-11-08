@@ -130,7 +130,9 @@ namespace FurnitureApplication.Services
         {
             using (var context = new FAContext())
             {
-                var categoty = context.Categories.Find(ID);
+                var categoty = context.Categories.Where(x=>x.ID == ID).Include(x=>x.Products).FirstOrDefault();
+
+                context.Products.RemoveRange(categoty.Products);
 
                 context.Categories.Remove(categoty);
 

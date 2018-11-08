@@ -736,6 +736,7 @@ input,
     background: #f57c00;
     border:1px solid #f57c00;
     transition:all 0.5s linear;
+    color: #fff !important;
 }
 .btn.btn-primary:hover {
     background: #6bbb3b;
@@ -1162,6 +1163,14 @@ img {
 
 .box-filter.slidebar-shop .widget ul li a {
 	line-height: 30px;
+}
+.bg-info,
+.page-item.active .page-link {
+    background-color: #f57c00 !important;
+    border-color: #f57c00;
+}
+.page-link {
+    color: #333;
 }
 @media screen and (max-width: 1400px){
     .carousel-caption .heilight-text{

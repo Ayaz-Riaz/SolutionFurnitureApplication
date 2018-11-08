@@ -1,16 +1,6 @@
 ﻿@model FurnitureApplication.web.ViewModels.HomeViewModels
 @{
     ViewBag.Title = "Home Page";
-
-    var firstCategory = Model.FeaturedCategories[0];
-    var secondCategory = Model.FeaturedCategories[1];
-    var thirdCategory = Model.FeaturedCategories[2];
-    var fourCategory = Model.FeaturedCategories[3];
-    var fiveCategory = Model.FeaturedCategories[4];
-    var sixCategory = Model.FeaturedCategories[5];
-    var sevenCategory = Model.FeaturedCategories[6];
-    var eightCategory = Model.FeaturedCategories[7];
-    var nineCategory = Model.FeaturedCategories[8];
 }
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -130,156 +120,170 @@
             <div class="heading-area">
                 <h2>Shop by Department</h2>
             </div>
-            <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if(firstCategory != null)
-                        {
-                        <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
-                            <div class="image-holder">
-                                <img src="@firstCategory.ImageUrl" alt="image holder" />
-                            </div>
-                            <span class="dep-name">@firstCategory.Name</span>
-                        </a>
-                        }
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (secondCategory != null)
-                        {
+            @if (Model.FeaturedCategories != null & Model.FeaturedCategories.Count>= 10)
+            {
+                var firstCategory = Model.FeaturedCategories[0];
+                var secondCategory = Model.FeaturedCategories[1];
+                var thirdCategory = Model.FeaturedCategories[2];
+                var fourCategory = Model.FeaturedCategories[3];
+                var fiveCategory = Model.FeaturedCategories[4];
+                var sixCategory = Model.FeaturedCategories[5];
+                var sevenCategory = Model.FeaturedCategories[6];
+                var eightCategory = Model.FeaturedCategories[7];
+                var nineCategory = Model.FeaturedCategories[8];
+                var tenCategory = Model.FeaturedCategories[9];
+
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (firstCategory != null)
+                            {
                             <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
                                 <div class="image-holder">
-                                    <img src="@secondCategory.ImageUrl" alt="image holder" />
+                                    <img src="@firstCategory.ImageUrl" alt="image holder" />
                                 </div>
-                                <span class="dep-name">@secondCategory.Name</span>
+                                <span class="dep-name">@firstCategory.Name</span>
                             </a>
-                        }
+                            }
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (thirdCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
-                                <div class="image-holder">
-                                    <img src="@thirdCategory.ImageUrl" alt="image holder" />
-                                </div>
-                                <span class="dep-name">@thirdCategory.Name</span>
-                            </a>
-                        }
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (secondCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@secondCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@secondCategory.Name</span>
+                                </a>
+                            }
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (fourCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
-                                <div class="image-holder">
-                                    <img src="@fourCategory.ImageUrl" alt="image holder" />
-                                </div>
-                                <span class="dep-name">@fourCategory.Name</span>
-                            </a>
-                        }
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (thirdCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@thirdCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@thirdCategory.Name</span>
+                                </a>
+                            }
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (fiveCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
-                                <div class="image-holder">
-                                    <img src="@fiveCategory.ImageUrl" alt="image holder" />
-                                </div>
-                                <span class="dep-name">@fiveCategory.Name</span>
-                            </a>
-                        }
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (fourCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@fourCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@fourCategory.Name</span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (fiveCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@fiveCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@fiveCategory.Name</span>
+                                </a>
+                            }
                         
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (sixCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (sixCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@sixCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@sixCategory.Name</span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (sevenCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@sevenCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@sevenCategory.Name</span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (eightCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@eightCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@eightCategory.Name</span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            @if (nineCategory != null)
+                            {
+                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                    <div class="image-holder">
+                                        <img src="@nineCategory.ImageUrl" alt="image holder" />
+                                    </div>
+                                    <span class="dep-name">@nineCategory.Name</span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            <a href="@Url.Action("BabyandKids")" onclick="location.href='@Url.Action("BabyandKids")'" class="image-area">
                                 <div class="image-holder">
-                                    <img src="@sixCategory.ImageUrl" alt="image holder" />
+                                    <img src="../images/kids.png" alt="image holder" />
                                 </div>
-                                <span class="dep-name">@sixCategory.Name</span>
+                                <span class="dep-name">Baby & Kids</span>
                             </a>
-                        }
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (sevenCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            <a href="@Url.Action("Storage")" onclick="location.href='@Url.Action("Storage")'" class="image-area">
                                 <div class="image-holder">
-                                    <img src="@sevenCategory.ImageUrl" alt="image holder" />
+                                    <img src="../images/storage.png" alt="image holder" />
                                 </div>
-                                <span class="dep-name">@sevenCategory.Name</span>
+                                <span class="dep-name">Storage</span>
                             </a>
-                        }
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (eightCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="department-img-holder">
+                            <a href="@Url.Action("Kitchen")" onclick="location.href='@Url.Action("Kitchen")'" class="image-area">
                                 <div class="image-holder">
-                                    <img src="@eightCategory.ImageUrl" alt="image holder" />
+                                    <img src="../images/kitchen-min.png" alt="image holder" />
                                 </div>
-                                <span class="dep-name">@eightCategory.Name</span>
+                                <span class="dep-name">Kitchen</span>
                             </a>
-                        }
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        @if (nineCategory != null)
-                        {
-                            <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
-                                <div class="image-holder">
-                                    <img src="@nineCategory.ImageUrl" alt="image holder" />
-                                </div>
-                                <span class="dep-name">@nineCategory.Name</span>
-                            </a>
-                        }
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        <a href="@Url.Action("BabyandKids")" onclick="location.href='@Url.Action("BabyandKids")'" class="image-area">
-                            <div class="image-holder">
-                                <img src="../images/kids.png" alt="image holder" />
-                            </div>
-                            <span class="dep-name">Baby & Kids</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        <a href="@Url.Action("Storage")" onclick="location.href='@Url.Action("Storage")'" class="image-area">
-                            <div class="image-holder">
-                                <img src="../images/storage.png" alt="image holder" />
-                            </div>
-                            <span class="dep-name">Storage</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="department-img-holder">
-                        <a href="@Url.Action("Kitchen")" onclick="location.href='@Url.Action("Kitchen")'" class="image-area">
-                            <div class="image-holder">
-                                <img src="../images/kitchen-min.png" alt="image holder" />
-                            </div>
-                            <span class="dep-name">Kitchen</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            }
             <hr />
         </div>
     </div>

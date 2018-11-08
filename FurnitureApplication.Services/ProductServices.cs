@@ -234,6 +234,7 @@ namespace FurnitureApplication.Services
         {
             using (var context = new FAContext())
             {
+                
                 context.Entry(Product).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }

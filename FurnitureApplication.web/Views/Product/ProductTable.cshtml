@@ -64,31 +64,46 @@
             }
         </tbody>
     </table>
-    @*<nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            @if (Model.PageNo != 1)
+    @*<div>
+        @if (Model.Pager != null && Model.Pager.TotalPages > 1)
+        {
+
+            if (Model.Pager.CurrentPage > 1)
             {
-                <li class="page-item">
-                    <a class="page-link" id="PreviousRecord" data-pageNo="@(Model.PageNo - 1)" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-            }
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" id="NextRecord" data-pageNo="@(Model.PageNo + 1)" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>*@
+                <button class="pageButtons" data-pageno="1">First</button>
+                <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage - 1)">Previous</button>}
+
+            for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
+
+                <button class="@activeClass pageButtons" data-pageno="@page">@page</button>}
+
+            if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
+                <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>}
+        }
+    </div>*@
 </div>
 <script>
     $('#ProductsTable').DataTable();
+
+    $(".pageButtons").click(function () {
+        $.ajax({
+            url: '@Url.Action("CategoryTable", "Category")',
+            data: {
+                pageNo: $(this).attr("data-pageNo"),
+                search: '@Model.SearchTerm'
+            }
+        })
+        .done(function (response) {
+            $("#tableContiner").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("FAIL");
+        });
+    });
 
     $(".page-link").click(function () {
         $.ajax({

@@ -375,15 +375,15 @@
       });
     };
 
-    function hideLoader() {
-        $(".loader").hide();
-        $("#loading-overlay").hide('slow');
-    };
+    //function hideLoader() {
+    //    $(".loader").hide();
+    //    $("#loading-overlay").hide('slow');
+    //};
 
-    function showLoader() {
-        $(".loader").show();
-        $("#loading-overlay").show();
-    };
+    //function showLoader() {
+    //    $(".loader").show();
+    //    $("#loading-overlay").show();
+    //};
 
     //var flatPrice = function() {
     //    if( $().slider ) {
@@ -845,15 +845,15 @@
 })(jQuery);
 
 
-function hideLoader() {
-    $(".loader").hide();
-    $("#loading-overlay").hide();
-};
+//function hideLoader() {
+//    $(".loader").hide();
+//    $("#loading-overlay").hide();
+//};
 
-function showLoader() {
-    $(".loader").show();
-    $("#loading-overlay").show();
-};
+//function showLoader() {
+//    $(".loader").show();
+//    $("#loading-overlay").show();
+//};
 
 function updateCartProducts() {
     var cartProducts;

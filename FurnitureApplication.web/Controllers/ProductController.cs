@@ -18,33 +18,15 @@ namespace FurnitureApplication.web.Controllers
         }
         public ActionResult ProductTable(string search, int? pageNo)
         {
+            var pageSize = ConfigurationsService.Instance.PageSize();
             ProductSearchViewModel model = new ProductSearchViewModel();
+            model.SearchTerm = search;
             model.PageNo = pageNo.HasValue ? pageNo > 0 ? pageNo.Value : 1 : 1 ;
 
-            //like above code both same reacion
-            //if (pageNo.HasValue)
-            //{
-            //    if(pageNo.Value > 0)
-            //    {
-            //        model.PageNo = pageNo.Value;
-            //    }
-            //    else
-            //    {
-            //        model.PageNo = 1;
-            //    }
-            //}
-            //else
-            //{
-            //    model.PageNo = 1;
-            //}
+            var totalRecords = ProductsServices.Instance.GetProductsCount(search);
+            model.Products = ProductsServices.Instance.GetProducts(search, pageNo.Value, pageSize);
 
-            model.Products = ProductsServices.Instance.GetProducts(model.PageNo);
-
-            if (string.IsNullOrEmpty(search) == false)
-            {
-                model.SearchTerm = search;
-                model.Products = model.Products.Where(p => p.Name != null && p.Name.ToLower().Contains(search.ToLower())).ToList();
-            }
+            model.Pager = new Pager(totalRecords, pageNo, pageSize);
             return PartialView(model);
         }
 
@@ -103,7 +85,7 @@ namespace FurnitureApplication.web.Controllers
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.Price = model.Price;
-
+            
             existingProduct.Category = null; //mark it null. Because the referncy key is changed below
             existingProduct.CategoryID = model.CategoryID;
 
@@ -137,7 +119,7 @@ namespace FurnitureApplication.web.Controllers
         public ActionResult Delete(int ID)
         {
             ProductsServices.Instance.DeleteProduct(ID);
-
+            
             return RedirectToAction("index");
         }
 

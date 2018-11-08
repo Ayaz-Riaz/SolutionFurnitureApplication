@@ -12,6 +12,7 @@
     @Styles.Render("~/Content/all.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/popper.min.js")
+    @Scripts.Render("~/Scripts/main.js")
     @Scripts.Render("~/Scripts/jquery-1.11.2.min.js")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
     @Scripts.Render("~/Scripts/jquery.min.js")
@@ -19,7 +20,7 @@
     @Scripts.Render("~/Scripts/sweetalert.min.js")
     @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
     @Scripts.Render("~/Scripts/jquery-ui.js")
-    @Scripts.Render("~/Scripts/main.js")
+    
     
 </head>
 <body>
@@ -35,14 +36,14 @@
                             </a>
                         </div>
                         <div class="header-icon-links">
-                            <a href="#">
-                                <span class="number">2</span>
-                                <span class="ico-truck5"></span>
-                            </a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" >@User.Identity.Name</a>
+                            }
                         </div>
                         <div class="header-icon-links">
                             <a href="#">
-                                <span class="number">2</span>
+                                <span class="number" id="cartProductsCount">0</span>
                                 <span class="ico-cart3"></span>
                             </a>
                         </div>
@@ -103,3 +104,6 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script>
+
+</script>

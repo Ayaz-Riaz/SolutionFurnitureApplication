@@ -3,6 +3,9 @@
     var DefaultimageUrl = "/images/empty-member.png";
  }
 <div class="room-ideas">
+    <div class="filter-shop">
+        <p class="text-right">Showing @(((Model.Pager.CurrentPage - 1) * Model.Pager.PageSize) + 1) - @(((Model.Pager.CurrentPage - 1) * Model.Pager.PageSize ) + (Model.Products.Count < Model.Pager.PageSize ? Model.Products.Count : Model.Pager.PageSize)) of @Model.Pager.TotalItems Products</p>
+    </div>
     <div class="row">
         @foreach (var product in Model.Products)
         {
@@ -17,7 +20,7 @@
                         <p class="card-text">@product.Description</p>
                         <span class="price-holder">$ @product.Price</span>
                         <ul class="card-action-icons">
-                            <li><a href="#" class="ico-cart3"></a></li>
+                            <li><a href="#" data-id="@product.ID" class="ico-cart3 productAddToCart"></a></li>
                             <li><a href="#" class="ico-heart11"></a></li>
                             <li><a href="#" class="ico-eye9"></a></li>
                         </ul>
@@ -26,27 +29,85 @@
             </div>
         }
     </div>
-</div>
+    <div class="text-center">
+        @if (Model.Pager != null && Model.Pager.TotalPages > 1)
+            {
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="PageDataLink page-link" data-href="@Url.Action("FilterProducts", "Shop1", new { pageNo = Model.Pager.CurrentPage - 1, sortBy = Model.SortBy, categoryID = Model.CategoryID})" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    }
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                    string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+                        <li class="page-item @activeClass"><a class="PageDataLink page-link" data-href="@Url.Action("FilterProducts", "Shop1", new { pageNo = page, sortBy = Model.SortBy, categoryID = Model.CategoryID})">@page</a></li>
+                    }
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="PageDataLink page-link" data-href="@Url.Action("FilterProducts", "Shop1", new { pageNo = Model.Pager.CurrentPage + 1, sortBy = Model.SortBy, categoryID = Model.CategoryID})" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>
+<input type="hidden" id="SearchTerm" value="@Model.SearchTerm" />
+<input type="hidden" id="SortBy" value="@Model.SortBy" />
+<input type="hidden" id="CategoryID" value="@Model.CategoryID" />
+<script>
+    $(".PageDataLink").click(function () {
+        var url = $(this).attr("data-href");
+
+        if (url != "" || url != undefined) {
+            GetData(url);
+        }
+    });
+
+    var products;
+    $(".productAddToCart").click(function () {
+        
+        var existingCookieData = $.cookie("CartProducts");
+
+        if (existingCookieData != undefined && existingCookieData != "" && existingCookieData!= null)
+        {
+            products = existingCookieData.split("-");
+        }
+        else {
+            products = [];
+        }
+        var productID = $(this).attr("data-id");
+
+        products.push(productID)
+
+        $.cookie("CartProducts", products.join("-"), { path: "/" });
+
+        updateCartProducts();
+
+        swal("Done", "product added to cart!", "success");
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
 
 
 

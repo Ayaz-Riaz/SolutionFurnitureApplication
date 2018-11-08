@@ -21,7 +21,7 @@ namespace FurnitureApplication.web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("FurnitureApplicationConnetion", throwIfV1Schema: false)
         {
         }
 

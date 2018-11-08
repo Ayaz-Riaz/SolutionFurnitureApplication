@@ -40,16 +40,17 @@
                     <td>
                         @category.Products.Count
                     </td>
-            <td>
-                <div class="table-img">
-                    <img src="@category.ImageUrl" />
-                </div>
-            </td>
-                    <td class="wrap-td">
-                        <button class="editBtn" data-id="@category.ID" onclick="location.href='@Url.Action("Edit", "Category" , new { ID = category.ID } )'">Edit</button>
-                        <button class="deleteBtn" data-id="@category.ID">Delete</button>
+                    <td>
+                        <div class="table-img">
+                            <img src="@category.ImageUrl" />
+                        </div>
                     </td>
-                </tr>}
+                    <td class="wrap-td">
+                        <button class="editBtn btn btn-primary" data-id="@category.ID" onclick="location.href='@Url.Action("Edit", "Category" , new { ID = category.ID } )'">Edit</button>
+                        <button class="deleteBtn btn btn-primary" data-id="@category.ID">Delete</button>
+                    </td>
+                </tr>
+               }
            }
            else
            {
@@ -57,7 +58,7 @@
            }
         </tbody>
     </table>
-    <div>
+    @*<div>
         @if (Model.Pager != null && Model.Pager.TotalPages > 1)
         {
 
@@ -77,7 +78,7 @@
                 <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
                 <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>}
         }
-    </div>
+    </div>*@
 </div>
 <script>
     $('#categoryTable').DataTable();

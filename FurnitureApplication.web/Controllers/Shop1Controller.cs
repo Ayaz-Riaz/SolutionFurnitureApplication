@@ -8,36 +8,47 @@ using System.Web.Mvc;
 
 namespace FurnitureApplication.web.Controllers
 {
+    [Authorize]
     public class Shop1Controller : Controller
     {
         public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
-            ShopViewModel model = new ShopViewModel();
+            var pageSize = ConfigurationsService.Instance.ShopPageSize();
 
+            ShopViewModel model = new ShopViewModel();
+            model.SearchTerm = searchTerm;
             model.FeaturedCategories = CategoriesServices.Instance.GetFeaturedCategories();
             model.MaximumPrice = ProductsServices.Instance.GetMaximumPrice();
 
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
-
-            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy, pageNo);
-
             model.SortBy = sortBy;
             model.CategoryID = categoryID;
-            int totalCount = ProductsServices.Instance.SearchProductsCount(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy)
-            model.Pager = new Pager(totalCount, pageNo);
+
+            int totalCount = ProductsServices.Instance.SearchProductsCount(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy);
+            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy, pageNo.Value, pageSize);
+            
+            model.Pager = new Pager(totalCount, pageNo, pageSize);
             return View(model);
 
         }
-        public ActionResult FilterProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy)
+        public ActionResult FilterProducts(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
-            FilterProductsViewModel model = new FilterProductsViewModel();
+            var pageSize = ConfigurationsService.Instance.ShopPageSize();
 
-            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy);
+            FilterProductsViewModel model = new FilterProductsViewModel();
+            model.SearchTerm = searchTerm;
+            pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+            model.SortBy = sortBy;
+            model.CategoryID = categoryID;
+
+            int totalCount = ProductsServices.Instance.SearchProductsCount(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy);
+            model.Products = ProductsServices.Instance.SearchProducts(searchTerm, minimumPrice, maximumPrice, categoryID, sortBy, pageNo.Value, pageSize);
             
+
+            model.Pager = new Pager(totalCount, pageNo, pageSize);
+
             return PartialView(model);
         }
-        // GET: Shop1
-
         public ActionResult Checkout()
         {
             CheckoutViewModel model = new CheckoutViewModel();

@@ -31,10 +31,19 @@ namespace FurnitureApplication.Services
             {
                 var pageSizeConfig = context.Configurations.Find("PageSize");
 
-                return pageSizeConfig != null ? int.Parse(pageSizeConfig.value) : 5;
+                return pageSizeConfig != null ? int.Parse(pageSizeConfig.value) : 10;
             }
         }
 
+        public int ShopPageSize()
+        {
+            using (var context = new FAContext())
+            {
+                var pageSizeConfig = context.Configurations.Find("ShopPageSize");
+
+                return pageSizeConfig != null ? int.Parse(pageSizeConfig.value) : 6;
+            }
+        }
         public Config GetConfig(string Key)
         {
             using (var context = new FAContext())

@@ -1,8 +1,6 @@
 ﻿using FurnitureApplication.Database;
 using FurnitureApplication.Entities;
 using System;
-using System.Configuration;
-using System.Configuration.Assemblies;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +10,12 @@ namespace FurnitureApplication.Services
 {
     public class ShopService
     {
-        #region Singleton
+        #region singleton
         public static ShopService Instance
         {
             get
             {
                 if (instance == null) instance = new ShopService();
-
                 return instance;
             }
         }
@@ -27,17 +24,15 @@ namespace FurnitureApplication.Services
         private ShopService()
         {
         }
-
         #endregion
 
         public int SaveOrder(Order order)
         {
             using (var context = new FAContext())
             {
-                //context.Orders.Add(order);
+                context.Orders.Add(order);
                 return context.SaveChanges();
             }
         }
-
     }
 }

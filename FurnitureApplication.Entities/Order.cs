@@ -9,9 +9,12 @@ namespace FurnitureApplication.Entities
     public class Order
     {
         public int ID { get; set; }
+
         public string UserID { get; set; }
-        public DateTime OrderedAt { get; set; }
-        public string Status { get; set; }
+
+        public DateTime ordereddAt { get; set; }
+
+        public string status { get; set; }
 
         public decimal TotalAmount { get; set; }
 

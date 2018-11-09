@@ -139,13 +139,38 @@
                             </div>
                         </div>*@
                         <hr class="mb-4">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                        <button class="btn btn-primary btn-lg btn-block" id="placeOrderBtn" type="button">Continue to checkout</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $("#placeOrderBtn").click(function () {
+        $.ajax({
+            url: '@Url.Action("PlaceOrder", "Shop1")',
+            data: {
+                productIDs: '@string.Join( "-", Model.CartProductIDs)',
+            }
+        })
+        .done(function (response) {
+            if (response.Success) {
+                $.cookie("CartProducts", '', { path: "/" });
+                updateCartProducts();
+                swal("Done", "Your Order has been placed.", "success").then((value) => {
+                    window.location = '@Url.Action("Index", "Shop1")';
+                });
+            }
+            else {
+                swal("Failed", "unable to placed order.", "warning");
+            }
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("FAIL");
+        });
+    });
+</script>
 }
 else
 {

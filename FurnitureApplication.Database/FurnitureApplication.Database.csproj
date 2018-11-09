@@ -84,6 +84,14 @@
     <Compile Include="Migrations\201811050711463_removeServerSideValidation.Designer.cs">
       <DependentUpon>201811050711463_removeServerSideValidation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811091327197_OrdersAdded.cs" />
+    <Compile Include="Migrations\201811091327197_OrdersAdded.Designer.cs">
+      <DependentUpon>201811091327197_OrdersAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811091455583_OrderItems.cs" />
+    <Compile Include="Migrations\201811091455583_OrderItems.Designer.cs">
+      <DependentUpon>201811091455583_OrderItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -124,6 +132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811050711463_removeServerSideValidation.resx">
       <DependentUpon>201811050711463_removeServerSideValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811091327197_OrdersAdded.resx">
+      <DependentUpon>201811091327197_OrdersAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811091455583_OrderItems.resx">
+      <DependentUpon>201811091455583_OrderItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

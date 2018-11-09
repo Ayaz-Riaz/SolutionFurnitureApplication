@@ -1,4 +1,5 @@
-﻿using FurnitureApplication.Services;
+﻿using FurnitureApplication.Entities;
+using FurnitureApplication.Services;
 using FurnitureApplication.web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -85,12 +86,8 @@ namespace FurnitureApplication.web.Controllers
 
             var CartProductsCookie = Request.Cookies["CartProducts"];
 
-            if(CartProductsCookie != null)
+            if(CartProductsCookie != null && !string.IsNullOrEmpty(CartProductsCookie.Value))
             {
-                //var productIDs = CartProductsCookie.Value;
-                //var ids = productIDs.Split('-');
-                //List<int> pIDs = ids.Select(x => int.Parse(x)).ToList();
-
                 model.CartProductIDs = CartProductsCookie.Value.Split('-').Select(x => int.Parse(x)).ToList();
 
                 model.CartProducts = ProductsServices.Instance.GetProducts(model.CartProductIDs);
@@ -100,6 +97,35 @@ namespace FurnitureApplication.web.Controllers
             }
 
             return View(model);
+        }
+        public JsonResult PlaceOrder(string productIDs)
+        {
+            JsonResult result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            if(string.IsNullOrEmpty (productIDs))
+            {
+                var productQuantities = productIDs.Split('-').Select(x => int.Parse(x)).ToList();
+                var boughtProducts = ProductsServices.Instance.GetProducts(productQuantities.Distinct().ToList());
+
+                Order newOrder = new Order();
+                newOrder.UserID = User.Identity.GetUserId();
+                newOrder.ordereddAt = DateTime.Now;
+                newOrder.status = "Pending";
+                newOrder.TotalAmount = boughtProducts.Sum(x => x.Price * productQuantities.Where(productID => productID == x.ID).Count());
+
+                newOrder.OrderItems = new List<OrderItem>();
+                newOrder.OrderItems.AddRange(boughtProducts.Select(x=> new OrderItem() { ProductID = x.ID, Quantity = productQuantities.Where(productID => productID == x.ID).Count() }));
+
+                var rowsEffected = ShopService.Instance.SaveOrder(newOrder);
+            
+                result.Data = new { Success = true, Rows = rowsEffected };
+            }
+            else
+            {
+                result.Data = new { Success = false };
+            }
+            return result;
         }
     }
 }

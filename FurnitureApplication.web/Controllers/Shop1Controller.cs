@@ -1,5 +1,7 @@
 ﻿using FurnitureApplication.Services;
 using FurnitureApplication.web.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,36 @@ using System.Web.Mvc;
 
 namespace FurnitureApplication.web.Controllers
 {
-    [Authorize]
     public class Shop1Controller : Controller
     {
+
+
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+
         public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
             var pageSize = ConfigurationsService.Instance.ShopPageSize();
@@ -49,6 +78,7 @@ namespace FurnitureApplication.web.Controllers
 
             return PartialView(model);
         }
+        [Authorize]
         public ActionResult Checkout()
         {
             CheckoutViewModel model = new CheckoutViewModel();
@@ -64,6 +94,9 @@ namespace FurnitureApplication.web.Controllers
                 model.CartProductIDs = CartProductsCookie.Value.Split('-').Select(x => int.Parse(x)).ToList();
 
                 model.CartProducts = ProductsServices.Instance.GetProducts(model.CartProductIDs);
+
+                model.User = UserManager.FindById(User.Identity.GetUserId());
+
             }
 
             return View(model);

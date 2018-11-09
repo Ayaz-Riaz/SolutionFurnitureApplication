@@ -207,6 +207,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811080757173_InitialCreate.cs" />
+    <Compile Include="Migrations\201811080757173_InitialCreate.Designer.cs">
+      <DependentUpon>201811080757173_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811091131155_AddnewFields.cs" />
+    <Compile Include="Migrations\201811091131155_AddnewFields.Designer.cs">
+      <DependentUpon>201811091131155_AddnewFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811091138264_AddnewFields1.cs" />
+    <Compile Include="Migrations\201811091138264_AddnewFields1.Designer.cs">
+      <DependentUpon>201811091138264_AddnewFields1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -408,18 +421,12 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\price_range_script.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sweetalert.min.js" />
@@ -434,7 +441,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -465,11 +471,6 @@
     <Content Include="Views\Product\ProductTable.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
-    <Content Include="Views\Shared\_Layout -index.cshtml" />
-    <Content Include="Views\Shared\_Layout_reg.cshtml" />
-    <Content Include="Views\Shared\_Layout_wellcome.cshtml" />
-    <Content Include="Views\Shared\_Login.cshtml" />
-    <Content Include="Views\Shared\_Loginpage.cshtml" />
     <Content Include="Views\Category\CategoryTable.cshtml" />
     <Content Include="Views\Shop1\Checkout.cshtml" />
     <Content Include="Views\Widgets\Products.cshtml" />
@@ -477,6 +478,7 @@
     <Content Include="Views\Shop1\Index.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Shop1\FilterProducts.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -499,6 +501,17 @@
       <Project>{9C5120F5-7C57-4202-A75C-A350A69C5361}</Project>
       <Name>FurnitureApplication.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811080757173_InitialCreate.resx">
+      <DependentUpon>201811080757173_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811091131155_AddnewFields.resx">
+      <DependentUpon>201811091131155_AddnewFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811091138264_AddnewFields1.resx">
+      <DependentUpon>201811091138264_AddnewFields1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

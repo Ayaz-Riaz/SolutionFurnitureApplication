@@ -845,17 +845,18 @@
 })(jQuery);
 
 
-//function hideLoader() {
-//    $(".loader").hide();
-//    $("#loading-overlay").hide();
-//};
+function hideLoader() {
+    $(".loader").hide();
+    $("#loading-overlay").hide();
+};
 
-//function showLoader() {
-//    $(".loader").show();
-//    $("#loading-overlay").show();
-//};
+function showLoader() {
+    $(".loader").show();
+    $("#loading-overlay").show();
+};
 
 function updateCartProducts() {
+    debugger
     var cartProducts;
     var existingCookieData = $.cookie('CartProducts');
 
@@ -865,6 +866,5 @@ function updateCartProducts() {
     else {
         cartProducts = [];
     }
-
-    $("#cartProductsCount").html(cartProducts.length);
+    $('#cartProductsCount').html(cartProducts.length);
 };

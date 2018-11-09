@@ -29,12 +29,12 @@
             <div class="container">
                 <div class="top-header">
                     <div class="float-right">
-                        <div class="header-icon-links">
+                        @*<div class="header-icon-links">
                             <a href="#">
                                 <span class="number">2</span>
                                 <span class="ico-heart11"></span>
                             </a>
-                        </div>
+                        </div>*@
                         <div class="header-icon-links">
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -42,18 +42,18 @@
                             }
                         </div>
                         <div class="header-icon-links">
-                            <a href="#">
+                            <a href="@Url.Action("Checkout", "Shop1")">
                                 <span class="number" id="cartProductsCount">0</span>
                                 <span class="ico-cart3"></span>
                             </a>
                         </div>
                     </div>
-                    <div class="search-box float-left">
+                    @*<div class="search-box float-left">
                         <div class="search-row">
                             <input type="text" placeholder="Search" />
                             <span class="ico-search10"></span>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="logo">
@@ -102,8 +102,20 @@
         </div>
     </div>
     @RenderSection("scripts", required: false)
+    <script>
+        function updateCartProducts() {
+            var cartProducts;
+            var existingCookieData = $.cookie('CartProducts');
+
+            if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) {
+                cartProducts = existingCookieData.split('-');
+            }
+            else {
+                cartProducts = [];
+            }
+            $('#cartProductsCount').html(cartProducts.length);
+        };
+        updateCartProducts();
+    </script>
 </body>
 </html>
-<script>
-
-</script>

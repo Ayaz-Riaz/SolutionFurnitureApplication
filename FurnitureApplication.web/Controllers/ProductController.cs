@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace FurnitureApplication.web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         // GET: Product
@@ -21,7 +22,8 @@ namespace FurnitureApplication.web.Controllers
             var pageSize = ConfigurationsService.Instance.PageSize();
             ProductSearchViewModel model = new ProductSearchViewModel();
             model.SearchTerm = search;
-            model.PageNo = pageNo.HasValue ? pageNo > 0 ? pageNo.Value : 1 : 1 ;
+
+            pageNo = pageNo.HasValue ? pageNo > 0 ? pageNo.Value : 1 : 1 ;
 
             var totalRecords = ProductsServices.Instance.GetProductsCount(search);
             model.Products = ProductsServices.Instance.GetProducts(search, pageNo.Value, pageSize);
@@ -31,7 +33,7 @@ namespace FurnitureApplication.web.Controllers
         }
 
         //****************create Product
-
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public ActionResult Create()
         {

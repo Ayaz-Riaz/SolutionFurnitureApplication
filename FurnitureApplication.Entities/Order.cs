@@ -12,7 +12,7 @@ namespace FurnitureApplication.Entities
 
         public string UserID { get; set; }
 
-        public DateTime ordereddAt { get; set; }
+        public DateTime orderedAt { get; set; }
 
         public string status { get; set; }
 

@@ -51,6 +51,7 @@
     <Compile Include="ProductServices.cs" />
     <Compile Include="CategoriesServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OrdersService .cs" />
     <Compile Include="ShopService.cs" />
   </ItemGroup>
   <ItemGroup>

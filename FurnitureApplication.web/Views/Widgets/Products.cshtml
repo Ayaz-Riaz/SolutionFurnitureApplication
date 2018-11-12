@@ -45,7 +45,7 @@
                                                 <h5 class="card-title">@product.Name</h5>
                                                 <p class="card-text">@product.Description</p>
                                                 <p class="price">$ @product.Price</p>
-                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                                <a href="#" class="btn btn-primary productAddToCart">Add To Cart</a>
                                             </div>
                                         </div>
                                     </a>
@@ -81,7 +81,7 @@
                                             <h5 class="card-title">@product.Name</h5>
                                             <p class="card-text">@product.Description</p>
                                             <p class="price">$ @product.Price</p>
-                                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                                            <a href="#" class="btn btn-primary productAddToCart">Add To Cart</a>
                                         </div>
                                     </div>
                                 </a>
@@ -97,4 +97,35 @@
         e.target // newly activated tab
         e.relatedTarget // previous active tab
     })
+
+    $(".PageDataLink").click(function () {
+        var url = $(this).attr("data-href");
+
+        if (url != "" || url != undefined) {
+            GetData(url);
+        }
+    });
+
+    var products;
+    $(".productAddToCart").click(function () {
+
+        var existingCookieData = $.cookie("CartProducts");
+
+        if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) {
+            products = existingCookieData.split("-");
+        }
+        else {
+            products = [];
+        }
+        var productID = $(this).attr("data-id");
+
+        products.push(productID)
+
+        $.cookie("CartProducts", products.join("-"), { path: "/" });
+
+        updateCartProducts();
+
+        swal("Done", "product added to cart!", "success");
+    });
+
 </script>

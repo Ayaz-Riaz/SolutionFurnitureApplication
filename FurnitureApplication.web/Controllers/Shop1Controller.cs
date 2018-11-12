@@ -103,14 +103,14 @@ namespace FurnitureApplication.web.Controllers
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
 
-            if(string.IsNullOrEmpty (productIDs))
+            if(!string.IsNullOrEmpty (productIDs))
             {
                 var productQuantities = productIDs.Split('-').Select(x => int.Parse(x)).ToList();
                 var boughtProducts = ProductsServices.Instance.GetProducts(productQuantities.Distinct().ToList());
 
                 Order newOrder = new Order();
                 newOrder.UserID = User.Identity.GetUserId();
-                newOrder.ordereddAt = DateTime.Now;
+                newOrder.orderedAt = DateTime.Now;
                 newOrder.status = "Pending";
                 newOrder.TotalAmount = boughtProducts.Sum(x => x.Price * productQuantities.Where(productID => productID == x.ID).Count());
 

@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201811121254345_FC.Designer.cs">
       <DependentUpon>201811121254345_FC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811120945031_newEntityadded.cs" />
+    <Compile Include="Migrations\201811120945031_newEntityadded.Designer.cs">
+      <DependentUpon>201811120945031_newEntityadded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +87,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811121254345_FC.resx">
       <DependentUpon>201811121254345_FC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811120945031_newEntityadded.resx">
+      <DependentUpon>201811120945031_newEntityadded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -30,11 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Canducci.EntityFramework.Repository">
+      <HintPath>..\packages\CanducciEntityFrameworkRepository.1.0.3\lib\net451\Canducci.EntityFramework.Repository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -48,49 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FAContext.cs" />
-    <Compile Include="Migrations\201810151047167_initialize.cs" />
-    <Compile Include="Migrations\201810151047167_initialize.Designer.cs">
-      <DependentUpon>201810151047167_initialize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810230703001_newRevort-change.cs" />
-    <Compile Include="Migrations\201810230703001_newRevort-change.Designer.cs">
-      <DependentUpon>201810230703001_newRevort-change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810231056519_ImagesUpdate-change.cs" />
-    <Compile Include="Migrations\201810231056519_ImagesUpdate-change.Designer.cs">
-      <DependentUpon>201810231056519_ImagesUpdate-change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810250734472_newmigrationforIsfeatured.cs" />
-    <Compile Include="Migrations\201810250734472_newmigrationforIsfeatured.Designer.cs">
-      <DependentUpon>201810250734472_newmigrationforIsfeatured.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810310949082_configurations.cs" />
-    <Compile Include="Migrations\201810310949082_configurations.Designer.cs">
-      <DependentUpon>201810310949082_configurations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811011341221_imageurlinproduct.cs" />
-    <Compile Include="Migrations\201811011341221_imageurlinproduct.Designer.cs">
-      <DependentUpon>201811011341221_imageurlinproduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811011445425_imageurlinproduct1.cs" />
-    <Compile Include="Migrations\201811011445425_imageurlinproduct1.Designer.cs">
-      <DependentUpon>201811011445425_imageurlinproduct1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811021114320_validation.cs" />
-    <Compile Include="Migrations\201811021114320_validation.Designer.cs">
-      <DependentUpon>201811021114320_validation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811050711463_removeServerSideValidation.cs" />
-    <Compile Include="Migrations\201811050711463_removeServerSideValidation.Designer.cs">
-      <DependentUpon>201811050711463_removeServerSideValidation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811091327197_OrdersAdded.cs" />
-    <Compile Include="Migrations\201811091327197_OrdersAdded.Designer.cs">
-      <DependentUpon>201811091327197_OrdersAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811091455583_OrderItems.cs" />
-    <Compile Include="Migrations\201811091455583_OrderItems.Designer.cs">
-      <DependentUpon>201811091455583_OrderItems.cs</DependentUpon>
+    <Compile Include="Migrations\201811121254345_FC.cs" />
+    <Compile Include="Migrations\201811121254345_FC.Designer.cs">
+      <DependentUpon>201811121254345_FC.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,38 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810151047167_initialize.resx">
-      <DependentUpon>201810151047167_initialize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810230703001_newRevort-change.resx">
-      <DependentUpon>201810230703001_newRevort-change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810231056519_ImagesUpdate-change.resx">
-      <DependentUpon>201810231056519_ImagesUpdate-change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810250734472_newmigrationforIsfeatured.resx">
-      <DependentUpon>201810250734472_newmigrationforIsfeatured.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810310949082_configurations.resx">
-      <DependentUpon>201810310949082_configurations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811011341221_imageurlinproduct.resx">
-      <DependentUpon>201811011341221_imageurlinproduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811011445425_imageurlinproduct1.resx">
-      <DependentUpon>201811011445425_imageurlinproduct1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811021114320_validation.resx">
-      <DependentUpon>201811021114320_validation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811050711463_removeServerSideValidation.resx">
-      <DependentUpon>201811050711463_removeServerSideValidation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811091327197_OrdersAdded.resx">
-      <DependentUpon>201811091327197_OrdersAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811091455583_OrderItems.resx">
-      <DependentUpon>201811091455583_OrderItems.cs</DependentUpon>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811121254345_FC.resx">
+      <DependentUpon>201811121254345_FC.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

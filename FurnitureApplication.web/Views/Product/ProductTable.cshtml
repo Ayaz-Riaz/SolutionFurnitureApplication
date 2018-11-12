@@ -188,7 +188,9 @@
                     }
                 })
                 .done(function (response) {
-                    $("#tableContainer").html(response);
+                    window.location.reload(false);
+                    //$("html").html(response);
+                    //$("#tableContainer").html(response);
 
                     swal("Record deleted successfully!", {
                         icon: "success",

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Rast Furniture</title>
+    <title>Admin Rast Furniture - @ViewBag.Title </title>
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/bootstrap-reboot.min.css")
     @Styles.Render("~/Content/bootstrap-grid.min.css")
@@ -13,6 +13,7 @@
     @Styles.Render("~/Content/all.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/popper.min.js")
+    @Scripts.Render("~/Scripts/main.js")
     @Scripts.Render("~/Scripts/jquery-1.11.2.min.js")
     @Scripts.Render("~/Scripts/bootstrap.min.js")
     @Scripts.Render("~/Scripts/jquery.min.js")
@@ -20,7 +21,6 @@
     @Scripts.Render("~/Scripts/sweetalert.min.js")
     @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
     @Scripts.Render("~/Scripts/jquery-ui.js")
-    @Scripts.Render("~/Scripts/main.js")
     
     
 </head>
@@ -66,16 +66,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
-                                @*@Html.ActionLink("Index", "Home", new { @class = "nav-link" })*@
+                                <a class="nav-link" href="@Url.Action("Index", "Admin")">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Shop1")">Shop</a>
-                                @*@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })*@
+                                <a class="nav-link" href="@Url.Action("Index", "Product")">Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Checkout", "Shop1")">Checkout</a>
-                                @*@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })*@
+                                <a class="nav-link" href="@Url.Action("Index", "Category")">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Order")">Orders</a>
                             </li>
                             <li class="nav-item sign-in">
                                 @{

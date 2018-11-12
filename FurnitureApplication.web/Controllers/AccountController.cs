@@ -79,6 +79,11 @@ namespace FurnitureApplication.web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                    if (UserManager.IsInRole(user.Id,"Admin"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -387,8 +392,9 @@ namespace FurnitureApplication.web.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

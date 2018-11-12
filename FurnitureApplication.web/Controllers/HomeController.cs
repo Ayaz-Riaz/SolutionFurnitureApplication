@@ -1,10 +1,12 @@
 ﻿using FurnitureApplication.Services;
 using FurnitureApplication.web.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace FurnitureApplication.web.Controllers
 {
@@ -12,6 +14,14 @@ namespace FurnitureApplication.web.Controllers
     {
         public ActionResult Index()
         {
+            //if (Request.IsAuthenticated)
+            //{
+                
+            //    RolePrincipal r = (RolePrincipal)User;
+            //    var isAdmin = r.GetRoles();/*?.Contains("Admin");*/
+            //    return RedirectToAction("Index", "Admin");
+            //}
+
             HomeViewModels model = new HomeViewModels();
 
             model.FeaturedCategories = CategoriesServices.Instance.GetFeaturedCategories();

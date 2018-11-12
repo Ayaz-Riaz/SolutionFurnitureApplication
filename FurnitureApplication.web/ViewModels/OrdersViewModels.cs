@@ -9,7 +9,7 @@ namespace FurnitureApplication.web.ViewModels
 {
     public class OrdersViewModel
     {
-        //public List<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
         public Pager Pager { get; set; }
         public string Status { get; set; }
         public string UserID { get; set; }
@@ -19,7 +19,7 @@ namespace FurnitureApplication.web.ViewModels
     public class OrderDetailsViewModel
     {
         public List<string> AvailableStatuses { get; set; }
-        //public Order Order { get; set; }
+        public Order Order { get; set; }
         public ApplicationUser OrderBy { get; set; }
     }
 }

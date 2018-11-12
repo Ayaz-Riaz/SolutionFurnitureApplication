@@ -16,6 +16,9 @@ namespace FurnitureApplication.web.ViewModels
 
     public class Pager
     {
+        private object totalRecords;
+        private int? pageNo;
+
         public Pager(int totalItems, int? page, int pageSize = 10)
         {
             if (pageSize == 0) pageSize = 10;
@@ -44,6 +47,13 @@ namespace FurnitureApplication.web.ViewModels
             TotalPages = totalPages;
             StartPage = startPage;
             EndPage = endPage;
+        }
+
+        public Pager(object totalRecords, int? pageNo, int pageSize)
+        {
+            this.totalRecords = totalRecords;
+            this.pageNo = pageNo;
+            PageSize = pageSize;
         }
 
         public int TotalItems { get; private set; }

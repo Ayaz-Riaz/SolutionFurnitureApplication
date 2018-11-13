@@ -7,13 +7,13 @@ namespace FurnitureApplication.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class newRevortchange : IMigrationMetadata
+    public sealed partial class FC : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newRevortchange));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FC));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810230703001_newRevort-change"; }
+            get { return "201811121254345_FC"; }
         }
         
         string IMigrationMetadata.Source

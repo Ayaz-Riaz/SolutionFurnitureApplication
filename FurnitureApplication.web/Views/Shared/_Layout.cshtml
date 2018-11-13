@@ -11,6 +11,7 @@
     @Styles.Render("~/Content/jquery.dataTables.min.css")
     @Styles.Render("~/Content/jquery-ui.css")
     @Styles.Render("~/Content/all.css")
+    @*@Styles.Render("~/Content/shortcodes.css")*@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/popper.min.js")
     @Scripts.Render("~/Scripts/jquery-1.11.2.min.js")
@@ -20,9 +21,9 @@
     @Scripts.Render("~/Scripts/sweetalert.min.js")
     @Scripts.Render("~/Scripts/jquery.dataTables.min.js")
     @Scripts.Render("~/Scripts/jquery-ui.js")
+    @Scripts.Render("~/Scripts/jquery.isotope.min.js")
     @Scripts.Render("~/Scripts/main.js")
-    
-    
+
 </head>
 <body>
     <div id="wrapper">
@@ -67,20 +68,15 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
-                                @*@Html.ActionLink("Index", "Home", new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Index", "Shop1")">Shop</a>
-                                @*@Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Checkout", "Shop1")">Checkout</a>
-                                @*@Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })*@
                             </li>
                             <li class="nav-item sign-in">
                                 @{
-                                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
                                     if (Request.IsAuthenticated)
                                     {
                                         <a class="nav-link" href="/account/logoff">Logout</a>
@@ -89,11 +85,7 @@
                                     {
                                         <a class="nav-link" href="/account/login">LogIn</a>
                                     }
-
-                                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                 }
-
-                                @*@Html.ActionLink("Logout", "Login", "Home", new { @class = "nav-link" })*@
                             </li>
                         </ul>
                         

@@ -33,7 +33,6 @@ namespace FurnitureApplication.web.Controllers
         }
 
         //****************create Product
-        [Authorize(Roles ="Admin")]
         [HttpGet]
         public ActionResult Create()
         {
@@ -99,20 +98,20 @@ namespace FurnitureApplication.web.Controllers
 
             ProductsServices.Instance.UpdateProduct(existingProduct);
 
-            return RedirectToAction("index");
+            return new HttpStatusCodeResult(200);
         }
 
 
         //**********Detail
-        [HttpGet]
-        public ActionResult Details(int ID)
-        {
-            ProductViewModel model = new ProductViewModel();
+        //[HttpGet]
+        //public ActionResult Details(int ID)
+        //{
+        //    ProductViewModel model = new ProductViewModel();
 
-            model.Product = ProductsServices.Instance.GetProduct(ID);
+        //    model.Product = ProductsServices.Instance.GetProduct(ID);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
 
         //****************delete Product

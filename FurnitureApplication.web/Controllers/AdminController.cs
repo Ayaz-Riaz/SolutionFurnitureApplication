@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FurnitureApplication.web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin

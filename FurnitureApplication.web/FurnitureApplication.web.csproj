@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -396,6 +397,8 @@
     <Content Include="images\sofa-rast-7.png" />
     <Content Include="images\sofa-rast-8.png" />
     <Content Include="images\sofa-rast-9.png" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_both.png" />
     <Content Include="images\storage.png" />
     <Content Include="images\Table-rast-2.jpg" />
     <Content Include="images\Table-rast-3.jpg" />
@@ -489,6 +492,7 @@
     <Content Include="Views\Order\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\Detail\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

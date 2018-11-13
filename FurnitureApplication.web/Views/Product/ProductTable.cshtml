@@ -8,14 +8,14 @@
         <div class="col-lg-6 float-right">
             <button class="btn btn-primary float-right" type="button" onclick="location.href='@Url.Action("Create")'" id="newBtn">New Product</button>
         </div>
-        <div class="col-lg-6 float-left">
+        @*<div class="col-lg-6 float-left">
             <div class="search-box create-page">
                 <div class="search-row">
                     <input class="form-control" id="searchTxt" type="text" value="" placeholder="Search" />
                     <span onclick="action" id="searchBtn" class="ico-search10"></span>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </form>
 <div>
@@ -49,9 +49,8 @@
                         <td>@product.Price</td>
                         <td>@product.Description</td>
                         <td>
-                            <button class="btn btn-primary editBtn" onclick="location.href='@Url.Action("Edit", "Product" , new RouteValueDictionary(new { id = product.ID }))'" data-id="@product.ID">Edit</button>
+                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Product" , new RouteValueDictionary(new { id = product.ID }))'" data-id="@product.ID">Edit</button>
                             <button class="btn btn-primary deleteBtn" data-id="@product.ID">Delete</button>
-                            <button class="btn btn-primary addToCart" data-id="@product.ID">Add to Cart</button>
                         </td>
                     </tr>
                 }
@@ -131,8 +130,7 @@
             }
         })
         .done(function (response) {
-            $("#tableContainer").html(response);
-            focussAction();
+            window.location.href = "/Product/index";
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
@@ -145,29 +143,12 @@
         })
         .done(function (response) {
             $("#actionContainer").html(response);
-
-            focussAction();
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")
         });
     });
 
-    $(".editBtn").click(function () {
-        $.ajax({
-            url: "/Product/Edit",
-            data: {
-                ID: $(this).attr("data-id")
-            }
-        })
-        .done(function (response) {
-            $("#actionContainer").html(response);
-            focussAction();
-        })
-        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Fail")
-        });
-    });
 
     $(".deleteBtn").click(function () {
         swal({

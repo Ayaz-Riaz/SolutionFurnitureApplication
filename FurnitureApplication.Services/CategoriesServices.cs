@@ -63,10 +63,8 @@ namespace FurnitureApplication.Services
 
         //********************Get category
 
-        public List<Category> GetCategories(string search, int pageNo)
+        public List<Category> GetCategories(string search, int pageNo, int pageSize = 3)
         {
-            int pageSize = 3;
-
             using (var context = new FAContext())
             {
                 if (!string.IsNullOrEmpty(search))

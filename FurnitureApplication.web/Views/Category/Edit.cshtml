@@ -71,7 +71,6 @@
             var file = element.files[i];
             formData.append("Photo", file);
         }
-
         $.ajax({
             type: 'POST',
             url: '@Url.Action("UploadImage", "Shared")',
@@ -93,20 +92,27 @@
         });
     });
     $("#updateBtn").click(function () {
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("Edit", "Category")',
-            data: $("#editCategory").serialize()
-        })
+        try {
+            var obj = $("#editCategory").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/category/edit',
+                data: obj
+            })
         .done(function (response) {
             window.location.href = "/category/index";
-            $("#tableContiner").html(response);
-            $("#actionContainer").html("");
-            focusAction("tableContiner");
+            //$("#tableContiner").html(response);
+            //$("#actionContainer").html("");
+            //focusAction("tableContiner");
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("FAIL");
+            //console.log("error")
         });
+
+        } catch (e) {
+            console.log(ex);
+        }
+        
     });
 
     $("#cancelBtn").click(function () {

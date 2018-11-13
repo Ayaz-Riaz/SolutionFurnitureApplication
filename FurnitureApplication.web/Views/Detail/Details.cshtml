@@ -1,0 +1,211 @@
+﻿@model ProductViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (Model != null && Model.Product != null)
+{
+    var DefaultimageUrl = "/images/empty-member.png";
+
+    var imageUrl = string.IsNullOrEmpty(Model.Product.ImageUrl) ? DefaultimageUrl : Model.Product.ImageUrl;
+
+    <div id="main" class="products-detail">
+        <div class="main-holder">
+            <div class="" style="margin-top: 130px; margin-bottom: 30px;">
+                <div class="container">
+                    <div class="heading-area">
+                        <h2>Product Detail</h2>
+                    </div>
+                    <div class="card">
+                        <div class="container-fliud">
+                            <div class="wrapper row">
+                                <div class="preview col-md-6">
+                                    <div class="preview-pic tab-content">
+                                        <div class="tab-pane active" id="pic-1"><img src="@imageUrl" /></div>
+                                        <div class="tab-pane" id="pic-2"><img src="@imageUrl" /></div>
+                                        <div class="tab-pane" id="pic-3"><img src="@imageUrl" /></div>
+                                        <div class="tab-pane" id="pic-4"><img src="@imageUrl" /></div>
+                                        <div class="tab-pane" id="pic-5"><img src="@imageUrl" /></div>
+                                    </div>
+                                    <ul class="preview-thumbnail nav nav-tabs">
+                                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="@imageUrl" /></a></li>
+                                        <li><a data-target="#pic-2" data-toggle="tab"><img src="@imageUrl" /></a></li>
+                                        <li><a data-target="#pic-3" data-toggle="tab"><img src="@imageUrl" /></a></li>
+                                        <li><a data-target="#pic-4" data-toggle="tab"><img src="@imageUrl" /></a></li>
+                                        <li><a data-target="#pic-5" data-toggle="tab"><img src="@imageUrl" /></a></li>
+                                    </ul>
+
+                                </div>
+                                <div class="details col-md-6">
+                                    <h3 class="product-title">@Model.Product.Name</h3>
+                                    <div class="rating">
+                                        <div class="stars">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <span class="review-no">41 reviews</span>
+                                    </div>
+                                    <p class="product-description">@Model.Product.Description</p>
+                                    <h4 class="price">current price: <span>@Model.Product.Price</span></h4>
+                                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                                    <div class="action">
+                                        <a href="#" data-id="@Model.Product.ID" class="btn btn-primary productAddToCart">Add To Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="heading-area">
+                                <h2>Product Reviews</h2>
+                            </div>
+                            <div class="review-block">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date">January 29, 2016<br />1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="heading-area">
+                        <h2>Related Products</h2>
+                    </div>
+                    @{Html.RenderAction("Products", "Widgets", new { isLatestProducts = false, CategoryID = Model.Product.Category.ID });}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        e.target // newly activated tab
+        e.relatedTarget // previous active tab
+    })
+
+    $(".PageDataLink").click(function () {
+        var url = $(this).attr("data-href");
+
+        if (url != "" || url != undefined) {
+            GetData(url);
+        }
+    });
+
+    var products;
+    $(".productAddToCart").click(function () {
+
+        var existingCookieData = $.cookie("CartProducts");
+
+        if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) {
+            products = existingCookieData.split("-");
+        }
+        else {
+            products = [];
+        }
+        var productID = $(this).attr("data-id");
+
+        products.push(productID)
+
+        $.cookie("CartProducts", products.join("-"), { path: "/" });
+
+        updateCartProducts();
+
+        swal("Done", "product added to cart!", "success");
+    });
+    $('#pills-tab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
+

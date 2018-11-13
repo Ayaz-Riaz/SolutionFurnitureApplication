@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Create Products";
 
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
     var imageUrl = "/images/empty-member.png";
 }
@@ -62,15 +62,18 @@
         </div>
     </div>
 <script>
-    $("#saveBtn").click(function () {
+    $("#saveBtn").click(function (ev) {
+        ev.preventDefault();
         $.ajax({
             type: 'POST',
             url: "/Product/Create",
             data: $("#createProduct").serialize()
         })
         .done(function (response) {
-            $("#tableContainer").html(response);
-            $("#actionContainer").html("");
+            window.location.href = "/product/index";
+
+            //$("#tableContainer").html(response);
+            //$("#actionContainer").html("");
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")

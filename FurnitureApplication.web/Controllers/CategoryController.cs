@@ -23,6 +23,7 @@ namespace FurnitureApplication.web.Controllers
         }
         public ActionResult CategoryTable(string search, int? pageNo, bool asShared = false)
         {
+            int pageSize = 10;
             ViewBag.UseAsShared = asShared;
             CategorySearchViewModel model = new CategorySearchViewModel();
             model.SearchTerm = search;
@@ -30,13 +31,13 @@ namespace FurnitureApplication.web.Controllers
             pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
 
             var totalRecords = CategoriesServices.Instance.GetCategoriesCount(search);
-            model.Categories = CategoriesServices.Instance.GetCategories(search, pageNo.Value);
+            model.Categories = CategoriesServices.Instance.GetCategories(search, pageNo.Value, pageSize);
 
             if (model.Categories != null)
             {
-                model.Pager = new Pager(totalRecords, pageNo, 3);
+                model.Pager = new Pager(totalRecords, pageNo, pageSize);
 
-                return View(model);
+                return PartialView(model);
             }
             else
             {
@@ -93,7 +94,7 @@ namespace FurnitureApplication.web.Controllers
 
             CategoriesServices.Instance.UpdateCategory(existingCategory);
 
-            return RedirectToAction("index");
+            return new HttpStatusCodeResult(200);
         }
 
 
@@ -112,7 +113,7 @@ namespace FurnitureApplication.web.Controllers
             category = CategoriesServices.Instance.GetCategory(category.ID);
 
             CategoriesServices.Instance.DeleteCategory(category.ID);
-            return RedirectToAction("index");
+            return new HttpStatusCodeResult(200);
         }
     }
 }

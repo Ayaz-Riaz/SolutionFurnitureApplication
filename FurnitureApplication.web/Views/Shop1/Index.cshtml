@@ -8,7 +8,7 @@
     <div class="main-holder">
         <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
             <div class="heading-area">
-                <h2>Stylist Office Chairs</h2>
+                <h2>Products</h2>
             </div>
             <div class="row">
                 <div class="col-lg-4">
@@ -24,7 +24,7 @@
                     </div>
                     <hr />
                     <div class="form-group">
-                        <h5 class="widget-title">Filter by price</h5>
+                        <h5 class="widget-title">Sort By</h5>
                         <ul class="sortBy">
                             <li><a href="#" data-href="@Url.Action("FilterProducts", "Shop1", new { sortBy = (int)SortByEnums.Default, categoryID = Model.CategoryID })" class="dataLink @(Model.SortBy.HasValue ? Model.SortBy.Value == (int)SortByEnums.Default ? "active" : string.Empty : string.Empty)">Default - Newest</a></li>
                             <li><a href="#" data-href="@Url.Action("FilterProducts", "Shop1", new { sortBy = (int)SortByEnums.Popularity, categoryID = Model.CategoryID })" class="dataLink @(Model.SortBy.HasValue ? Model.SortBy.Value == (int)SortByEnums.Popularity ? "active" : string.Empty : string.Empty)">Popularity</a></li>
@@ -34,7 +34,7 @@
                     </div>
                     <hr />
                     <div class="form-group clearfix">
-                        <h5 class="widget-title">Filter by price</h5>
+                        <h5 class="widget-title">Filter Tags</h5>
                         <ul class="tag-list">
                             @foreach (var category in Model.FeaturedCategories)
                             {

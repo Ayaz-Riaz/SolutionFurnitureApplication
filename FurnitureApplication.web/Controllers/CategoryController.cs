@@ -23,7 +23,7 @@ namespace FurnitureApplication.web.Controllers
         }
         public ActionResult CategoryTable(string search, int? pageNo, bool asShared = false)
         {
-            int pageSize = 10;
+            var pageSize = ConfigurationsService.Instance.PageSize();
             ViewBag.UseAsShared = asShared;
             CategorySearchViewModel model = new CategorySearchViewModel();
             model.SearchTerm = search;

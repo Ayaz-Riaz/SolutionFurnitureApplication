@@ -8,14 +8,14 @@
         <div class="col-lg-6 float-right">
             <button class="btn btn-primary float-right" type="button" onclick="location.href='@Url.Action("Create")'" id="newBtn">New Product</button>
         </div>
-        @*<div class="col-lg-6 float-left">
+        <div class="col-lg-6 float-left">
             <div class="search-box create-page">
                 <div class="search-row">
-                    <input class="form-control" id="searchTxt" type="text" value="" placeholder="Search" />
+                    <input class="form-control" id="searchTxt" type="text" name="Search" value="@Model.SearchTerm" placeholder="Search" />
                     <span onclick="action" id="searchBtn" class="ico-search10"></span>
                 </div>
             </div>
-        </div>*@
+        </div>
     </div>
 </form>
 <div>
@@ -63,7 +63,7 @@
             }
         </tbody>
     </table>
-    @*<div>
+    <div>
         @if (Model.Pager != null && Model.Pager.TotalPages > 1)
         {
 
@@ -83,10 +83,10 @@
                 <button class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</button>
                 <button class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</button>}
         }
-    </div>*@
+    </div>
 </div>
 <script>
-    $('#ProductsTable').DataTable();
+    //$('#ProductsTable').DataTable();
 
     $(".pageButtons").click(function () {
         $.ajax({
@@ -123,13 +123,13 @@
         var searchValue = $("#searchTxt").val();
 
         $.ajax({
-            type: "GET",
-            url: "/Product/ProductTable",
+            url: '@Url.Action("ProductTable", "Product")',
             data: {
                 search: searchValue
             }
         })
         .done(function (response) {
+            $("#tableContiner").html(response);
             window.location.href = "/Product/index";
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
@@ -160,7 +160,7 @@
         })
         .then((willDelete) => {
             if (willDelete) {
-                
+
                 $.ajax({
                     type: "POST",
                     url: "/Product/Delete",

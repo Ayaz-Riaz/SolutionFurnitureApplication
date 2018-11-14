@@ -27,9 +27,16 @@ namespace FurnitureApplication.web.Controllers
 
             var totalRecords = ProductsServices.Instance.GetProductsCount(search);
             model.Products = ProductsServices.Instance.GetProducts(search, pageNo.Value, pageSize);
-
-            model.Pager = new Pager(totalRecords, pageNo, pageSize);
-            return PartialView(model);
+            if(model.Products != null)
+            {
+                model.Pager = new Pager(totalRecords, pageNo, pageSize);
+                return PartialView(model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+            
         }
 
         //****************create Product

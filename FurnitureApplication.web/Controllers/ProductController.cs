@@ -57,6 +57,18 @@ namespace FurnitureApplication.web.Controllers
             newProduct.Name = model.Name;
             newProduct.Description = model.Description;
             newProduct.Price = model.Price;
+            newProduct.DiscountPercentage = model.DiscountPercentage;
+            newProduct.HasDiscount = model.HasDiscount;
+            newProduct.OriginalPrice = model.OriginalPrice;
+
+            if(newProduct.DiscountPercentage > 0)
+            {
+                newProduct.HasDiscount = true;
+                var discountAmount = (decimal)(newProduct.DiscountPercentage / 100.0) * newProduct.OriginalPrice;
+                newProduct.Price = newProduct.OriginalPrice - discountAmount;
+            }
+
+
             newProduct.Category = CategoriesServices.Instance.GetCategory(model.CategoryID);
             newProduct.ImageUrl = model.ImageUrl;
 
@@ -81,6 +93,10 @@ namespace FurnitureApplication.web.Controllers
             model.CategoryID = product.Category != null ? product.Category.ID : 0;
             model.ImageUrl = product.ImageUrl;
 
+            model.DiscountPercentage = product.DiscountPercentage;
+            model.HasDiscount = product.HasDiscount;
+            model.OriginalPrice = product.OriginalPrice;
+
             model.AvailableCategories = CategoriesServices.Instance.GetAllCategories();
 
             return PartialView(model);
@@ -93,7 +109,24 @@ namespace FurnitureApplication.web.Controllers
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.Price = model.Price;
-            
+
+            existingProduct.DiscountPercentage = model.DiscountPercentage;
+            existingProduct.HasDiscount = model.HasDiscount;
+            existingProduct.OriginalPrice = model.OriginalPrice;
+
+            if (model.HasDiscount && model.DiscountPercentage >= 0)
+            {
+                existingProduct.HasDiscount = true;
+                var discountAmount = (decimal)(model.DiscountPercentage / 100.0) * model.OriginalPrice;
+                existingProduct.Price = model.OriginalPrice - discountAmount;
+            }else
+            {
+                existingProduct.HasDiscount = false;
+                existingProduct.OriginalPrice = model.Price;
+                existingProduct.DiscountPercentage = 0; 
+
+            }
+
             existingProduct.Category = null; //mark it null. Because the referncy key is changed below
             existingProduct.CategoryID = model.CategoryID;
 

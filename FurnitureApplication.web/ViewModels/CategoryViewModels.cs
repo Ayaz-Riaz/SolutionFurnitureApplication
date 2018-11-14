@@ -25,6 +25,12 @@ namespace FurnitureApplication.web.ViewModels
 
         public decimal Price { get; set; }
 
+        public decimal OriginalPrice { get; set; }
+
+        public bool HasDiscount { get; set; }
+
+        public double DiscountPercentage { get; set; }
+
         public string ImageUrl { get; set; }
 
         public int CategoryID { get; set; }

@@ -32,8 +32,22 @@
                                 <input class="form-control" type="text" name="Name" placeholder="Name" value="@Model.Name" />
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
-                                <input class="form-control" type="text" name="Price" placeholder="Price" value="@Model.Price" />
+                                <label>Sale Price</label>
+                                <input class="form-control" type="number" id="Price" name="Price" placeholder="Price" required value="@Model.Price" />
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                @Html.CheckBox("HasDiscount",Model.HasDiscount, new { @class="custom-control-input", id= "HasDiscount" })
+                                @*<input type="checkbox" class="custom-control-input" id="HasDiscount" name="HasDiscount" />*@
+
+                                <label class="custom-control-label" for="HasDiscount">Is On Discount? </label>
+                            </div>
+                            <div class="form-group discount-section" hidden>
+                                <label>Original Price</label>
+                                <input class="form-control" type="number" id="OriginalPrice" name="OriginalPrice" placeholder="Price" required  value="@Model.OriginalPrice"/>
+                            </div>
+                            <div class="form-group discount-section" hidden>
+                                <label>Discount (%)</label>
+                                <input class="form-control" type="number" id="DiscountPercentage" name="DiscountPercentage" placeholder="Price" min="0" max="100" value="@Model.DiscountPercentage" required />
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
@@ -61,6 +75,49 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        setHasDisount();
+
+        $("#HasDiscount").change(function () {
+            setHasDisount();
+        });
+
+        function setHasDisount() {
+            if ($("#HasDiscount").is(":checked")) {
+                $(".discount-section").removeAttr("hidden");
+                $(".discount-section").fadeIn();
+                $("#Price").attr("disabled", "disabled");
+            } else {
+                $(".discount-section").fadeOut();
+                $("#Price").removeAttr("disabled");
+            }
+        }
+
+        $("#Price").change(function () {
+            $("#OriginalPrice").val(this.value);
+        });
+
+        $("#OriginalPrice").change(function () {
+            calculateDiscount();
+        });
+
+        $("#DiscountPercentage").change(function () {
+            calculateDiscount();
+        });
+
+        function calculateDiscount() {
+            var discount = $("#DiscountPercentage").val();
+            var discountPercentage = Number.parseFloat(discount);
+            var originalPrice = Number.parseFloat($("#OriginalPrice").val());
+            var discountAmount = (discountPercentage / 100.0) * originalPrice;
+            var price = originalPrice - discountAmount;
+
+            $("#Price").val(price + "");
+        }
+
+
+
+    });// End of doucmnet ready
     $("#imageUpload").change(function () {
         var element = this;
 

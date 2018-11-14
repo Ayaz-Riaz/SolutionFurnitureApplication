@@ -10,6 +10,9 @@ namespace FurnitureApplication.Entities
     public class Product : BaseEntity
     {
         public decimal Price { get; set; }
+        public decimal OriginalPrice { get; set; }
+        public bool HasDiscount { get; set; }
+        public double DiscountPercentage { get; set; }
 
         public virtual Category Category { get; set; }
 

@@ -60,13 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FAContext.cs" />
-    <Compile Include="Migrations\201811121254345_FC.cs" />
-    <Compile Include="Migrations\201811121254345_FC.Designer.cs">
-      <DependentUpon>201811121254345_FC.cs</DependentUpon>
+    <Compile Include="Migrations\201811141411055_default.cs" />
+    <Compile Include="Migrations\201811141411055_default.Designer.cs">
+      <DependentUpon>201811141411055_default.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811120945031_newEntityadded.cs" />
-    <Compile Include="Migrations\201811120945031_newEntityadded.Designer.cs">
-      <DependentUpon>201811120945031_newEntityadded.cs</DependentUpon>
+    <Compile Include="Migrations\201811141412333_discountprice.cs" />
+    <Compile Include="Migrations\201811141412333_discountprice.Designer.cs">
+      <DependentUpon>201811141412333_discountprice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,11 +85,11 @@
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811121254345_FC.resx">
-      <DependentUpon>201811121254345_FC.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811141411055_default.resx">
+      <DependentUpon>201811141411055_default.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811120945031_newEntityadded.resx">
-      <DependentUpon>201811120945031_newEntityadded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811141412333_discountprice.resx">
+      <DependentUpon>201811141412333_discountprice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

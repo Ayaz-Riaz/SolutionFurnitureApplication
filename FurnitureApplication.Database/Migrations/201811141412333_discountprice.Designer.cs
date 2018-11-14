@@ -7,13 +7,13 @@ namespace FurnitureApplication.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class newEntityadded : IMigrationMetadata
+    public sealed partial class discountprice : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newEntityadded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(discountprice));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811120945031_newEntityadded"; }
+            get { return "201811141412333_discountprice"; }
         }
         
         string IMigrationMetadata.Source

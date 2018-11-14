@@ -40,11 +40,11 @@
                                     <h3 class="product-title">@Model.Product.Name</h3>
                                     <div class="rating">
                                         <div class="stars">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
+                                            <span class="ico-star2 checked"></span>
+                                            <span class="ico-star2 checked"></span>
+                                            <span class="ico-star2 checked"></span>
+                                            <span class="ico-star2 checked"></span>
+                                            <span class="ico-star1"></span>
                                         </div>
                                         <span class="review-no">41 reviews</span>
                                     </div>
@@ -74,19 +74,19 @@
                                     <div class="col-sm-9">
                                         <div class="review-block-rate">
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                         </div>
                                         <div class="review-block-title">this was nice in buy</div>
@@ -103,19 +103,19 @@
                                     <div class="col-sm-9">
                                         <div class="review-block-rate">
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                         </div>
                                         <div class="review-block-title">this was nice in buy</div>
@@ -132,19 +132,19 @@
                                     <div class="col-sm-9">
                                         <div class="review-block-rate">
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                             <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="ico-star2" aria-hidden="true"></span>
                                             </button>
                                         </div>
                                         <div class="review-block-title">this was nice in buy</div>
@@ -160,7 +160,9 @@
                     <div class="heading-area">
                         <h2>Related Products</h2>
                     </div>
-                    @{Html.RenderAction("Products", "Widgets", new { isLatestProducts = false, CategoryID = Model.Product.Category.ID });}
+                    <div class="related-product">
+                        @{Html.RenderAction("Products", "Widgets", new { isLatestProducts = false, CategoryID = Model.Product.Category.ID });}
+                    </div>
                 </div>
 
 

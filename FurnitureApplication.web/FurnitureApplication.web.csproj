@@ -251,7 +251,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
-    <Content Include="Content\price_range_style.css" />
+    <Content Include="Content\shortcodes.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fonts\icomoon.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

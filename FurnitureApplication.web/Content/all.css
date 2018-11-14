@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/fonts/icomoon.eot?9sz4u2');
-  src:  url('../fonts/fonts/icomoon.eot?9sz4u2#iefix') format('embedded-opentype'),
-    url('../fonts/fonts/icomoon.ttf?9sz4u2') format('truetype'),
-    url('../fonts/fonts/icomoon.woff?9sz4u2') format('woff'),
-    url('../fonts/fonts/icomoon.svg?9sz4u2#icomoon') format('svg');
+  src:  url('../fonts/fonts/icomoon.eot?204qjh');
+  src:  url('../fonts/fonts/icomoon.eot?204qjh#iefix') format('embedded-opentype'),
+    url('../fonts/fonts/icomoon.ttf?204qjh') format('truetype'),
+    url('../fonts/fonts/icomoon.woff?204qjh') format('woff'),
+    url('../fonts/fonts/icomoon.svg?204qjh#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,27 +24,84 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ico-visa:before {
-  content: "\e903";
-  color: #142787;
+
+.ico-users:before {
+  content: "\e917";
 }
-.ico-close:before {
-  content: "\e909";
+.ico-star-half:before {
+  content: "\e918";
 }
-.ico-sorting-menu:before {
-  content: "\e90d";
+.ico-star-full:before {
+  content: "\e919";
 }
-.ico-arrow-left3:before {
-  content: "\e95c";
+.ico-star-empty:before {
+  content: "\e91a";
 }
-.ico-arrow-right3:before {
-  content: "\e95d";
+.ico-cloud-download2:before {
+  content: "\f00b";
 }
-.ico-arrow-up3:before {
-  content: "\e95e";
+.ico-cart3:before {
+  content: "\f4d4";
 }
-.ico-arrow3:before {
-  content: "\e95f";
+.ico-eye4:before {
+  content: "\f04e";
+}
+.ico-heart:before {
+  content: "\e906";
+}
+.ico-star:before {
+  content: "\e907";
+}
+.ico-sound:before {
+  content: "\e908";
+}
+.ico-trash:before {
+  content: "\e90a";
+}
+.ico-search:before {
+  content: "\e90b";
+}
+.ico-settings:before {
+  content: "\e90c";
+}
+.ico-pen:before {
+  content: "\e90e";
+}
+.ico-eye:before {
+  content: "\e90f";
+}
+.ico-mail:before {
+  content: "\e910";
+}
+.ico-photo:before {
+  content: "\e911";
+}
+.ico-paperplane:before {
+  content: "\e901";
+}
+.ico-shop:before {
+  content: "\e912";
+}
+.ico-calendar:before {
+  content: "\e902";
+}
+.ico-wallet:before {
+  content: "\e913";
+}
+.ico-truck:before {
+  content: "\e914";
+}
+.ico-star1:before {
+  content: "\e915";
+}
+.ico-star2:before {
+  content: "\e916";
+}
+.ico-trash-can:before {
+  content: "\e900";
+}
+.ico-printer:before {
+  content: "\e905";
 }
 .ico-megaphone4:before {
   content: "\e021";
@@ -115,6 +172,28 @@
 .ico-eye9:before {
   content: "\f405";
 }
+.ico-visa:before {
+  content: "\e903";
+  color: #142787;
+}
+.ico-close:before {
+  content: "\e909";
+}
+.ico-sorting-menu:before {
+  content: "\e90d";
+}
+.ico-arrow-left3:before {
+  content: "\e95c";
+}
+.ico-arrow-right3:before {
+  content: "\e95d";
+}
+.ico-arrow-up3:before {
+  content: "\e95e";
+}
+.ico-arrow3:before {
+  content: "\e95f";
+}
 .ico-shopping_cart:before {
   content: "\e8cc";
 }
@@ -124,14 +203,8 @@
 .ico-twitter3:before {
   content: "\eaec";
 }
-.ico-cloud-download2:before {
-  content: "\f00b";
-}
 .ico-cart3:before {
   content: "\f4d4";
-}
-.ico-eye4:before {
-  content: "\f04e";
 }
 .ico-cc-visa:before {
   content: "\f8d9";
@@ -151,6 +224,7 @@
 .ico-cc-stripe:before {
   content: "\f8de";
 }
+
 html {
     height: 100%;
 }
@@ -165,6 +239,16 @@ body {
 	overflow: hidden; 
 	display: table-cell;
 }
+button.action {
+    border: none;
+    background: none;
+    font-size: 23px;
+    cursor: pointer;
+    margin: 8px 10px;
+}
+button.action:hover {
+    color: #f57c00;
+}
 #header {
 	background: rgba(0,0,0,.8);
 	position: fixed;
@@ -172,7 +256,6 @@ body {
 	left: 0;
 	width: 100%;
 	z-index: 20;
-	height: 104px;
 }
 .table-img  {
     height: 50px;
@@ -545,11 +628,28 @@ a.nav-link:hover {
     display: inline-block;
     vertical-align: middle;
 }
+.search-box input[type="text"]:focus {
+    outline: none;
+    box-shadow: none;
+}
+.search-row {
+    position: relative;
+}
 .search-box .ico-search10 {
 	padding: 8px 10px;
     display: inline-block;
     vertical-align: middle;
     width: 10%;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    right: 10px;
+}
+.description.ellipsis {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .header-icon-links {
 	position: relative;
@@ -560,6 +660,25 @@ a.nav-link:hover {
 .header-icon-links a {
 	color: #fff;
 	display: block;
+}
+.card-title {
+    font-size: 16px;
+}
+.card-text {
+    height: 90px;
+    overflow: hidden;
+}
+.cart-porduct {
+    color: #464646;
+}
+.cart-porduct:hover .card {
+    background: #bdbdbd;
+}
+.cart-porduct:hover {
+    text-decoration: none;
+}
+.card-body a:hover p {
+    text-decoration: none;
 }
 .header-icon-links a:hover {
 	text-decoration: none;
@@ -967,17 +1086,20 @@ img {
   border-radius: 2px; }
   .color:first-of-type {
     margin-left: 20px; }
-
-.add-to-cart, .like {
+  .likeDetail {
+      padding: 5px;
+      display: block;
+  }
+.add-to-cart, .likeDetail {
   background: #ff9f1a;
-  padding: 1.2em 1.5em;
+  padding: 0;
   border: none;
   text-transform: UPPERCASE;
   font-weight: bold;
   color: #fff;
   -webkit-transition: background .3s ease;
           transition: background .3s ease; }
-  .add-to-cart:hover, .like:hover {
+  .add-to-cart:hover, .likeDetail:hover {
     background: #b36800;
     color: #fff; }
 
@@ -1018,6 +1140,15 @@ img {
 .review-block-rate{
 	font-size:13px;
 	margin-bottom:15px;
+}
+.review-block-rate .ico-star2 {
+    color: #fff;
+}
+.review-block-rate button {
+    padding: 0 5px;
+}
+.related-product .flat-filter {
+    display: none;
 }
 .review-block-title{
 	font-size:15px;

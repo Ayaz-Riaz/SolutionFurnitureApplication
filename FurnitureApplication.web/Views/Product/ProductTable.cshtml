@@ -47,10 +47,10 @@
                             }
                         </td>
                         <td>@product.Price</td>
-                        <td>@product.Description</td>
+                        <td><div class="description ellipsis">@product.Description</div></td>
                         <td>
-                            <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Product" , new RouteValueDictionary(new { id = product.ID }))'" data-id="@product.ID">Edit</button>
-                            <button class="btn btn-primary deleteBtn" data-id="@product.ID">Delete</button>
+                            <button class="action ico-pencil5" onclick="location.href='@Url.Action("Edit", "Product" , new RouteValueDictionary(new { id = product.ID }))'" data-id="@product.ID"></button>
+                            <button class="action ico-trash-can deleteBtn" data-id="@product.ID"></button>
                         </td>
                     </tr>
                 }

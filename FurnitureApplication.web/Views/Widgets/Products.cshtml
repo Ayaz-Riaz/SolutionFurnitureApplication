@@ -3,95 +3,119 @@
 @{
     var DefaultimageUrl = "/images/empty-member.png";
 }
-
 @if (Model != null && Model.Products != null)
+{
+    if (!Model.IsLatestProducts)
+    {
+        <ul class="flat-filter style-1 text-center max-width-682 clearfix">
+            <li class="active"><a href="#" data-filter="*">All Product</a></li>
+
+            @foreach (var category in Model.Products.Select(x => x.Category).ToList().Distinct())
+            {
+                <li><a href="#" data-filter=".@category.Name.ToLower()">For @category.Name</a></li>}
+        </ul>
+        <div class="divider h54"></div>
+    }
+
+    <div class="product-content product-fourcolumn clearfix">
+        <ul class="product style2 isotope-product clearfix">
+
+            @foreach (var product in Model.Products)
+            {
+                var imageUrl = string.IsNullOrEmpty(product.ImageUrl) ? DefaultimageUrl : product.ImageUrl;
+
+                <li class="product-item @product.Category.Name.ToLower()">
+                    <div class="product-thumb clearfix">
+                        <a href="@Url.Action("Details", "Detail", new { ID = product.ID })" class="product-thumb">
+                            <img src="@imageUrl" alt="image" style="height: 250px;">
+                        </a>
+                        @if (Model.IsLatestProducts)
+                        {
+                            <span class="new">New</span>
+                        }
+                    </div>
+                    <div class="product-info text-center clearfix">
+                        <span class="product-title">
+                            @product.Name
+                        </span>
+                        <div class="price">
+                            <ins>
+                                <span class="amount">$ @product.Price</span>
+                            </ins>
+                        </div>
+                        <div class="add-to-cart text-center">
+                            <a data-id="@product.ID" class="productAddToCart">ADD TO CART</a>
+                        </div>
+                        <a href="#" class="like"><i class="ico-heart11"></i></a>
+                </li>}
+        </ul>
+    </div>
+}
+@*@if (Model != null && Model.Products != null)
 {
     if (!Model.IsLatestProducts)
     {
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All products</a>
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All products</a>
             </li>
             @foreach (var category in Model.Products.Select(x => x.Category).ToList().Distinct())
             {
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#@category.ID" role="tab" aria-controls="@category.ID" aria-selected="true">@category.Name</a>
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#@category.ID" role="tab" aria-controls="@category.ID" aria-selected="true">@category.Name</a>
                 </li>
             }
         </ul>
-
-        <div class="tab-content" id="pills-tabContent1">
-            @foreach (var category in Model.Products.Select(x => x.Category).ToList().Distinct())
-            {
-                <div class="tab-pane fade" id="@category.ID" role="tabpanel" aria-labelledby="@category.ID">
-                    <div class="room-ideas">
-                        <div class="row">
-                            @foreach (var product in Model.Products)
-                            {
-                                var imageUrl = string.IsNullOrEmpty(product.ImageUrl) ? DefaultimageUrl : product.ImageUrl;
-
-                                <div class="col-lg-3">
-                                    <a href="@Url.Action("Details", "Detail", new { ID = product.ID })">
-                                        <div class="card">
-                                            @if (Model.IsLatestProducts)
-                                            {
-                                                <div class="plan-ribbon-wrapper">
-                                                    <div class="plan-ribbon">New</div>
-                                                </div>
-                                            }
-                                            <img class="card-img-top" src="@imageUrl" alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title">@product.Name</h5>
-                                                <p class="card-text">@product.Description</p>
-                                                <p class="price">$ @product.Price</p>
-                                                <a href="#" data-id="@product.ID" class="btn btn-primary productAddToCart">Add To Cart</a>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
     }
-    @*<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class="room-ideas">
-            <div class="row">
-                @foreach (var product in Model.Products)
-                {
-                    var imageUrl = string.IsNullOrEmpty(product.ImageUrl) ? DefaultimageUrl : product.ImageUrl;
+    <div class="tab-content" id="pills-tabContent">
+        @foreach (var product in Model.Products)
+        {
 
-                    <div class="col-lg-3">
-                        <a href="@Url.Action("Details", "Detail", new { ID = product.ID })">
-                            <div class="card">
-                                @if (Model.IsLatestProducts)
-                                {
-                                    <div class="plan-ribbon-wrapper">
-                                        <div class="plan-ribbon">New</div>
+            <div class="tab-pane fade" id="@product.Category.ID" role="tabpanel" aria-labelledby="@product.Category.ID">
+                <div class="room-ideas">
+                    <div class="row">
+                        @foreach (var productList in Model.Products)
+                        {
+                            var imageUrl = string.IsNullOrEmpty(product.ImageUrl) ? DefaultimageUrl : product.ImageUrl;
+
+                            <div class="col-lg-3">
+                                <a class="cart-porduct text-center" href="@Url.Action("Details", "Detail", new { ID = product.ID })">
+                                    <div class="card">
+                                        @if (Model.IsLatestProducts)
+                                        {
+                                            <div class="plan-ribbon-wrapper">
+                                                <div class="plan-ribbon">New</div>
+                                            </div>
+                                        }
+                                        <img class="card-img-top" src="@imageUrl" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@product.Name</h5>
+                                            <p class="card-text">@product.Description</p>
+                                            <p class="price">$ @product.Price</p>
+                                            <button type="button" data-id="@product.ID" class="btn btn-primary productAddToCart">Add To Cart</button>
+                                        </div>
                                     </div>
-                                }
-                                <img class="card-img-top" src="@imageUrl" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">@product.Name</h5>
-                                    <p class="card-text">@product.Description</p>
-                                    <p class="price">$ @product.Price</p>
-                                    <a href="#" data-id="@product.ID" class="btn btn-primary productAddToCart">Add To Cart</a>
-                                </div>
+                                </a>
                             </div>
-                        </a>
+                        }
                     </div>
-                }
+
+                </div>
             </div>
-        </div>
-    </div>*@
-}
+
+        }
+
+
+    </div>
+}*@
 
 
 
 <script>
+    $(function () {
+        $('#pills-tab li:last-child a').tab('show')
+    })
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         e.target // newly activated tab
         e.relatedTarget // previous active tab
@@ -126,8 +150,4 @@
 
         swal("Done", "product added to cart!", "success");
     });
-    $('#pills-tab a').on('click', function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
 </script>

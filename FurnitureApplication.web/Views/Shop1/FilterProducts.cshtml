@@ -22,7 +22,7 @@
                         <ul class="card-action-icons">
                             <li><a href="#" data-id="@product.ID" class="ico-cart3 productAddToCart"></a></li>
                             <li><a href="#" class="ico-heart11"></a></li>
-                            <li><a href="#" class="ico-eye9"></a></li>
+                            <li><a href="@Url.Action("Details", "Detail", new { ID = product.ID })" class="ico-eye9"></a></li>
                         </ul>
                     </div>
                 </div>

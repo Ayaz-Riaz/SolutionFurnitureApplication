@@ -9,7 +9,7 @@
                 <h2>Orders</h2>
             </div>
             <div id="tableContainer">
-                <div class="col-lg-6 float-left">
+                <div class="col-lg-6 float-left mb-3">
                     <div class="search-box create-page">
                         <div class="search-row">
                             <input class="form-control" name="UserID" id="searchTxt" type="text" value="@Model.UserID" placeholder="Search" />
@@ -50,6 +50,7 @@
                             }
                         </tbody>
                     </table>
+
                     <div>
                         @if (Model.Pager != null && Model.Pager.TotalPages > 1)
                         {

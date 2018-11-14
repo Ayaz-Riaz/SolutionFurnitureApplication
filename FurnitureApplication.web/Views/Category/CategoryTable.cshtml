@@ -46,15 +46,15 @@
                         </div>
                     </td>
                     <td class="wrap-td">
-                        <button class="editBtn btn btn-primary" data-id="@category.ID" onclick="location.href='@Url.Action("Edit", "Category" , new { ID = category.ID } )'">Edit</button>
-                        <button class="deleteBtn btn btn-primary" data-id="@category.ID">Delete</button>
+                        <button class="action editBtn ico-pencil5" data-id="@category.ID" onclick="location.href='@Url.Action("Edit", "Category" , new { ID = category.ID } )'"></button>
+                        <button class="action deleteBtn ico-trash-can" data-id="@category.ID"></button>
                     </td>
                 </tr>
                }
            }
            else
            {
-            <tr><td colspan="3" class="text-danger">No Categories found.</td></tr>
+            <tr><td colspan="4" class="text-danger text-center">No Categories found.</td></tr>
            }
         </tbody>
     </table>

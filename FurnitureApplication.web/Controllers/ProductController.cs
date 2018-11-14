@@ -17,7 +17,7 @@ namespace FurnitureApplication.web.Controllers
         {
             return View();
         }
-        public ActionResult ProductTable(string search, int? pageNo)
+        public ActionResult ProductTable(string search, int? pageNo = 1)
         {
             var pageSize = ConfigurationsService.Instance.PageSize();
             ProductSearchViewModel model = new ProductSearchViewModel();

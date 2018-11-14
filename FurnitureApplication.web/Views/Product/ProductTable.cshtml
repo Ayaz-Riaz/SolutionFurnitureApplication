@@ -119,7 +119,8 @@
         });
     });
 
-    $("#searchBtn").click(function () {
+    $("#searchBtn").click(function (ev) {
+        ev.preventDefault();
         var searchValue = $("#searchTxt").val();
 
         $.ajax({
@@ -129,8 +130,7 @@
             }
         })
         .done(function (response) {
-            $("#tableContiner").html(response);
-            window.location.href = "/Product/index";
+            $("#ProductsTable").html(response);
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("Fail")

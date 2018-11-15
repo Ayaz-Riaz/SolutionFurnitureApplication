@@ -10,6 +10,9 @@ namespace FurnitureApplication.web.ViewModels
     {
         //public List<Category> FeatureedCategories { get; set; }
         public List<Product> Featuredproducts { get; set; }
-        public List<Category> FeaturedCategories { get; internal set; }
+
+        public List<Product> HasDiscount { get; set; }
+
+        public List<Category> FeaturedCategories { get; set; }
     }
 }

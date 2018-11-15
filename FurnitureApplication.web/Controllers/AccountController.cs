@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FurnitureApplication.web.Models;
+using System.Net.Mail;
+using System.Net;
+using System.IO;
 
 namespace FurnitureApplication.web.Controllers
 {
@@ -195,6 +198,9 @@ namespace FurnitureApplication.web.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+            
+
+            
             return View();
         }
 
@@ -205,22 +211,65 @@ namespace FurnitureApplication.web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            string newPassword = Path.GetRandomFileName();
+            newPassword = newPassword.Replace(".", "");
+            var user = UserManager.FindByEmail(model.Email);
+            
+            
+            if (user!=null)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var result = UserManager.ResetPassword(user.Id, code, newPassword);
+                
+                var fromAddress = new MailAddress("rastgroup1@gmail.com", "Ayaz");
+                var toAddress = new MailAddress(model.Email, "To Name");
+                const string fromPassword = "ayaz123456";
+                const string subject = "FurnitureApp: Reset Password";
+                 string body = "Your password has been updated. New passwrd is:" + newPassword; ;
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
             }
+            
+
+            
+           
+
+
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    var user = await UserManager.FindByNameAsync(model.Email);
+            //    if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+            //    {
+            //        // Don't reveal that the user does not exist or is not confirmed
+            //        return View("ForgotPasswordConfirmation");
+            //    }
+
+            //    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+            //    // Send an email with this link
+            //     //string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            //     //var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+            //     //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            //     //return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            //}
 
             // If we got this far, something failed, redisplay form
             return View(model);

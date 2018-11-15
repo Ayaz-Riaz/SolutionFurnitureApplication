@@ -1,4 +1,4 @@
-﻿@model FurnitureApplication.web.ViewModels.HomeViewModels
+﻿@model HomeViewModels
 @{
     ViewBag.Title = "Home Page";
 }
@@ -120,7 +120,7 @@
             <div class="heading-area">
                 <h2>Shop by Department</h2>
             </div>
-            @if (Model.FeaturedCategories != null & Model.FeaturedCategories.Count>= 8)
+            @if (Model.FeaturedCategories != null & Model.FeaturedCategories.Count >= 8)
             {
                 var firstCategory = Model.FeaturedCategories[0];
                 var secondCategory = Model.FeaturedCategories[1];
@@ -149,12 +149,12 @@
                         <div class="department-img-holder">
                             @if (secondCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@secondCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@secondCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@secondCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@secondCategory.Name</span>
+                            </a>
                             }
                         </div>
                     </div>
@@ -162,12 +162,12 @@
                         <div class="department-img-holder">
                             @if (thirdCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@thirdCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@thirdCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@thirdCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@thirdCategory.Name</span>
+                            </a>
                             }
                         </div>
                     </div>
@@ -175,12 +175,12 @@
                         <div class="department-img-holder">
                             @if (fourCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@fourCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@fourCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@fourCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@fourCategory.Name</span>
+                            </a>
                             }
                         </div>
                     </div>
@@ -188,26 +188,26 @@
                         <div class="department-img-holder">
                             @if (fiveCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@fiveCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@fiveCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@fiveCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@fiveCategory.Name</span>
+                            </a>
                             }
-                        
+
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="department-img-holder">
                             @if (sixCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@sixCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@sixCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@sixCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@sixCategory.Name</span>
+                            </a>
                             }
                         </div>
                     </div>
@@ -215,12 +215,12 @@
                         <div class="department-img-holder">
                             @if (sevenCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@sevenCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@sevenCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@sevenCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@sevenCategory.Name</span>
+                            </a>
                             }
                         </div>
                     </div>
@@ -228,87 +228,158 @@
                         <div class="department-img-holder">
                             @if (eightCategory != null)
                             {
-                                <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@eightCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@eightCategory.Name</span>
-                                </a>
+                            <a href="@Url.Action("Index", "Shop1")" onclick="location.href='@Url.Action("Shop1")'" class="image-area">
+                                <div class="image-holder">
+                                    <img src="@eightCategory.ImageUrl" alt="image holder" />
+                                </div>
+                                <span class="dep-name">@eightCategory.Name</span>
+                            </a>
                             }
                         </div>
                     </div>
                     @*<div class="col-lg-3 col-md-3 col-sm-6">
-                        <div class="department-img-holder">
-                            @if (nineCategory != null)
-                            {
-                                <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
-                                    <div class="image-holder">
-                                        <img src="@nineCategory.ImageUrl" alt="image holder" />
-                                    </div>
-                                    <span class="dep-name">@nineCategory.Name</span>
-                                </a>
-                            }
-                        </div>
-                    </div>*@
+                            <div class="department-img-holder">
+                                @if (nineCategory != null)
+                                {
+                                    <a href="@Url.Action("Sofas")" onclick="location.href='@Url.Action("Sofas")'" class="image-area">
+                                        <div class="image-holder">
+                                            <img src="@nineCategory.ImageUrl" alt="image holder" />
+                                        </div>
+                                        <span class="dep-name">@nineCategory.Name</span>
+                                    </a>
+                                }
+                            </div>
+                        </div>*@
                 </div>
             }
             <hr />
         </div>
     </div>
-    <div class="main-holder">
+    <section class="flat-row row-product-new">
         <div class="container">
-            <div class="heading-area">
-                <h2>Discount Offer</h2>
-            </div>
-            <div class="room-ideas">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <a href="#" class="card">
-                            <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Popular</div></div>
-                            <img class="card-img-top" src="../images/pexels-photo-271619.jpeg" alt="Card image cap">
-                            <div class="card-body">
-                                <div class="order-area animation order-price-area order-price2">
-                                    <span class="price"><sup>upto</sup>25<sub>%</sub><span class="off">off</span></span>
-                                </div>
-                                <div class="discription-offer">
-                                    <span>Bed With complete Setup</span>
-                                </div>
-                            </div>
-                        </a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading-area">
+                        <h2>Discount On Products</h2>
                     </div>
-                    <div class="col-lg-4">
-                        <a href="#" class="card">
-                            <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Popular</div></div>
-                            <img class="card-img-top" src="../images/rast-img2a.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <div class="order-area animation order-price-area order-price2">
-                                    <span class="price"><sup>upto</sup>25<sub>%</sub><span class="off">off</span></span>
-                                </div>
-                                <div class="discription-offer">
-                                    <span>Bed With complete Setup</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <a href="#" class="card">
-                            <div class="plan-ribbon-wrapper"><div class="plan-ribbon">Popular</div></div>
-                            <img class="card-img-top" src="../images/pexels-photo-238377.jpeg" alt="Card image cap">
-                            <div class="card-body">
-                                <div class="order-area animation order-price-area order-price2">
-                                    <span class="price"><sup>upto</sup>25<sub>%</sub><span class="off">off</span></span>
-                                </div>
-                                <div class="discription-offer">
-                                    <span>Bed With complete Setup</span>
-                                </div>
-                            </div>
-                        </a>
+                    <div class="product-content product-fourcolumn clearfix">
+                        <ul class="product style2 clearfix">
+                            @if (Model.HasDiscount != null & Model.HasDiscount.Count >= 4)
+                            {
+                                var firstproduct = Model.HasDiscount[0];
+                                var secondproduct = Model.HasDiscount[1];
+                                var thirdproduct = Model.HasDiscount[2];
+                                var fourproduct = Model.HasDiscount[3];
+
+                                <li class="product-item">
+                                    <div class="product-thumb clearfix">
+                                        <a href="@Url.Action("Details", "Detail", new { ID = @firstproduct.ID })" class="product-thumb">
+                                            <img src="@firstproduct.ImageUrl" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="product-info clearfix">
+                                        <div class="order-area animation order-price-area order-price2">
+                                            <span class="price">@secondproduct.DiscountPercentage<sub>%</sub><span class="off">off</span></span>
+                                        </div>
+                                        <span class="product-title">@firstproduct.Name</span>
+                                        <div class="price">
+                                            <del>
+                                                <span class="regular">$@firstproduct.OriginalPrice</span>
+                                            </del>
+                                            <ins>
+                                                <span class="amount">$@firstproduct.Price</span>
+                                            </ins>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart text-center">
+                                        <a data-id="@firstproduct.ID" class="productAddToCart">ADD TO CART</a>
+                                    </div>
+                                    <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                </li>
+                                <li class="product-item">
+                                    <div class="product-thumb clearfix">
+                                        <a href="@Url.Action("Details", "Detail", new { ID = @secondproduct.ID })" class="product-thumb">
+                                            <img src="@secondproduct.ImageUrl" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="product-info clearfix">
+                                        <div class="order-area animation order-price-area order-price2">
+                                            <span class="price">@secondproduct.DiscountPercentage<sub>%</sub><span class="off">off</span></span>
+                                        </div>
+                                        <span class="product-title">@secondproduct.Name</span>
+                                        <div class="price">
+                                            <del>
+                                                <span class="regular">$@secondproduct.OriginalPrice</span>
+                                            </del>
+                                            <ins>
+                                                <span class="amount">$@secondproduct.Price</span>
+                                            </ins>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart text-center">
+                                        <a data-id="@secondproduct.ID" class="productAddToCart">ADD TO CART</a>
+                                    </div>
+                                    <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                </li>
+                                <li class="product-item">
+                                    <div class="product-thumb clearfix">
+                                        <a href="@Url.Action("Details", "Detail", new { ID = @thirdproduct.ID })" class="product-thumb">
+                                            <img src="@thirdproduct.ImageUrl" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="product-info clearfix">
+                                        <div class="order-area animation order-price-area order-price2">
+                                            <span class="price">@thirdproduct.DiscountPercentage<sub>%</sub><span class="off">off</span></span>
+                                        </div>
+                                        <span class="product-title">@thirdproduct.Name</span>
+                                        <div class="price">
+                                            <del>
+                                                <span class="regular">$@thirdproduct.OriginalPrice</span>
+                                            </del>
+                                            <ins>
+                                                <span class="amount">$@thirdproduct.Price</span>
+                                            </ins>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart text-center">
+                                        <a data-id="@thirdproduct.ID" class="productAddToCart">ADD TO CART</a>
+                                    </div>
+                                    <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                </li>
+                                <li class="product-item">
+                                    <div class="product-thumb clearfix">
+                                        <a href="@Url.Action("Details", "Detail", new { ID = @fourproduct.ID })" class="product-thumb">
+                                            <img src="@fourproduct.ImageUrl" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="product-info clearfix">
+                                        <div class="order-area animation order-price-area order-price2">
+                                            <span class="price">@fourproduct.DiscountPercentage<sub>%</sub><span class="off">off</span></span>
+                                        </div>
+                                        <span class="product-title">@fourproduct.Name</span>
+                                        <div class="price">
+                                            <del>
+                                                <span class="regular">$@fourproduct.OriginalPrice</span>
+                                            </del>
+                                            <ins>
+                                                <span class="amount">$@fourproduct.Price</span>
+                                            </ins>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart text-center">
+                                        <a data-id="@fourproduct.ID" class="productAddToCart">ADD TO CART</a>
+                                    </div>
+                                    <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
+                                </li>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
-            <hr />
         </div>
-    </div>
+    </section>
+
+    <hr />
     <div class="main-holder">
         <div class="container">
             <div class="heading-area">
@@ -330,13 +401,4 @@
             </div>
         </div>
     </section>
-    @*<div class="main-holder">
-        <div class="container">
-            <div class="heading-area">
-                <h2>Top Trending Products</h2>
-            </div>
-            @{Html.RenderAction("Products", "Widgets", new { isLatestProducts = true });}
-            <hr />
-        </div>
-    </div>*@
 </div>

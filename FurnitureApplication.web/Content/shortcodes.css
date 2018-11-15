@@ -2404,13 +2404,15 @@
 /* Flat filter
 ---------------------------------------------------------------*/
 .flat-filter.max-width-682 {
-	margin: 0 auto;
-	max-width: 682px;
+	margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .flat-filter li {
 	display: inline-block;
-	float: left;
+    vertical-align: middle;
+    margin-left: -5px;
 }
 
 /* Style 1 */
@@ -2423,6 +2425,11 @@
 	line-height: 41px;
 	width: 130px;
 	background-color: transparent;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .flat-filter.style-1 li:first-child a {
@@ -2430,7 +2437,10 @@
 }
 
 .flat-filter.style-1 li a:hover {
-	color: #f63440;
+	color: #fff;
+    text-decoration: none;
+    background: #ff6a00;
+    border-color: #ff6a00;
 }
 
 .flat-filter.style-1 li.active a:hover {

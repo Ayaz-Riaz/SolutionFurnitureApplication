@@ -273,6 +273,9 @@ label {
     height: auto;
     display: block;
 }
+.form-horizontal {
+    width: 100%;
+}
 #header:after {
     overflow: hidden;
 }
@@ -769,21 +772,21 @@ hr {
 }
 .order-price-area {
     background: #fff;
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
     position: absolute;
-    left: 60px;
-    top: -50px;
+    right: 0;
+    top: 0;
     z-index: 2;
-    margin-left: -50px;
+    margin: 0;
     box-shadow: 0 5px 20px #ddd inset, 0 -3px 0 #999 inset;
 }
 .order-price-area .price {
-    font: bold 30px/40px 'Arial', 'Helvetica', sans-serif;
+    font: bold 18px/25px 'Arial', 'Helvetica', sans-serif;
     color: #000;
-    padding-top: 25px;
-    padding-left: 8px;
+    padding-top: 13px;
+    padding-left: 5px;
     display: block;
 }
 .order-price-area .price sup {
@@ -811,10 +814,10 @@ hr {
 	color: #000;
 }
 .order-price-area .price .off {
-	font-size: 20px;
+	font-size: 15px;
     display: block;
     text-align: center;
-    line-height: 23px;
+    line-height: 20px;
 }
 .loginimg-holder {
 	width: 250px;
@@ -1303,6 +1306,12 @@ img {
 }
 .page-link {
     color: #333;
+}
+@media print {
+    #pdfBtn,
+    #printBtn {
+        display: none;
+    }
 }
 @media screen and (max-width: 1400px){
     .carousel-caption .heilight-text{

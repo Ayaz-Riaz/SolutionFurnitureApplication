@@ -215,6 +215,17 @@ namespace FurnitureApplication.Services
             }
         }
 
+        //***********Hash discount product
+
+        public List<Product> GetHasDiscountProduct()
+        {
+            using (var context = new FAContext())
+            {
+                return context.Products.Where(x => x.HasDiscount && x.ImageUrl != null).ToList();
+            }
+        }
+
+
         //********************Save Products
 
         public void SaveProduct(Product Product)

@@ -40,7 +40,24 @@ namespace FurnitureApplication.web.Controllers
             }
         }
 
+        public ActionResult CheckoutDetail()
+        {
+            CheckoutViewModel model = new CheckoutViewModel();
 
+            var CartProductsCookie = Request.Cookies["CartProducts"];
+
+            if (CartProductsCookie != null && !string.IsNullOrEmpty(CartProductsCookie.Value))
+            {
+                model.CartProductIDs = CartProductsCookie.Value.Split('-').Select(x => int.Parse(x)).ToList();
+
+                model.CartProducts = ProductsServices.Instance.GetProducts(model.CartProductIDs);
+
+                model.User = UserManager.FindById(User.Identity.GetUserId());
+
+            }
+
+            return View(model);
+        }
         public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
             var pageSize = ConfigurationsService.Instance.ShopPageSize();

@@ -25,6 +25,7 @@ namespace FurnitureApplication.web.Controllers
             HomeViewModels model = new HomeViewModels();
 
             model.FeaturedCategories = CategoriesServices.Instance.GetFeaturedCategories();
+            model.HasDiscount = ProductsServices.Instance.GetHasDiscountProduct();
 
             return View(model);
         }

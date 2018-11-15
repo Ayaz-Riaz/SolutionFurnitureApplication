@@ -2,6 +2,7 @@
 
 @if (Model != null && Model.CartProducts != null && Model.CartProducts.Count > 0)
 {
+    @Html.HiddenFor(x => x.CartProducts)
     <div id="main">
         <div class="main-holder">
             <div class="container" style="margin-top: 130px; margin-bottom: 30px;">
@@ -41,7 +42,8 @@
                                 <strong>$ @Model.CartProducts.Sum(x => x.Price * Model.CartProductIDs.Where(productID => productID == x.ID).Count())</strong>
                             </li>
                         </ul>
-
+                        @Html.ActionLink("Print", "CheckoutDetail", "Shop1",null)
+                      
                         @*<form class="card p-2">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Promo code">
@@ -78,7 +80,7 @@
                                     Please enter your shipping address.
                                 </div>
                             </div>
-                            @*<hr class="mb-4">
+                            <hr class="mb-4">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="same-address">
                                     <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
@@ -137,7 +139,7 @@
                                             Security code required
                                         </div>
                                     </div>
-                                </div>*@
+                                </div>
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" id="placeOrderBtn" type="button">Continue to checkout</button>
                         </form>
@@ -170,6 +172,12 @@
                 alert("FAIL");
             });
         });
+        function printPDF(htmlPage) {
+            var w = window.open("about:blank");
+            w.document.write(htmlPage);
+            if (navigator.appName == 'Microsoft Internet Explorer') window.print();
+            else w.print();
+        }
     </script>
 }
 else

@@ -7,13 +7,13 @@ namespace FurnitureApplication.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class _default : IMigrationMetadata
+    public sealed partial class NewEntityUserNameAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_default));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewEntityUserNameAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811141411055_default"; }
+            get { return "201811161121589_NewEntityUserNameAdded"; }
         }
         
         string IMigrationMetadata.Source

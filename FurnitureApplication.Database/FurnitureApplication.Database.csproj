@@ -88,13 +88,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FAContext.cs" />
-    <Compile Include="Migrations\201811141411055_default.cs" />
-    <Compile Include="Migrations\201811141411055_default.Designer.cs">
-      <DependentUpon>201811141411055_default.cs</DependentUpon>
+    <Compile Include="Migrations\201811161121589_NewEntityUserNameAdded.cs" />
+    <Compile Include="Migrations\201811161121589_NewEntityUserNameAdded.Designer.cs">
+      <DependentUpon>201811161121589_NewEntityUserNameAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811141412333_discountprice.cs" />
-    <Compile Include="Migrations\201811141412333_discountprice.Designer.cs">
-      <DependentUpon>201811141412333_discountprice.cs</DependentUpon>
+    <Compile Include="Migrations\201811161214223_change.cs" />
+    <Compile Include="Migrations\201811161214223_change.Designer.cs">
+      <DependentUpon>201811161214223_change.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,17 +112,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
-    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
-    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
-    <Content Include="Rotativa\wkhtmltoimage.exe" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811141411055_default.resx">
-      <DependentUpon>201811141411055_default.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811161121589_NewEntityUserNameAdded.resx">
+      <DependentUpon>201811161121589_NewEntityUserNameAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811141412333_discountprice.resx">
-      <DependentUpon>201811141412333_discountprice.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811161214223_change.resx">
+      <DependentUpon>201811161214223_change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

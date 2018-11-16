@@ -47,10 +47,21 @@
                             }
                         </div>
                         <div class="header-icon-links">
-                            <a href="@Url.Action("Checkout", "Shop1")">
-                                <span class="number" id="cartProductsCount">0</span>
-                                <span class="ico-cart3"></span>
-                            </a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Checkout", "Shop1")">
+                                    <span class="number" id="cartProductsCount">0</span>
+                                    <span class="ico-cart3"></span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Checkout", "Shop1")">
+                                    <span class="number">0</span>
+                                    <span class="ico-cart3"></span>
+                                </a>
+                            }
+
                         </div>
                     </div>
                     @*<div class="search-box float-left">
@@ -78,6 +89,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="@Url.Action("Checkout", "Shop1")">Checkout</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "OrderHistory")">Orders History</a>
+                            </li>
                             <li class="nav-item sign-in">
                                 @{
                                     if (Request.IsAuthenticated)
@@ -90,6 +104,7 @@
                                     }
                                 }
                             </li>
+                            
                         </ul>
                         
                     </div>

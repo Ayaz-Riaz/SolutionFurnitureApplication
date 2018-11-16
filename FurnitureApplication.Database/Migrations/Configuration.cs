@@ -9,7 +9,7 @@ namespace FurnitureApplication.Database.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(FurnitureApplication.Database.FAContext context)

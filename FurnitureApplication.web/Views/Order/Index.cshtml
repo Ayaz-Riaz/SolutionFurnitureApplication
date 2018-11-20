@@ -51,24 +51,39 @@
                         </tbody>
                     </table>
 
-                    <div>
+                    <div class="text-center">
                         @if (Model.Pager != null && Model.Pager.TotalPages > 1)
                         {
-                            if (Model.Pager.CurrentPage > 1)
-                            {
-                                <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = 1 } )" class="pageButtons" data-pageno="1">First</a>
-                                <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = Model.Pager.CurrentPage - 1 } )" class="pageButtons" data-pageno="@(Model.Pager.CurrentPage - 1)">Previous</a>}
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    @if (Model.Pager.CurrentPage > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = 1 } )" class="pageButtons page-link" data-pageno="1">First</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = Model.Pager.CurrentPage - 1 } )" class="pageButtons page-link" data-pageno="@(Model.Pager.CurrentPage - 1)">Previous</a>
+                                        </li>
+                                    }
+                                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                                    {
+                                        string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
+                                        <li class="page-item">
+                                            <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = page } )" class="@activeClass pageButtons page-link" data-pageno="@page">@page</a>
+                                        </li>
+                                    }
 
-                            for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
-                            {
-                                string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
-
-                                <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = page } )" class="@activeClass pageButtons" data-pageno="@page">@page</a>}
-
-                            if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
-                            {
-                                <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = Model.Pager.CurrentPage + 1 } )"  class="pageButtons" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</a>
-                                <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = Model.Pager.EndPage } )" class="pageButtons" data-pageno="@Model.Pager.EndPage">Last</a>}
+                                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                                    {
+                                        <li class="page-item">
+                                            <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = Model.Pager.CurrentPage + 1 } )" class="pageButtons page-link" data-pageno="@(Model.Pager.CurrentPage + 1)">Next</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="@Url.Action("Index", "Order", new { userID = Model.UserID, status = Model.Status, pageNo = Model.Pager.EndPage } )" class="pageButtons page-link" data-pageno="@Model.Pager.EndPage">Last</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
                         }
                     </div>
                 </div>

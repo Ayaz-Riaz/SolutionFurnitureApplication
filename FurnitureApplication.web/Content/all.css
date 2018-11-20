@@ -25,6 +25,27 @@
 }
 
 
+.ico-credit-card:before {
+  content: "\e91b";
+}
+.ico-cc-visa:before {
+  content: "\f8d9";
+}
+.ico-cc-mastercard:before {
+  content: "\f8da";
+}
+.ico-cc-discover:before {
+  content: "\f8db";
+}
+.ico-cc-amex:before {
+  content: "\f8dc";
+}
+.ico-cc-paypal:before {
+  content: "\f8dd";
+}
+.ico-cc-stripe:before {
+  content: "\f8de";
+}
 .ico-users:before {
   content: "\e917";
 }
@@ -102,6 +123,9 @@
 }
 .ico-printer:before {
   content: "\e905";
+}
+.ico-document-file-pdf:before {
+  content: "\e91c";
 }
 .ico-megaphone4:before {
   content: "\e021";
@@ -203,27 +227,7 @@
 .ico-twitter3:before {
   content: "\eaec";
 }
-.ico-cart3:before {
-  content: "\f4d4";
-}
-.ico-cc-visa:before {
-  content: "\f8d9";
-}
-.ico-cc-mastercard:before {
-  content: "\f8da";
-}
-.ico-cc-discover:before {
-  content: "\f8db";
-}
-.ico-cc-amex:before {
-  content: "\f8dc";
-}
-.ico-cc-paypal:before {
-  content: "\f8dd";
-}
-.ico-cc-stripe:before {
-  content: "\f8de";
-}
+
 
 html {
     height: 100%;
@@ -626,7 +630,7 @@ a.nav-link:hover {
 	border: none;
 	padding: 5px 10px;
 	font-size: 14px;
-	line-height: 20px;
+	line-height: 28px;
 	width: 85%;
 	outline: none;
     display: inline-block;
@@ -776,8 +780,8 @@ hr {
     width: 70px;
     border-radius: 50%;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 5px;
+    top:85px;
     z-index: 2;
     margin: 0;
     box-shadow: 0 5px 20px #ddd inset, 0 -3px 0 #999 inset;
@@ -999,6 +1003,22 @@ img {
 #amount {
     background: transparent;
 }
+.card .card-body a.nav-link {
+    padding: 10px;
+    color: #333;
+}
+.card .card-body a.nav-link.active {
+    background: #f57c00;
+    color: #fff;
+}
+.card .card-body a.nav-link:hover {
+    color: #fff;
+}
+.input-group-append .input-group-text i {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 3px;
+}
   @media screen and (max-width: 996px) {
     .preview {
       margin-bottom: 20px; } }
@@ -1212,8 +1232,8 @@ img {
 .widget.widget-price .ui-widget-header .ui-state-default, 
 .widget.widget-price .ui-button, html .ui-button.ui-state-disabled:hover, 
 .widget.widget-price html .ui-button.ui-state-disabled:active {
-	border: 1px solid #f57c00;
-	background-color: #f57c00;
+	border: 1px solid #f57c00 !important;
+	background-color: #f57c00 !important;
 }
 
 .widget.widget-price .ui-widget-content {

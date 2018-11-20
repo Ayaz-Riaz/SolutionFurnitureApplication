@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-5 order-md-2 mb-4">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-muted">Your cart</span>
+                            <span class="text-muted" style="color: #212529 !important;">Your cart</span>
                             <span class="badge badge-secondary badge-pill">@Model.CartProducts.Count</span>
                         </h4>
                         <ul class="list-group mb-3">
@@ -42,16 +42,7 @@
                                 <strong>$ @Model.CartProducts.Sum(x => x.Price * Model.CartProductIDs.Where(productID => productID == x.ID).Count())</strong>
                             </li>
                         </ul>
-                        @Html.ActionLink("Print", "CheckoutDetail", "Shop1",null)
-                      
-                        @*<form class="card p-2">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Promo code">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                                    </div>
-                                </div>
-                            </form>*@
+                        @Html.ActionLink("Print or PDF", "CheckoutDetail", "Shop1",null , new { @class = "btn btn-primary float-right" })
                     </div>
                     <div class="col-md-7 order-md-1">
                         <h4 class="mb-3">Billing address</h4>
@@ -81,66 +72,109 @@
                                 </div>
                             </div>
                             <hr class="mb-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="same-address">
-                                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="save-info">
-                                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                                </div>
-                                <hr class="mb-4">
 
-                                <h4 class="mb-3">Payment</h4>
+                            <h4 class="mb-3">Payment</h4>
+                            <div class="row">
+                                <aside class="col-sm-12">
+                                    <article class="card">
+                                        <div class="card-body p-3">
+                                            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                                        <i class="ico-credit-card"></i> Credit Card
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                                                        <i class="ico-cc-paypal"></i>  Paypal
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                                                        <i class="ico-shop"></i>  Bank Transfer
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade show active" id="nav-tab-card">
+                                                    <p class="alert alert-success">Some text success or error</p>
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label for="username">Full name (on the card)</label>
+                                                            <input type="text" class="form-control" name="username" placeholder="" required="">
+                                                        </div> <!-- form-group.// -->
+                                                        <div class="form-group">
+                                                            <label for="cardNumber">Card number</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="cardNumber" placeholder="">
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text text-muted">
+                                                                        <i class="ico-cc-visa"></i>
+                                                                        <i class="ico-cc-amex"></i>
+                                                                        <i class="ico-cc-mastercard"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div> <!-- form-group.// -->
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <label><span class="hidden-xs">Expiration</span> </label>
+                                                                    <div class="input-group">
+                                                                        <input type="number" class="form-control" placeholder="MM" name="">
+                                                                        <input type="number" class="form-control" placeholder="YY" name="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                                                    <input type="number" class="form-control" required="">
+                                                                </div> <!-- form-group.// -->
+                                                            </div>
+                                                        </div> <!-- row.// -->
+                                                        @*<button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>*@
+                                                    </form>
+                                                </div> <!-- tab-pane.// -->
+                                                <div class="tab-pane fade" id="nav-tab-paypal">
+                                                    <p>Paypal is easiest way to pay online</p>
+                                                    <p>
+                                                        <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="nav-tab-bank">
+                                                    <p>Bank accaunt details</p>
+                                                    <dl class="param">
+                                                        <dt>BANK: </dt>
+                                                        <dd> THE WORLD BANK</dd>
+                                                    </dl>
+                                                    <dl class="param">
+                                                        <dt>Accaunt number: </dt>
+                                                        <dd> 12345678912345</dd>
+                                                    </dl>
+                                                    <dl class="param">
+                                                        <dt>IBAN: </dt>
+                                                        <dd> 123456789</dd>
+                                                    </dl>
+                                                    <p>
+                                                        <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                        tempor incididunt ut labore et dolore magna aliqua.
+                                                    </p>
+                                                </div> <!-- tab-pane.// -->
+                                            </div> <!-- tab-content .// -->
+                                        </div> <!-- card-body.// -->
+                                    </article> <!-- card.// -->
 
-                                <div class="d-block my-3">
-                                    <div class="custom-control custom-radio">
-                                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-                                        <label class="custom-control-label" for="credit">Credit card</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                                        <label class="custom-control-label" for="debit">Debit card</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                                        <label class="custom-control-label" for="paypal">Paypal</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="cc-name">Name on card</label>
-                                        <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                                        <small class="text-muted">Full name as displayed on card</small>
-                                        <div class="invalid-feedback">
-                                            Name on card is required
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="cc-number">Credit card number</label>
-                                        <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                                        <div class="invalid-feedback">
-                                            Credit card number is required
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3 mb-3">
-                                        <label for="cc-expiration">Expiration</label>
-                                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                                        <div class="invalid-feedback">
-                                            Expiration date required
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                        <label for="cc-expiration">CVV</label>
-                                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                                        <div class="invalid-feedback">
-                                            Security code required
-                                        </div>
-                                    </div>
-                                </div>
-                            <hr class="mb-4">
+                                </aside> <!-- col.// -->
+                            </div> <!-- row.// -->
+
+
+
+
                             <button class="btn btn-primary btn-lg btn-block" id="placeOrderBtn" type="button">Continue to checkout</button>
                         </form>
                     </div>

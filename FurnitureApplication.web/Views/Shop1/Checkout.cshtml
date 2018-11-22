@@ -194,7 +194,7 @@
                 if (response.Success) {
                     $.cookie("CartProducts", '', { path: "/" });
                     updateCartProducts();
-                    swal("Done", "Your Order has been placed.", "success").then((value) => {
+                    swal("Done", "Your Order has been placed. and Email send", "success").then((value) => {
                         window.location = '@Url.Action("Index", "Shop1")';
                     });;
                 }
